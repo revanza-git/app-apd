@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import SpajPage from "../../../Pages/ProposalSummary";
+import Registration from "../../../Pages/Registration";
 import {
   getFormView,
   getFormEdit,
@@ -20,4 +20,4 @@ const mapDispatchToProps = (dispatch) => ({
   saveChanges: () => dispatch(saveForm()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SpajPage);
+export default connect(mapStateToProps, mapDispatchToProps)(Registration);
