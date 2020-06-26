@@ -11,23 +11,25 @@ const Textbox = ({
   Placeholder = "",
   HandleChange,
   Disabled = false,
-}) => (
-  <div>
-    <Form.Group as={Row}>
-      <Form.Label column sm={labelCol}>
-        {labelVal}
-      </Form.Label>
-      <Col sm={TextCol}>
-        <Form.Control
-          type={TextType}
-          placeholder={Placeholder}
-          disabled={Disabled}
-          value={Value}
-          onChange={(event) => HandleChange(StateKey, event.target.value)}
-        />
-      </Col>
-    </Form.Group>
-  </div>
-);
+}) => {
+  return (
+    <div>
+      <Form.Group as={Row}>
+        <Form.Label column sm={labelCol}>
+          {labelVal}
+        </Form.Label>
+        <Col sm={TextCol}>
+          <Form.Control
+            type={TextType}
+            placeholder={Placeholder}
+            disabled={Disabled}
+            value={Value}
+            onChange={(event) => HandleChange(StateKey, event.target.value)}
+          />
+        </Col>
+      </Form.Group>
+    </div>
+  );
+};
 
 export default Textbox;

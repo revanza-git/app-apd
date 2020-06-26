@@ -7,14 +7,16 @@ const initialState = {
     status: null,
     title: "",
     data: {
-      user_name: "",
-      user_gender: "",
-      user_birth_date: moment(new Date()).format("YYYY-MM-DD"),
-      user_age: "",
-      user_occupation: "",
-      user_phone_number: ""
+      personal_name: "",
+      personal_gender: "",
+      personal_birth_date: moment(new Date()).format("YYYY-MM-DD"),
+      personal_age: "",
+      personal_occupation: "",
+      personal_phone_number: "",
+      personal_email: "",
     },
     changed: null,
+    isValid: null,
   },
 };
 
@@ -53,6 +55,12 @@ function editReducer(state = initialState.summary, action) {
         changed: true,
         data: action.form,
         status: constants.EDIT_FORM_SUCCESS,
+      };
+    case constants.VALIDATION:
+      return {
+        ...state,
+        isValid: true,
+        status: constants.VALIDATION,
       };
     default:
       return state;

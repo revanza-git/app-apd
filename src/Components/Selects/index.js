@@ -1,15 +1,19 @@
 import React from "react";
 import { Form, Col, Row } from "react-bootstrap";
 
-const Selects = ({ labelCol, labelVal, TextCol }) => (
+const Selects = ({ labelCol, labelVal, TextCol, StateKey, HandleChange }) => (
   <div>
     <Form.Group as={Row}>
       <Form.Label column sm={labelCol}>
         {labelVal}
       </Form.Label>
       <Col sm={TextCol}>
-        <Form.Control value={-1} placeholder="Pilih..." as="select">
-          <option disabled value={-1} key={-1}>Pilih...</option>
+        <Form.Control
+          placeholder="Pilih..."
+          as="select"
+          onChange={(event) => HandleChange(StateKey, event.target.value)}
+        >
+          <option value="">Pilih...</option>
           <option value="G01">Pria</option>
           <option value="G02">Wanita</option>
         </Form.Control>

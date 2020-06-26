@@ -9,3 +9,7 @@ export function getFormEdit(state) {
 export function getHasChanged(state) {
   return state.form.edit.changed;
 }
+
+export function getIsValid(state) {
+  return state.form.edit.isValid;
+}

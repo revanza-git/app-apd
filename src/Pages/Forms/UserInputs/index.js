@@ -3,7 +3,7 @@ import { Form } from "react-bootstrap";
 import TextBox from "../../../Components/Textbox";
 import Select from "../../../Components/Selects";
 import Datepicker from "../../../Components/Datepicker";
-import PhoneNumber from '../../../Components/PhoneNumber';
+import PhoneNumber from "../../../Components/PhoneNumber";
 
 const MainInfo = ({ data, changeHandler }) => (
   <div>
@@ -12,36 +12,36 @@ const MainInfo = ({ data, changeHandler }) => (
       <TextBox
         labelCol="2"
         labelVal="Nama"
-        StateKey="user_name"
+        StateKey="personal_name"
         TextCol="10"
         TextType="text"
-        Value={data.user_name}
+        Value={data.personal_name}
         HandleChange={changeHandler}
       />
       <TextBox
         labelCol="2"
         labelVal="Nomor KTP"
-        StateKey="user_no_ktp"
+        StateKey="personal_no_ktp"
         TextCol="10"
         TextType="text"
-        Value={data.no_ktp}
+        Value={data.personal_no_ktp}
         HandleChange={changeHandler}
       />
       <Datepicker
         labelCol="2"
         labelVal="Tanggal Lahir"
-        StateKey="user_birth_date"
+        StateKey="personal_birth_date"
         TextCol="10"
-        StartDate={data.user_birth_date}
+        StartDate={data.personal_birth_date}
         HandleChange={changeHandler}
       />
       <TextBox
         labelCol="2"
         labelVal="Email"
-        StateKey="user_email"
+        StateKey="personal_email"
         TextCol="10"
         TextType="email"
-        Value={data.user_email}
+        Value={data.personal_email}
         Placeholder="Please enter your email"
         HandleChange={changeHandler}
       />
@@ -49,33 +49,35 @@ const MainInfo = ({ data, changeHandler }) => (
         labelCol="2"
         labelVal="Kelamin"
         TextCol="10"
+        StateKey="personal_gender"
+        HandleChange={changeHandler}
       />
       <TextBox
         labelCol="2"
         labelVal="Pekerjaan"
-        StateKey="user_occupation"
+        StateKey="personal_occupation"
         TextCol="10"
         TextType="text"
-        Value={data.user_occupation}
+        Value={data.personal_occupation}
         HandleChange={changeHandler}
       />
-      {/* <TextBox
+      <TextBox
         labelCol="2"
         labelVal="Nomor HP"
-        StateKey="user_phone_number"
+        StateKey="personal_phone_number"
         TextCol="10"
         TextType="number"
-        Value={data.user_phone_number}
-        HandleChange={changeHandler}
-      /> */}
-      <PhoneNumber
-        labelCol="2"
-        labelVal="Nomor HP"
-        StateKey="user_phone_number"
-        TextCol="10"
-        Value={data.user_phone_number}
+        Value={data.personal_phone_number}
         HandleChange={changeHandler}
       />
+      {/* <PhoneNumber
+        labelCol="2"
+        labelVal="Nomor HP"
+        StateKey="personal_phone_number"
+        TextCol="10"
+        Value={data.personal_phone_number}
+        HandleChange={changeHandler}
+      /> */}
     </Form>
   </div>
 );
