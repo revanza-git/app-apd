@@ -4,7 +4,7 @@ import { Alert } from "react-bootstrap";
 const Alerts = ({ data, valid }) =>
   valid === false ? (
     <Alert variant="danger">
-      <Alert.Heading>{data.personal_form_status}</Alert.Heading>
+      <Alert>{data.personal_form_status}</Alert>
     </Alert>
   ) : null;
 

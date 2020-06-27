@@ -6,7 +6,6 @@ import Datepicker from "../../../Components/Datepicker";
 
 const MainInfo = ({ data, validation, changeHandler }) => {
   const dataForm = data.formEdit;
-  console.log(data);
   return (
     <div>
       <Form>

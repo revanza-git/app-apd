@@ -3,7 +3,6 @@ import { Button, Form, Col, Row } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 const ConBtn = ({ data, onClick }) => {
-  console.log(data);
   const history = useHistory();
   const isValid = data.isValid;
   const handleClick = () => {
