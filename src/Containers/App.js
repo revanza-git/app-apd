@@ -14,6 +14,10 @@ const App = () => (
       <Redirect from="/" to="/registrasi" />
       <Route path="/registrasi" component={RegistrationPage} />
       <Route path="/payment" component={PaymentPage} />
+      <Route path="/payment/notification" />
+      <Route path="/payment/finish" />
+      <Route path="/payment/unfinish" />
+      <Route path="/payment/error" />
     </Router>
   </Provider>
 );
