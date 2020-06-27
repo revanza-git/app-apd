@@ -25,3 +25,8 @@ export const updateFormTitle = (fieldName, fieldValue) => ({
   fieldName,
   fieldValue,
 });
+
+export const updateFormValidation = (fieldValue) => ({
+  type: constants.VALIDATION,
+  fieldValue,
+});

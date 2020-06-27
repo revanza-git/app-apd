@@ -2,10 +2,14 @@ import React from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
-const ConBtn = ({ data }) => {
+const ConBtn = ({ data, onClick }) => {
+  console.log(data);
   const history = useHistory();
+  const isValid = data.isValid;
   const handleClick = () => {
-    history.push("/payment");
+    if (isValid) {
+      history.push("/payment");
+    }
   };
   return (
     <div>
@@ -17,7 +21,7 @@ const ConBtn = ({ data }) => {
             type="submit"
             style={{ backgroundColor: "#7bc697" }}
           >
-            Continue
+            Submit & Continue
           </Button>
         </Col>
       </Form.Group>

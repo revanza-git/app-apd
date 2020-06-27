@@ -9,11 +9,12 @@ const initialState = {
     data: {
       personal_name: "",
       personal_gender: "",
+      personal_identification_number: "",
       personal_birth_date: moment(new Date()).format("YYYY-MM-DD"),
-      personal_age: "",
       personal_occupation: "",
       personal_phone_number: "",
       personal_email: "",
+      personal_form_status: "",
     },
     changed: null,
     isValid: null,
@@ -40,7 +41,7 @@ function editReducer(state = initialState.summary, action) {
       newForm[action.fieldName] = action.fieldValue;
       return {
         ...state,
-        change: false,
+        changed: false,
         data: newForm,
       };
     case constants.SET_UP_EDIT_FORM:
@@ -59,7 +60,7 @@ function editReducer(state = initialState.summary, action) {
     case constants.VALIDATION:
       return {
         ...state,
-        isValid: true,
+        isValid: action.fieldValue,
         status: constants.VALIDATION,
       };
     default:

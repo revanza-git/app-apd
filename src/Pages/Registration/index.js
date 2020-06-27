@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import UserInputs from "../Forms/UserInputs";
 import ContinueBtn from "../../Components/ContinueBtn";
 import Alerts from "../../Components/Alerts";
+
 import "./index.css";
 // import qs from "qs";
 
@@ -25,26 +26,70 @@ class RegistrationPage extends Component {
     // });
   }
 
+  validation(param) {
+    const data = param.formEdit;
+    const updateFormStatus = param.addChange;
+    const email = data.personal_email;
+
+    const dataArray = Object.values(data);
+    const regex = dataArray
+      .map((e) => e.replace(/[-[\]/{}()*+?.\\^$|]/g, "\\$&"))
+      .join("|");
+    const re = new RegExp(regex);
+
+    if (re.exec("")) {
+      updateFormStatus("personal_form_status", "Form harus diisi semua");
+      return false;
+    } else if (email !== "") {
+      let lastAtPos = email.lastIndexOf("@");
+      let lastDotPos = email.lastIndexOf(".");
+      if (
+        !(
+          lastAtPos < lastDotPos &&
+          lastAtPos > 0 &&
+          email.indexOf("@@") === -1 &&
+          lastDotPos > 2 &&
+          email.length - lastDotPos > 2
+        )
+      ) {
+        updateFormStatus("personal_form_status", "Format email tidak benar");
+        return false;
+      } else {
+        updateFormStatus("personal_form_status", "Form Tersubmit");
+        return true;
+      }
+    }
+  }
+
   render() {
-    const { formView, formEdit, saveChanges, addChange, isValid } = this.props;
+    const {
+      formView,
+      formEdit,
+      addChange,
+      updateFormValidation,
+      isValid,
+    } = this.props;
 
     if (!formEdit || !formView) {
       return <span>LOADING</span>;
     }
     return (
       <div>
-        {console.log(this.props)}
         <Card>
           <Card.Header>Registrasi</Card.Header>
           <Card.Body>
             <Card>
               <Card.Header>Registrasi</Card.Header>
               <Card.Body>
-                <UserInputs data={formEdit} changeHandler={addChange} />
+                <UserInputs
+                  data={this.props}
+                  changeHandler={addChange}
+                  validation={this.validation}
+                />
+                <Alerts data={formEdit} valid={isValid} />
               </Card.Body>
             </Card>
-            <ContinueBtn data={formEdit} />
-            <Alerts data={formEdit} open={isValid} />
+            <ContinueBtn data={this.props} onClick={updateFormValidation} />
           </Card.Body>
         </Card>
       </div>
