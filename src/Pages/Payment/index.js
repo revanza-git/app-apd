@@ -15,7 +15,7 @@ class PaymentPage extends Component {
     const url = account.api_url;
     const data = {
       transaction_details: {
-        order_id: "ORDER-011",
+        order_id: "ORDER-020",
         gross_amount: 75000,
       },
       item_details: [
