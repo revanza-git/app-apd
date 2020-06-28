@@ -35,14 +35,15 @@ export const updateFormValidation = (fieldValue) => ({
 // export function
 export const submitToMidtrans = (url, data, config) => {
   return () => {
-    axios
+    const res = axios
       .post(url, data, config)
-      .then(({ response }) => {
+      .then((response) => {
         return response;
       })
       .catch(function (error) {
-        console.log(error);
+        return error;
       });
+    return res;
   };
 };
 // export function submitToMidtrans(url, data, config) {

@@ -8,9 +8,8 @@ import { Card } from "react-bootstrap";
 
 class PaymentPage extends Component {
   componentDidMount() {
-    console.log(this.props);
-
-    const url = `https://app.sandbox.midtrans.com/snap/v1/transactions`;
+    const url =
+      "https://cors-anywhere.herokuapp.com/https://app.sandbox.midtrans.com/snap/v1/transactions";
     const data = {
       transaction_details: {
         order_id: "ORDER-002",
@@ -42,12 +41,16 @@ class PaymentPage extends Component {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: "U0ItTWlkLXNlcnZlci1yVTBTRHljdDN6U29RbzJzLTBZdGE0UXU6:",
+        Authorization: "SB-Mid-server-rU0SDyct3zSoQo2s-0Yta4Qu:",
       },
     };
 
-    const submitToMidtrans = this.props.submitToMidtrans(url, data, config);
-    console.log(submitToMidtrans);
+    (async () => {
+      const response = await this.props.submitToMidtrans(url, data, config);
+      console.log(response);
+      window.snap.pay(response.data.token);
+    })();
+
     //parsing no_SPAJ
     // const query = qs.parse(this.props.location.search, {
     //   ignoreQueryPrefix: true,
