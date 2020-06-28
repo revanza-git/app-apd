@@ -8,6 +8,46 @@ import { Card } from "react-bootstrap";
 
 class PaymentPage extends Component {
   componentDidMount() {
+    console.log(this.props);
+
+    const url = `https://app.sandbox.midtrans.com/snap/v1/transactions`;
+    const data = {
+      transaction_details: {
+        order_id: "ORDER-002",
+        gross_amount: 75000,
+      },
+      item_details: [
+        {
+          id: "ITEM1",
+          price: 75000,
+          quantity: 1,
+          name: "APD Policy",
+          merchant_name: "Equity Life Indonesia",
+        },
+      ],
+      customer_details: {
+        first_name: "Revanza",
+        last_name: "Raytama",
+        email: "revanza.raytama@gmail.com",
+        phone: "081272984509",
+      },
+      enabled_payments: ["credit_card", "gopay"],
+    };
+
+    const config = {
+      auth: {
+        username: "SB-Mid-server-rU0SDyct3zSoQo2s-0Yta4Qu",
+        password: "",
+      },
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "U0ItTWlkLXNlcnZlci1yVTBTRHljdDN6U29RbzJzLTBZdGE0UXU6:",
+      },
+    };
+
+    const submitToMidtrans = this.props.submitToMidtrans(url, data, config);
+    console.log(submitToMidtrans);
     //parsing no_SPAJ
     // const query = qs.parse(this.props.location.search, {
     //   ignoreQueryPrefix: true,

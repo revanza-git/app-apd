@@ -5,8 +5,7 @@ import {
   getFormEdit,
   getHasChanged,
 } from "../../../Store/Form/selectors";
-import { saveForm } from "../../../Store/Form/thunk";
-import { addChange } from "../../../Store/Form/actions";
+import { addChange, submitToMidtrans } from "../../../Store/Form/actions";
 
 const mapStateToProps = (state) => ({
   formView: getFormView(state),
@@ -17,7 +16,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   addChange: (fieldName, fieldValue) =>
     dispatch(addChange(fieldName, fieldValue)),
-  saveChanges: () => dispatch(saveForm()),
+  submitToMidtrans: (url, data, config) =>
+    dispatch(submitToMidtrans(url, data, config)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Payment);

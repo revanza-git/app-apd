@@ -11,7 +11,7 @@ const store = configureStore();
 const App = () => (
   <Provider store={store}>
     <Router>
-      <Redirect from="/" to="/registrasi" />
+      <Redirect from="/" to="/payment" />
       <Route path="/registrasi" component={RegistrationPage} />
       <Route path="/payment" component={PaymentPage} />
       <Route path="/payment/notification" />
