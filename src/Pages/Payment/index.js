@@ -1,23 +1,26 @@
 import React, { Component } from "react";
-// import UserInputs from "../Forms/UserInputs";
-// import SaveBox from "../../Components/SaveBox";
-// import Alerts from "../../Components/Alerts";
-// import qs from "qs";
 
 import { Card } from "react-bootstrap";
 
 class PaymentPage extends Component {
-  componentDidMount() {
-    const url =
-      "https://cors-anywhere.herokuapp.com/https://app.sandbox.midtrans.com/snap/v1/transactions";
+  constructor(props) {
+    super(props);
+    this.state = { redirect_url: null, token: null };
+  }
+
+  redirect(param) {
+    const personal = param.data;
+    const account = param.midtrans_account;
+
+    const url = account.api_url;
     const data = {
       transaction_details: {
-        order_id: "ORDER-002",
+        order_id: "ORDER-055",
         gross_amount: 75000,
       },
       item_details: [
         {
-          id: "ITEM1",
+          id: "ITEM-001",
           price: 75000,
           quantity: 1,
           name: "APD Policy",
@@ -25,71 +28,58 @@ class PaymentPage extends Component {
         },
       ],
       customer_details: {
-        first_name: "Revanza",
-        last_name: "Raytama",
-        email: "revanza.raytama@gmail.com",
-        phone: "081272984509",
+        first_name: personal.personal_first_name,
+        last_name: personal.personal_last_name,
+        email: personal.personal_email,
+        phone: personal.personal_phone_number,
       },
-      enabled_payments: ["credit_card", "gopay"],
+      enabled_payments: account.enabled_payments,
     };
 
     const config = {
       auth: {
-        username: "SB-Mid-server-rU0SDyct3zSoQo2s-0Yta4Qu",
+        username: account.server_key,
         password: "",
       },
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: "SB-Mid-server-rU0SDyct3zSoQo2s-0Yta4Qu:",
+        Authorization: account.server_key + ":",
       },
     };
 
     (async () => {
-      const response = await this.props.submitToMidtrans(url, data, config);
-      console.log(response);
-      window.snap.pay(response.data.token);
-    })();
-
-    //parsing no_SPAJ
-    // const query = qs.parse(this.props.location.search, {
-    //   ignoreQueryPrefix: true,
-    // });
-    // const spajType = this.props.location.pathname.split("/")[1];
-    //Creating parameter for redux
-    // const params = [{ tipe_dokumen: spajType }, { no_spaj: query["no"] }];
-    //calling redux action to change states
-    // params.map((value) => {
-    //   return this.props.addChange(
-    //     Object.keys(value),
-    //     Object.values(value).toString().toUpperCase()
-    //   );
-    // });
+      try {
+        const response = await this.props.submitToMidtrans(url, data, config);
+        this.setState({
+          redirect_url: response.data.redirect_url,
+          token: response.data.token,
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    })().then(() => {
+      window.location.assign(this.state.redirect_url);
+    });
   }
 
   render() {
-    // const {
-    //   formView,
-    //   formEdit,
-    //   saveChanges,
-    //   addChange,
-    //   hasChanged,
-    // } = this.props;
-
-    // if (!formEdit || !formView) {
-    //   return <span>LOADING</span>;
-    // }
+    this.redirect(this.props.states);
+    if (this.state.redirect_url !== null) {
+      // window.location.assign(this.state.redirect_url);
+      // window.snap.pay(this.state.token);
+    }
     return (
       <div>
         <Card>
-          <Card.Header>Payment</Card.Header>
+          <Card.Header>PAYMENT</Card.Header>
           <Card.Body>
             <Card>
-              <Card.Header>PAYMENT</Card.Header>
-              <Card.Body>Tes12343568</Card.Body>
+              <Card.Header>Pembayaran</Card.Header>
+              <Card.Body>
+                Seharusnya Halaman ini Melakukan Redirect ke Midtrans
+              </Card.Body>
             </Card>
-            {/* <SaveBox onSaveAction={saveChanges} />
-            <Alerts data={formEdit} open={hasChanged} /> */}
           </Card.Body>
         </Card>
       </div>

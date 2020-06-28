@@ -14,7 +14,6 @@ const Textbox = ({
   HandleChange,
   Disabled = false,
 }) => {
-  console.log(Data);
   const onChange = (e) => {
     if (
       StateKey === "personal_identification_number" ||

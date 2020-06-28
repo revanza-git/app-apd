@@ -2,14 +2,14 @@ import { connect } from "react-redux";
 import Payment from "../../../Pages/Payment";
 import {
   getFormView,
-  getFormEdit,
+  getStates,
   getHasChanged,
 } from "../../../Store/Form/selectors";
 import { addChange, submitToMidtrans } from "../../../Store/Form/actions";
 
 const mapStateToProps = (state) => ({
   formView: getFormView(state),
-  formEdit: getFormEdit(state),
+  states: getStates(state),
   hasChanged: getHasChanged(state),
 });
 

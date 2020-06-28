@@ -4,20 +4,31 @@ import TextBox from "../../../Components/Textbox";
 import Select from "../../../Components/Selects";
 import Datepicker from "../../../Components/Datepicker";
 
-const MainInfo = ({ data, validation, changeHandler }) => {
-  const dataForm = data.formEdit;
+const MainInfo = ({ data, changeHandler, validation }) => {
+  const dataForm = data.states.data;
   return (
     <div>
       <Form>
         <TextBox
           Data={data}
           labelCol="2"
-          labelVal="Nama"
-          StateKey="personal_name"
+          labelVal="Nama Depan"
+          StateKey="personal_first_name"
           TextCol="10"
           TextType="text"
           Validation={validation}
-          Value={dataForm.personal_name}
+          Value={dataForm.personal_first_name}
+          HandleChange={changeHandler}
+        />
+        <TextBox
+          Data={data}
+          labelCol="2"
+          labelVal="Nama Belakang"
+          StateKey="personal_last_name"
+          TextCol="10"
+          TextType="text"
+          Validation={validation}
+          Value={dataForm.personal_last_name}
           HandleChange={changeHandler}
         />
         <TextBox

@@ -27,7 +27,7 @@ class RegistrationPage extends Component {
   }
 
   validation(param) {
-    const data = param.formEdit;
+    const data = param.states.data;
     const updateFormStatus = param.addChange;
     const email = data.personal_email;
 
@@ -62,15 +62,9 @@ class RegistrationPage extends Component {
   }
 
   render() {
-    const {
-      formView,
-      formEdit,
-      addChange,
-      updateFormValidation,
-      isValid,
-    } = this.props;
+    const { states, addChange, updateFormValidation, isValid } = this.props;
 
-    if (!formEdit || !formView) {
+    if (!states) {
       return <span>LOADING</span>;
     }
     return (
@@ -86,7 +80,7 @@ class RegistrationPage extends Component {
                   changeHandler={addChange}
                   validation={this.validation}
                 />
-                <Alerts data={formEdit} valid={isValid} />
+                <Alerts data={states.data} valid={isValid} />
               </Card.Body>
             </Card>
             <ContinueBtn data={this.props} onClick={updateFormValidation} />
