@@ -18,7 +18,7 @@ const App = () => (
       <Route path="/registration" component={RegistrationPage} />
       <Route path="/payment" component={PaymentPage} />
       <Route exact path="/payment/notification" />
-      <Route exact path="/payment/finished" component={FinishedPage} />
+      <Route exact path="/payment/finish" component={FinishedPage} />
       <Route exact path="/payment/unfinish" />
       <Route exact path="/payment/error" />
     </Router>
