@@ -1,18 +1,12 @@
 import { connect } from "react-redux";
 import Finished from "../../../Pages/Finished";
-// import {
-//   getFormView,
-//   getFormEdit,
-//   getHasChanged,
-// } from "../../../Store/Form/selectors";
+import { getStates } from "../../../Store/Form/selectors";
 // import { setupForm, saveForm } from "../../../Store/Form/thunk";
 // import { addChange } from "../../../Store/Form/actions";
 
-// const mapStateToProps = (state) => ({
-//   formView: getFormView(state),
-//   formEdit: getFormEdit(state),
-//   hasChanged: getHasChanged(state),
-// });
+const mapStateToProps = (state) => ({
+  states: getStates(state),
+});
 
 // const mapDispatchToProps = (dispatch) => ({
 //   addChange: (fieldName, fieldValue) =>
@@ -22,4 +16,4 @@ import Finished from "../../../Pages/Finished";
 //   setUpEditableForm: () => dispatch(setupForm()),
 // });
 
-export default connect()(Finished);
+export default connect(mapStateToProps)(Finished);

@@ -4,6 +4,8 @@ import { Card } from "react-bootstrap";
 
 class FinishedPayment extends Component {
   render() {
+    console.log(this.props);
+
     return (
       <div>
         <Card>
