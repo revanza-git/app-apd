@@ -5,17 +5,28 @@ import { Card } from "react-bootstrap";
 class PaymentPage extends Component {
   constructor(props) {
     super(props);
-    this.state = { redirect_url: null, token: null };
+    this.state = { redirect_url: null, token: null, order_id: 0 };
   }
 
-  redirect(param) {
+  randomizer(length) {
+    var result = "";
+    var characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
+
+  process(param) {
     const personal = param.data;
     const account = param.midtrans_account;
 
     const url = account.api_url;
     const data = {
       transaction_details: {
-        order_id: "ORDER-020",
+        order_id: "ORDER-" + this.randomizer(8),
         gross_amount: 75000,
       },
       item_details: [
@@ -58,19 +69,17 @@ class PaymentPage extends Component {
       } catch (err) {
         console.log(err);
       }
-    })().then(() => {
-      window.location.assign(this.state.redirect_url);
-    });
+    })();
   }
 
   render() {
-    this.redirect(this.props.states);
     if (this.state.redirect_url !== null) {
-      // window.location.assign(this.state.redirect_url);
-      // window.snap.pay(this.state.token);
+      window.location.assign(this.state.redirect_url);
     }
     return (
       <div>
+        {console.log("render halaman")}
+        {this.process(this.props.states)}
         <Card>
           <Card.Header>PAYMENT</Card.Header>
           <Card.Body>
