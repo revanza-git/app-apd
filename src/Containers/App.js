@@ -16,7 +16,7 @@ const App = () => (
         <Redirect to="/registration" />
       </Route>
       <Route path="/registration" component={RegistrationPage} />
-      <Route path="/payment" component={PaymentPage} />
+      <Route exact path="/payment" component={PaymentPage} />
       <Route exact path="/payment/notification" />
       <Route exact path="/payment/finish" component={FinishedPage} />
       <Route exact path="/payment/unfinish" />
