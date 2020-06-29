@@ -5,16 +5,16 @@ import moment from "moment";
 const initialState = {
   state: {
     title: "",
-    data: {
-      personal_first_name: "",
-      personal_last_name: "",
-      personal_gender: "",
-      personal_identification_number: "",
-      personal_birth_date: moment(new Date()).format("YYYY-MM-DD"),
-      personal_occupation: "",
-      personal_phone_number: "",
-      personal_email: "",
-      personal_form_status: "",
+    personal: {
+      first_name: "",
+      last_name: "",
+      gender: "",
+      identification_number: "",
+      birth_date: moment(new Date()).format("YYYY-MM-DD"),
+      occupation: "",
+      phone_number: "",
+      email: "",
+      form_status: "",
     },
     midtrans_account: {
       api_url:
@@ -42,11 +42,11 @@ function viewReducer(state = initialState.state, action) {
 function editReducer(state = initialState.state, action) {
   switch (action.type) {
     case constants.ADD_CHANGE:
-      const newForm = { ...state.data };
+      const newForm = { ...state.personal };
       newForm[action.fieldName] = action.fieldValue;
       return {
         ...state,
-        data: newForm,
+        personal: newForm,
       };
     case constants.VALIDATION:
       return {

@@ -27,9 +27,9 @@ class RegistrationPage extends Component {
   }
 
   validation(param) {
-    const data = param.states.data;
+    const data = param.states.personal;
     const updateFormStatus = param.addChange;
-    const email = data.personal_email;
+    const email = data.email;
 
     const dataArray = Object.values(data);
     const regex = dataArray
@@ -38,7 +38,7 @@ class RegistrationPage extends Component {
     const re = new RegExp(regex);
 
     if (re.exec("")) {
-      updateFormStatus("personal_form_status", "Form harus diisi semua");
+      updateFormStatus("form_status", "Form harus diisi semua");
       return false;
     } else if (email !== "") {
       let lastAtPos = email.lastIndexOf("@");
@@ -52,10 +52,10 @@ class RegistrationPage extends Component {
           email.length - lastDotPos > 2
         )
       ) {
-        updateFormStatus("personal_form_status", "Format email tidak benar");
+        updateFormStatus("form_status", "Format email tidak benar");
         return false;
       } else {
-        updateFormStatus("personal_form_status", "Form Tersubmit");
+        updateFormStatus("form_status", "Form Tersubmit");
         return true;
       }
     }
@@ -80,7 +80,7 @@ class RegistrationPage extends Component {
                   changeHandler={addChange}
                   validation={this.validation}
                 />
-                <Alerts data={states.data} valid={isValid} />
+                <Alerts data={states.personal} valid={isValid} />
               </Card.Body>
             </Card>
             <ContinueBtn data={this.props} onClick={updateFormValidation} />

@@ -5,7 +5,7 @@ import Select from "../../../Components/Selects";
 import Datepicker from "../../../Components/Datepicker";
 
 const MainInfo = ({ data, changeHandler, validation }) => {
-  const dataForm = data.states.data;
+  const dataForm = data.states.personal;
   return (
     <div>
       <Form>
@@ -13,53 +13,53 @@ const MainInfo = ({ data, changeHandler, validation }) => {
           Data={data}
           labelCol="2"
           labelVal="Nama Depan"
-          StateKey="personal_first_name"
+          StateKey="first_name"
           TextCol="10"
           TextType="text"
           Validation={validation}
-          Value={dataForm.personal_first_name}
+          Value={dataForm.first_name}
           HandleChange={changeHandler}
         />
         <TextBox
           Data={data}
           labelCol="2"
           labelVal="Nama Belakang"
-          StateKey="personal_last_name"
+          StateKey="last_name"
           TextCol="10"
           TextType="text"
           Validation={validation}
-          Value={dataForm.personal_last_name}
+          Value={dataForm.last_name}
           HandleChange={changeHandler}
         />
         <TextBox
           Data={data}
           labelCol="2"
           labelVal="Nomor KTP"
-          StateKey="personal_identification_number"
+          StateKey="identification_number"
           TextCol="10"
           TextType="text"
           Validation={validation}
-          Value={dataForm.personal_identification_number}
+          Value={dataForm.identification_number}
           HandleChange={changeHandler}
         />
         <Datepicker
           labelCol="2"
           labelVal="Tanggal Lahir"
-          StateKey="personal_birth_date"
+          StateKey="birth_date"
           TextCol="10"
           Validation={validation}
-          StartDate={dataForm.personal_birth_date}
+          StartDate={dataForm.birth_date}
           HandleChange={changeHandler}
         />
         <TextBox
           Data={data}
           labelCol="2"
           labelVal="Email"
-          StateKey="personal_email"
+          StateKey="email"
           TextCol="10"
           TextType="email"
           Validation={validation}
-          Value={dataForm.personal_email}
+          Value={dataForm.email}
           Placeholder="Please enter your email"
           HandleChange={changeHandler}
         />
@@ -69,29 +69,29 @@ const MainInfo = ({ data, changeHandler, validation }) => {
           labelVal="Kelamin"
           TextCol="10"
           Validation={validation}
-          StateKey="personal_gender"
+          StateKey="gender"
           HandleChange={changeHandler}
         />
         <TextBox
           Data={data}
           labelCol="2"
           labelVal="Pekerjaan"
-          StateKey="personal_occupation"
+          StateKey="occupation"
           TextCol="10"
           TextType="text"
           Validation={validation}
-          Value={dataForm.personal_occupation}
+          Value={dataForm.occupation}
           HandleChange={changeHandler}
         />
         <TextBox
           Data={data}
           labelCol="2"
           labelVal="Nomor HP"
-          StateKey="personal_phone_number"
+          StateKey="phone_number"
           TextCol="10"
           TextType="text"
           Validation={validation}
-          Value={dataForm.personal_phone_number}
+          Value={dataForm.phone_number}
           HandleChange={changeHandler}
         />
       </Form>

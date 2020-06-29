@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Loader from "react-loader-spinner";
 
 import { Card } from "react-bootstrap";
 
@@ -20,7 +21,7 @@ class PaymentPage extends Component {
   }
 
   process(param) {
-    const personal = param.data;
+    const personal = param.personal;
     const account = param.midtrans_account;
 
     const url = account.api_url;
@@ -39,10 +40,10 @@ class PaymentPage extends Component {
         },
       ],
       customer_details: {
-        first_name: personal.personal_first_name,
-        last_name: personal.personal_last_name,
-        email: personal.personal_email,
-        phone: personal.personal_phone_number,
+        first_name: personal.first_name,
+        last_name: personal.last_name,
+        email: personal.email,
+        phone: personal.phone_number,
       },
       enabled_payments: account.enabled_payments,
     };
@@ -84,9 +85,21 @@ class PaymentPage extends Component {
           <Card.Header>PAYMENT</Card.Header>
           <Card.Body>
             <Card>
-              <Card.Header>Pembayaran</Card.Header>
+              <Card.Header>Redirecting to Midtrans</Card.Header>
               <Card.Body>
-                Seharusnya Halaman ini Melakukan Redirect ke Midtrans
+                <Loader
+                  style={{
+                    width: "100%",
+                    height: "100",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                  type="ThreeDots"
+                  color="#2BAD60"
+                  height="100"
+                  width="100"
+                />
               </Card.Body>
             </Card>
           </Card.Body>
