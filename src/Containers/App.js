@@ -5,6 +5,7 @@ import configureStore from "../Store";
 import RegistrationPage from "./PageContainer/RegistrationPage";
 import PaymentPage from "./PageContainer/PaymentPage";
 import FinishedPage from "./PageContainer/FinishedPage";
+import LandingPage from "./PageContainer/LandingPage";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 const store = configureStore();
@@ -13,9 +14,13 @@ const App = () => (
   <Provider store={store}>
     <Router>
       <Route exact path="/">
-        <Redirect to="/registration" />
+        <Redirect to="/landing" />
       </Route>
-      <Route path="/registration" component={RegistrationPage} />
+      <Route exact path="/registration">
+        <Redirect to="/registration?type=individu" />
+      </Route>
+      <Route exact path="/landing" component={LandingPage} />
+      <Route exact path="/registration" component={RegistrationPage} />
       <Route exact path="/payment" component={PaymentPage} />
       <Route exact path="/payment/notification" />
       <Route exact path="/payment/finish" component={FinishedPage} />

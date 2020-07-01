@@ -10,6 +10,10 @@ export function getHasChanged(state) {
   return state.form.edit.changed;
 }
 
-export function getIsValid(state) {
-  return state.form.edit.isValid;
-}
+// export function getPersonalFormValid(state) {
+//   return state.form.edit.personal.is_valid;
+// }
+
+// export function getSpouseFormValid(state) {
+//   return state.form.edit.spouse.is_valid;
+// }

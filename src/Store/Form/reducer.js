@@ -4,7 +4,7 @@ import moment from "moment";
 
 const initialState = {
   state: {
-    title: "",
+    form_type: "",
     personal: {
       first_name: "",
       last_name: "",
@@ -15,6 +15,19 @@ const initialState = {
       phone_number: "",
       email: "",
       form_status: "",
+      is_valid: true,
+    },
+    spouse: {
+      first_name: "",
+      last_name: "",
+      gender: "",
+      identification_number: "",
+      birth_date: moment(new Date()).format("YYYY-MM-DD"),
+      occupation: "",
+      phone_number: "",
+      email: "",
+      form_status: "",
+      is_valid: true,
     },
     midtrans_account: {
       api_url:
@@ -26,9 +39,6 @@ const initialState = {
       password: "",
       enabled_payments: ["credit_card", "gopay"],
     },
-    status: null,
-    changed: null,
-    isValid: null,
   },
 };
 
@@ -44,15 +54,24 @@ function editReducer(state = initialState.state, action) {
     case constants.ADD_CHANGE:
       const newForm = { ...state.personal };
       newForm[action.fieldName] = action.fieldValue;
+      console.log(newForm);
       return {
         ...state,
         personal: newForm,
       };
-    case constants.VALIDATION:
+    case constants.ADD_SPOUSE:
+      const spouseNew = { ...state.spouse };
+      spouseNew[action.fieldName] = action.fieldValue;
+      console.log(spouseNew);
       return {
         ...state,
-        isValid: action.fieldValue,
-        status: constants.VALIDATION,
+        spouse: spouseNew,
+      };
+    case constants.FORM_TYPE:
+      return {
+        ...state,
+        form_type: action.fieldValue,
+        status: constants.FORM_TYPE,
       };
     default:
       return state;

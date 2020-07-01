@@ -4,24 +4,25 @@ import {
   getFormView,
   getStates,
   getHasChanged,
-  getIsValid,
 } from "../../../Store/Form/selectors";
-import { saveForm } from "../../../Store/Form/thunk";
-import { addChange, updateFormValidation } from "../../../Store/Form/actions";
+import {
+  addChange,
+  updateFormType,
+  addSpouse,
+} from "../../../Store/Form/actions";
 
 const mapStateToProps = (state) => ({
   formView: getFormView(state),
   states: getStates(state),
   hasChanged: getHasChanged(state),
-  isValid: getIsValid(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   addChange: (fieldName, fieldValue) =>
     dispatch(addChange(fieldName, fieldValue)),
-  updateFormValidation: (fieldValue) =>
-    dispatch(updateFormValidation(fieldValue)),
-  saveChanges: () => dispatch(saveForm()),
+  updateFormType: (fieldValue) => dispatch(updateFormType(fieldValue)),
+  addSpouse: (fieldName, fieldValue) =>
+    dispatch(addSpouse(fieldName, fieldValue)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Registration);

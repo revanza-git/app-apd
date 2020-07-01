@@ -2,9 +2,10 @@ import React from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
-const ConBtn = ({ data, onClick }) => {
+const ConBtn = ({ data }) => {
+  console.log(data);
   const history = useHistory();
-  const isValid = data.isValid;
+  const isValid = data.states.personal.is_valid;
   const handleClick = () => {
     if (isValid) {
       history.push("/payment");

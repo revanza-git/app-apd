@@ -7,6 +7,12 @@ export const addChange = (fieldName, fieldValue) => ({
   fieldValue,
 });
 
+export const addSpouse = (fieldName, fieldValue) => ({
+  type: constants.ADD_SPOUSE,
+  fieldName,
+  fieldValue,
+});
+
 export const personalChange = (fieldName, fieldValue) => ({
   type: constants.PERSONAL_CHANGE,
   fieldName,
@@ -15,6 +21,11 @@ export const personalChange = (fieldName, fieldValue) => ({
 
 export const updateFormValidation = (fieldValue) => ({
   type: constants.VALIDATION,
+  fieldValue,
+});
+
+export const updateFormType = (fieldValue) => ({
+  type: constants.FORM_TYPE,
   fieldValue,
 });
 
@@ -32,15 +43,3 @@ export const submitToMidtrans = (url, data, config) => {
     return res;
   };
 };
-// export function submitToMidtrans(url, data, config) {
-//   return function (url, data, config) {
-//     return axios
-//       .post(url, data, config)
-//       .then(({ response }) => {
-//         return response;
-//       })
-//       .catch(function (error) {
-//         console.log(error);
-//       });
-//   };
-// }

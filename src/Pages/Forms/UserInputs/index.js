@@ -4,8 +4,9 @@ import TextBox from "../../../Components/Textbox";
 import Select from "../../../Components/Selects";
 import Datepicker from "../../../Components/Datepicker";
 
-const MainInfo = ({ data, changeHandler, validation }) => {
-  const dataForm = data.states.personal;
+const MainInfo = ({ data, changeHandler, validation, updateValidFlag }) => {
+  const dataForm = data;
+
   return (
     <div>
       <Form>
@@ -17,6 +18,7 @@ const MainInfo = ({ data, changeHandler, validation }) => {
           TextCol="10"
           TextType="text"
           Validation={validation}
+          updateValidFlag={updateValidFlag}
           Value={dataForm.first_name}
           HandleChange={changeHandler}
         />
@@ -28,6 +30,7 @@ const MainInfo = ({ data, changeHandler, validation }) => {
           TextCol="10"
           TextType="text"
           Validation={validation}
+          updateValidFlag={updateValidFlag}
           Value={dataForm.last_name}
           HandleChange={changeHandler}
         />
@@ -39,6 +42,7 @@ const MainInfo = ({ data, changeHandler, validation }) => {
           TextCol="10"
           TextType="text"
           Validation={validation}
+          updateValidFlag={updateValidFlag}
           Value={dataForm.identification_number}
           HandleChange={changeHandler}
         />
@@ -59,6 +63,7 @@ const MainInfo = ({ data, changeHandler, validation }) => {
           TextCol="10"
           TextType="email"
           Validation={validation}
+          updateValidFlag={updateValidFlag}
           Value={dataForm.email}
           Placeholder="Please enter your email"
           HandleChange={changeHandler}
@@ -80,6 +85,7 @@ const MainInfo = ({ data, changeHandler, validation }) => {
           TextCol="10"
           TextType="text"
           Validation={validation}
+          updateValidFlag={updateValidFlag}
           Value={dataForm.occupation}
           HandleChange={changeHandler}
         />
@@ -91,6 +97,7 @@ const MainInfo = ({ data, changeHandler, validation }) => {
           TextCol="10"
           TextType="text"
           Validation={validation}
+          updateValidFlag={updateValidFlag}
           Value={dataForm.phone_number}
           HandleChange={changeHandler}
         />

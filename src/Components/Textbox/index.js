@@ -15,10 +15,7 @@ const Textbox = ({
   Disabled = false,
 }) => {
   const onChange = (e) => {
-    if (
-      StateKey === "personal_identification_number" ||
-      StateKey === "personal_phone_number"
-    ) {
+    if (StateKey === "identification_number" || StateKey === "phone_number") {
       const re = /^[0-9\b]+$/;
       if (e.target.value === "" || re.test(e.target.value)) {
         HandleChange(StateKey, e.target.value);
@@ -29,9 +26,9 @@ const Textbox = ({
 
     const formValidation = Validation(Data);
     if (formValidation) {
-      Data.updateFormValidation(true);
+      HandleChange("is_valid", true);
     } else {
-      Data.updateFormValidation(false);
+      HandleChange("is_valid", false);
     }
   };
   return (
