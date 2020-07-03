@@ -1,71 +1,73 @@
-.jumbotron {
-  background: url(./Images/homepage-Banner-01.jpg) no-repeat center center;
-  height: 670px;
-  background-size: cover;
-}
-
-h1 {
-  color: white;
-  font-family: "Roboto";
-}
-
-h1,
-button {
-  font-family: "Roboto-bold", sans-serif;
-}
-
-img {
-  height: 100px;
-}
-
-.upper {
-  padding-bottom: 10em;
-}
-
-.login {
-  right: 100px;
-  line-height: 1;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  vertical-align: middle;
-  display: inline-block;
-  color: #fff;
-  font-weight: 650;
-  margin: 0 auto;
-  padding: 0.75em 1.5em;
-  background: transparent;
-  border: 1.5px solid white;
-  width: 150px;
-  background-size: 100% 100%,
-    calc(100% + var(--border-width) + var(--border-width))
-      calc(100% + var(--border-width) + var(--border-width));
-  border-radius: 1.5em;
-
-  &:hover {
-    background: gray;
-    border: 1.5px solid gray;
+div.intro {
+  .jumbotron {
+    background: url(./Images/homepage-Banner-01.jpg) no-repeat center center;
+    height: 670px;
+    background-size: cover;
   }
-}
 
-.learn-more {
-  line-height: 1;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  vertical-align: middle;
-  display: inline-block;
-  color: #fff;
-  font-weight: 650;
-  margin: 0 auto;
-  padding: 0.75em 1.5em;
-  background: linear-gradient(60deg, #74bf44, #ccdb29);
-  border: 1.5px transparent;
-  width: 200px;
-  background-size: 100% 100%,
-    calc(100% + var(--border-width) + var(--border-width))
-      calc(100% + var(--border-width) + var(--border-width));
-  border-radius: 1.5em;
+  h1 {
+    color: white;
+    font-family: "Roboto";
+  }
 
-  &:hover {
-    background: gray;
+  h1,
+  button {
+    font-family: "Roboto-bold", sans-serif;
+  }
+
+  img {
+    height: 100px;
+  }
+
+  .upper {
+    padding-bottom: 10em;
+  }
+
+  .login {
+    right: 100px;
+    line-height: 1;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    vertical-align: middle;
+    display: inline-block;
+    color: #fff;
+    font-weight: 650;
+    margin: 0 auto;
+    padding: 0.75em 1.5em;
+    background: transparent;
+    border: 1.5px solid white;
+    width: 150px;
+    background-size: 100% 100%,
+      calc(100% + var(--border-width) + var(--border-width))
+        calc(100% + var(--border-width) + var(--border-width));
+    border-radius: 1.5em;
+
+    &:hover {
+      background: gray;
+      border: 1.5px solid gray;
+    }
+  }
+
+  .learn-more {
+    line-height: 1;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    vertical-align: middle;
+    display: inline-block;
+    color: #fff;
+    font-weight: 650;
+    margin: 0 auto;
+    padding: 0.75em 1.5em;
+    background: linear-gradient(60deg, #74bf44, #ccdb29);
+    border: 1.5px transparent;
+    width: 200px;
+    background-size: 100% 100%,
+      calc(100% + var(--border-width) + var(--border-width))
+        calc(100% + var(--border-width) + var(--border-width));
+    border-radius: 1.5em;
+
+    &:hover {
+      background: gray;
+    }
   }
 }

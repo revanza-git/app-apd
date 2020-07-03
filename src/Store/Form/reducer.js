@@ -15,7 +15,7 @@ const initialState = {
       phone_number: "",
       email: "",
       form_status: "",
-      is_valid: true,
+      is_valid: false,
     },
     spouse: {
       first_name: "",
