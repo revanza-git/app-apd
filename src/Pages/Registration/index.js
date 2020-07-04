@@ -11,17 +11,24 @@ import qs from "qs";
 import { Card } from "react-bootstrap";
 
 class RegistrationPage extends Component {
-  constructor(props) {
-    super(props);
+  componentDidMount() {
     //parsing URL
     const query = qs.parse(this.props.location.search, {
       ignoreQueryPrefix: true,
     });
+
     this.props.updateFormType(query.type);
+
+    if (query.type === "individu") {
+      this.props.updateRegType("R001");
+    } else if (query.type === "pasangan") {
+      this.props.updateRegType("R002");
+    } else {
+      this.props.updateRegType("R003");
+    }
   }
 
   validation = (param) => {
-    console.log(param);
     const data = param;
     const updateFormStatus = this.props.addChange;
     const email = data.email;
@@ -56,24 +63,30 @@ class RegistrationPage extends Component {
   };
 
   render() {
+    console.log(this.props);
     const { states, addChange, addSpouse } = this.props;
     const form_type = states.form_type;
 
-    if (!states || form_type === "") {
+    if (!states || form_type === "" || states.is_loading === true) {
       return (
-        <Loader
-          style={{
-            width: "100%",
-            height: "100",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-          type="ThreeDots"
-          color="#2BAD60"
-          height="100"
-          width="100"
-        />
+        <Card>
+          <Card.Header>Loading</Card.Header>
+          <Card.Body>
+            <Loader
+              style={{
+                width: "100%",
+                height: "100",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              type="ThreeDots"
+              color="#2BAD60"
+              height="100"
+              width="100"
+            />
+          </Card.Body>
+        </Card>
       );
     }
 
@@ -120,12 +133,11 @@ class RegistrationPage extends Component {
 
     return (
       <div>
-        {console.log(this.props.states.additional)}
         <Card>
           <Card.Header>Registrasi</Card.Header>
           <Card.Body>
             {card}
-            <ContinueBtn data={this.props} />
+            <ContinueBtn data={this.props} targetURL="/confirmation" />
           </Card.Body>
         </Card>
       </div>

@@ -5,7 +5,7 @@ import {
   getStates,
   getHasChanged,
 } from "../../../Store/Form/selectors";
-import { addChange, submitToMidtrans } from "../../../Store/Form/actions";
+import { addChange, postApi } from "../../../Store/Form/actions";
 
 const mapStateToProps = (state) => ({
   formView: getFormView(state),
@@ -16,8 +16,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   addChange: (fieldName, fieldValue) =>
     dispatch(addChange(fieldName, fieldValue)),
-  submitToMidtrans: (url, data, config) =>
-    dispatch(submitToMidtrans(url, data, config)),
+  postApi: (url, data, config) => dispatch(postApi(url, data, config)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Payment);

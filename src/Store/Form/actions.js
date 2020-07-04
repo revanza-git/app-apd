@@ -19,8 +19,19 @@ export const personalChange = (fieldName, fieldValue) => ({
   fieldValue,
 });
 
+export const simedisChange = (fieldName, fieldValue) => ({
+  type: constants.SIMEDIS_CHANGE,
+  fieldName,
+  fieldValue,
+});
+
 export const updateFormValidation = (fieldValue) => ({
   type: constants.VALIDATION,
+  fieldValue,
+});
+
+export const updatePageLoad = (fieldValue) => ({
+  type: constants.PAGE_LOAD,
   fieldValue,
 });
 
@@ -29,8 +40,13 @@ export const updateFormType = (fieldValue) => ({
   fieldValue,
 });
 
+export const updateRegType = (fieldValue) => ({
+  type: constants.REG_TYPE,
+  fieldValue,
+});
+
 // export function
-export const submitToMidtrans = (url, data, config) => {
+export const postApi = (url, data, config) => {
   return () => {
     const res = axios
       .post(url, data, config)

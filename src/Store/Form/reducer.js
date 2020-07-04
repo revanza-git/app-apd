@@ -5,6 +5,8 @@ import moment from "moment";
 const initialState = {
   state: {
     form_type: "",
+    reg_type: "",
+    is_loading: false,
     personal: {
       first_name: "",
       last_name: "",
@@ -15,7 +17,7 @@ const initialState = {
       phone_number: "",
       email: "",
       form_status: "",
-      is_valid: false,
+      is_valid: true,
     },
     spouse: {
       first_name: "",
@@ -37,7 +39,17 @@ const initialState = {
       server_key: "SB-Mid-server-rU0SDyct3zSoQo2s-0Yta4Qu",
       username: "",
       password: "",
-      enabled_payments: ["credit_card", "gopay"],
+      enabled_payments: ["gopay"],
+    },
+    simedis: {
+      bill_amount: "",
+      bill_code: "",
+      registration_code: "",
+      payment_desc: "",
+      payment_ref_code: "",
+      paid_amount: "",
+      transaction_date: "",
+      payment_status: true,
     },
   },
 };
@@ -62,16 +74,34 @@ function editReducer(state = initialState.state, action) {
     case constants.ADD_SPOUSE:
       const spouseNew = { ...state.spouse };
       spouseNew[action.fieldName] = action.fieldValue;
-      console.log(spouseNew);
       return {
         ...state,
         spouse: spouseNew,
+      };
+    case constants.SIMEDIS_CHANGE:
+      const payment = { ...state.simedis };
+      payment[action.fieldName] = action.fieldValue;
+      return {
+        ...state,
+        simedis: payment,
       };
     case constants.FORM_TYPE:
       return {
         ...state,
         form_type: action.fieldValue,
         status: constants.FORM_TYPE,
+      };
+    case constants.REG_TYPE:
+      return {
+        ...state,
+        reg_type: action.fieldValue,
+        status: constants.REG_TYPE,
+      };
+    case constants.PAGE_LOAD:
+      return {
+        ...state,
+        is_loading: action.fieldValue,
+        status: constants.PAGE_LOAD,
       };
     default:
       return state;

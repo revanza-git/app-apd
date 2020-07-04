@@ -9,6 +9,10 @@ class PaymentPage extends Component {
     this.state = { redirect_url: null, token: null, order_id: 0 };
   }
 
+  componentDidMount() {
+    this.process(this.props.states);
+  }
+
   randomizer(length) {
     var result = "";
     var characters =
@@ -23,22 +27,14 @@ class PaymentPage extends Component {
   process(param) {
     const personal = param.personal;
     const account = param.midtrans_account;
+    const simedis = param.simedis;
 
     const url = account.api_url;
     const data = {
       transaction_details: {
-        order_id: "ORDER-" + this.randomizer(8),
-        gross_amount: 75000,
+        order_id: simedis.bill_code,
+        gross_amount: simedis.bill_amount,
       },
-      item_details: [
-        {
-          id: "ITEM-001",
-          price: 75000,
-          quantity: 1,
-          name: "APD Policy",
-          merchant_name: "Equity Life Indonesia",
-        },
-      ],
       customer_details: {
         first_name: personal.first_name,
         last_name: personal.last_name,
@@ -62,7 +58,7 @@ class PaymentPage extends Component {
 
     (async () => {
       try {
-        const response = await this.props.submitToMidtrans(url, data, config);
+        const response = await this.props.postApi(url, data, config);
         this.setState({
           redirect_url: response.data.redirect_url,
           token: response.data.token,
@@ -80,7 +76,6 @@ class PaymentPage extends Component {
     return (
       <div>
         {console.log("render halaman")}
-        {this.process(this.props.states)}
         <Card>
           <Card.Header>PAYMENT</Card.Header>
           <Card.Body>
