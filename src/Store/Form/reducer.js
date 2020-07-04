@@ -51,6 +51,14 @@ const initialState = {
       transaction_date: "",
       payment_status: true,
     },
+    simedis_account: {
+      registration_code: "",
+      username: "",
+      password: "",
+      password_retype: "",
+      is_valid: "",
+    },
+    gender: [],
   },
 };
 
@@ -66,7 +74,6 @@ function editReducer(state = initialState.state, action) {
     case constants.ADD_CHANGE:
       const newForm = { ...state.personal };
       newForm[action.fieldName] = action.fieldValue;
-      console.log(newForm);
       return {
         ...state,
         personal: newForm,
@@ -79,11 +86,18 @@ function editReducer(state = initialState.state, action) {
         spouse: spouseNew,
       };
     case constants.SIMEDIS_CHANGE:
-      const payment = { ...state.simedis };
-      payment[action.fieldName] = action.fieldValue;
+      const load = { ...state.simedis };
+      load[action.fieldName] = action.fieldValue;
       return {
         ...state,
-        simedis: payment,
+        simedis: load,
+      };
+    case constants.SIMEDIS_ACCOUNT:
+      const payload = { ...state.simedis_account };
+      payload[action.fieldName] = action.fieldValue;
+      return {
+        ...state,
+        simedis_account: payload,
       };
     case constants.FORM_TYPE:
       return {
@@ -102,6 +116,12 @@ function editReducer(state = initialState.state, action) {
         ...state,
         is_loading: action.fieldValue,
         status: constants.PAGE_LOAD,
+      };
+    case constants.GENDER:
+      return {
+        ...state,
+        gender: action.payload,
+        status: constants.GENDER,
       };
     default:
       return state;

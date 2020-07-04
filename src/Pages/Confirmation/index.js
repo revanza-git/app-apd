@@ -16,7 +16,11 @@ class MainInfo extends Component {
             <Card>
               <Card.Header>Anda memilih plan: {plan}</Card.Header>
               <Card.Body>bayar?</Card.Body>
-              <ContinueBtn data={data} targetURL="/payment" />
+              <ContinueBtn
+                data={data}
+                targetURL="/payment"
+                valid={data.states.personal.is_valid}
+              />
             </Card>
           </Card.Body>
         </Card>

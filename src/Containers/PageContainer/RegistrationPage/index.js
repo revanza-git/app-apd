@@ -12,6 +12,7 @@ import {
   updateRegType,
   simedisChange,
   updatePageLoad,
+  updateGender,
 } from "../../../Store/Form/actions";
 
 const mapStateToProps = (state) => ({
@@ -30,6 +31,7 @@ const mapDispatchToProps = (dispatch) => ({
   addSpouse: (fieldName, fieldValue) =>
     dispatch(addSpouse(fieldName, fieldValue)),
   updatePageLoad: (fieldValue) => dispatch(updatePageLoad(fieldValue)),
+  updateGender: (payload) => dispatch(updateGender(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Registration);

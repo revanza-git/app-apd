@@ -56,7 +56,6 @@ class FinishedPayment extends Component {
 
     return axios.get(url, config).then((res) => {
       const data = res.data;
-      console.log(res.data);
 
       updateHandler("payment_desc", data.payment_type);
       updateHandler("bill_code", orderId);
@@ -101,7 +100,10 @@ class FinishedPayment extends Component {
           <Card.Body>
             <Card>
               <Card.Header>Pembayaran Selesai</Card.Header>
-              <Card.Body>Pembayaran Telah Selesai.</Card.Body>
+              <Card.Body>
+                Pembayaran Telah Selesai, Silahkan Cek Email Yang Anda Daftarkan
+                Untuk Aktivasi Account
+              </Card.Body>
             </Card>
           </Card.Body>
         </Card>

@@ -25,6 +25,12 @@ export const simedisChange = (fieldName, fieldValue) => ({
   fieldValue,
 });
 
+export const simedisAccountChange = (fieldName, fieldValue) => ({
+  type: constants.SIMEDIS_ACCOUNT,
+  fieldName,
+  fieldValue,
+});
+
 export const updateFormValidation = (fieldValue) => ({
   type: constants.VALIDATION,
   fieldValue,
@@ -43,6 +49,11 @@ export const updateFormType = (fieldValue) => ({
 export const updateRegType = (fieldValue) => ({
   type: constants.REG_TYPE,
   fieldValue,
+});
+
+export const updateGender = (payload) => ({
+  type: constants.GENDER,
+  payload,
 });
 
 // export function

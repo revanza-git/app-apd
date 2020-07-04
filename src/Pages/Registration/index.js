@@ -4,6 +4,7 @@ import UserOtherInputs from "../Forms/UserOtherInputs";
 import ContinueBtn from "../../Components/ContinueBtn";
 import Alerts from "../../Components/Alerts";
 import Loader from "react-loader-spinner";
+import axios from "axios";
 
 import "./index.css";
 import qs from "qs";
@@ -12,23 +13,42 @@ import { Card } from "react-bootstrap";
 
 class RegistrationPage extends Component {
   componentDidMount() {
+    const loadHandler = this.props.updatePageLoad;
+    const updateFormType = this.props.updateFormType;
+    const updateGender = this.props.updateGender;
+    const updateRegType = this.props.updateRegType;
     //parsing URL
     const query = qs.parse(this.props.location.search, {
       ignoreQueryPrefix: true,
     });
 
-    this.props.updateFormType(query.type);
+    // loadHandler(true);
+
+    updateFormType(query.type);
 
     if (query.type === "individu") {
-      this.props.updateRegType("R001");
+      updateRegType("R001");
     } else if (query.type === "pasangan") {
-      this.props.updateRegType("R002");
+      updateRegType("R002");
     } else {
-      this.props.updateRegType("R003");
+      updateRegType("R003");
     }
+
+    // const url =
+    //   "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/gender";
+
+    // axios
+    //   .get(url, "")
+    //   .then((res) => {
+    //     updateGender(res.data.data);
+    //   })
+    //   .then(() => {
+    //     loadHandler(false);
+    //   });
   }
 
   validation = (param) => {
+    console.log(this.props.states);
     const data = param;
     const updateFormStatus = this.props.addChange;
     const email = data.email;
@@ -97,7 +117,7 @@ class RegistrationPage extends Component {
           <Card.Header>Pribadi</Card.Header>
           <Card.Body>
             <UserInputs
-              data={states.personal}
+              data={states}
               changeHandler={addChange}
               validation={this.validation}
             />
@@ -121,7 +141,7 @@ class RegistrationPage extends Component {
           <Card.Header>Pribadi</Card.Header>
           <Card.Body>
             <UserInputs
-              data={states.personal}
+              data={states}
               changeHandler={addChange}
               validation={this.validation}
             />
@@ -137,7 +157,11 @@ class RegistrationPage extends Component {
           <Card.Header>Registrasi</Card.Header>
           <Card.Body>
             {card}
-            <ContinueBtn data={this.props} targetURL="/confirmation" />
+            <ContinueBtn
+              data={this.props}
+              targetURL="/confirmation"
+              valid={this.props.states.personal.is_valid}
+            />
           </Card.Body>
         </Card>
       </div>

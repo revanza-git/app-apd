@@ -7,6 +7,7 @@ import PaymentPage from "./PageContainer/PaymentPage";
 import FinishedPage from "./PageContainer/FinishedPage";
 import LandingPage from "./PageContainer/LandingPage";
 import ConfirmationPage from "./PageContainer/ConfirmationPage";
+import ActivationPage from "./PageContainer/ActivationPage";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 const store = configureStore();
@@ -15,7 +16,6 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        {console.log(store)}
         <Router>
           <Route exact path="/">
             <Redirect to="/landing" />
@@ -24,6 +24,7 @@ class App extends Component {
             <Redirect to="/registration?type=individu" />
           </Route>
           <Route path=""></Route>
+          <Route exact path="/activation" component={ActivationPage} />
           <Route exact path="/confirmation" component={ConfirmationPage} />
           <Route exact path="/landing" component={LandingPage} />
           <Route exact path="/registration" component={RegistrationPage} />

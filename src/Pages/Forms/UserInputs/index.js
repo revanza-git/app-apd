@@ -5,13 +5,13 @@ import Select from "../../../Components/Selects";
 import Datepicker from "../../../Components/Datepicker";
 
 const MainInfo = ({ data, changeHandler, validation, updateValidFlag }) => {
-  const dataForm = data;
-
+  const dataForm = data.personal;
+  const genderData = data.gender;
   return (
     <div>
       <Form>
         <TextBox
-          Data={data}
+          Data={dataForm}
           labelCol="2"
           labelVal="Nama Depan"
           StateKey="first_name"
@@ -23,7 +23,7 @@ const MainInfo = ({ data, changeHandler, validation, updateValidFlag }) => {
           HandleChange={changeHandler}
         />
         <TextBox
-          Data={data}
+          Data={dataForm}
           labelCol="2"
           labelVal="Nama Belakang"
           StateKey="last_name"
@@ -35,7 +35,7 @@ const MainInfo = ({ data, changeHandler, validation, updateValidFlag }) => {
           HandleChange={changeHandler}
         />
         <TextBox
-          Data={data}
+          Data={dataForm}
           labelCol="2"
           labelVal="Nomor KTP"
           StateKey="identification_number"
@@ -56,7 +56,7 @@ const MainInfo = ({ data, changeHandler, validation, updateValidFlag }) => {
           HandleChange={changeHandler}
         />
         <TextBox
-          Data={data}
+          Data={dataForm}
           labelCol="2"
           labelVal="Email"
           StateKey="email"
@@ -69,16 +69,16 @@ const MainInfo = ({ data, changeHandler, validation, updateValidFlag }) => {
           HandleChange={changeHandler}
         />
         <Select
-          Data={data}
           labelCol="2"
           labelVal="Kelamin"
           TextCol="10"
           Validation={validation}
           StateKey="gender"
           HandleChange={changeHandler}
+          Data={genderData}
         />
         <TextBox
-          Data={data}
+          Data={dataForm}
           labelCol="2"
           labelVal="Pekerjaan"
           StateKey="occupation"
@@ -90,7 +90,7 @@ const MainInfo = ({ data, changeHandler, validation, updateValidFlag }) => {
           HandleChange={changeHandler}
         />
         <TextBox
-          Data={data}
+          Data={dataForm}
           labelCol="2"
           labelVal="Nomor HP"
           StateKey="phone_number"

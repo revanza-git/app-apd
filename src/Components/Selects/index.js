@@ -1,8 +1,16 @@
-import React from "react";
+import React, { Component } from "react";
 import { Form, Col, Row } from "react-bootstrap";
 
-const Selects = ({ labelCol, labelVal, TextCol, StateKey, HandleChange }) => (
+const Selects = ({
+  labelCol,
+  labelVal,
+  TextCol,
+  StateKey,
+  HandleChange,
+  Data,
+}) => (
   <div>
+    {console.log(Data)}
     <Form.Group as={Row}>
       <Form.Label column sm={labelCol}>
         {labelVal}
@@ -14,8 +22,13 @@ const Selects = ({ labelCol, labelVal, TextCol, StateKey, HandleChange }) => (
           onChange={(event) => HandleChange(StateKey, event.target.value)}
         >
           <option value="">Pilih...</option>
-          <option value="G01">Pria</option>
-          <option value="G02">Wanita</option>
+          <option value="L">Laki-laki</option>
+          <option value="P">Perempuan</option>
+          {/* {Data.map((item) => (
+            <option key={item.genderCode} value={item.genderCode}>
+              {item.genderDesc}
+            </option>
+          ))} */}
         </Form.Control>
       </Col>
     </Form.Group>
