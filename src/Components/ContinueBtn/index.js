@@ -34,6 +34,9 @@ const ConBtn = ({ data, targetURL }) => {
             },
           ],
         };
+
+        console.log(data);
+
         const res = axios
           .post(url, data, "")
           .then((response) => {

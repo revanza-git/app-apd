@@ -44,8 +44,6 @@ class PaymentPage extends Component {
       enabled_payments: account.enabled_payments,
     };
 
-    console.log(data);
-
     const config = {
       auth: {
         username: account.server_key,
