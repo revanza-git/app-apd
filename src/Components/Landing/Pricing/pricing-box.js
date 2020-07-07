@@ -35,11 +35,14 @@ const PricingBox = ({ pricings }) => {
               </div>
               <hr></hr>
 
+              <div className="plan-discount">
+                <p>
+                  {pricing.pre}&nbsp; <span>{pricing.discount}</span>
+                </p>
+              </div>
+
               <div>
-                <Link
-                  className="btn btn-primary mt-5"
-                  onClick={() => handleClick()}
-                >
+                <Link className="btn btn-primary" onClick={() => handleClick()}>
                   Beli Plan
                 </Link>
               </div>

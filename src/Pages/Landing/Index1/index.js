@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 
 import Section from "./section";
-import Service from "../../../Components/Landing/Service/service";
-import Features from "../../../Components/Landing/Features/feature";
+
 import Clients from "../../../Components/Landing/Client/client";
 import Pricing from "../../../Components/Landing/Pricing/pricing";
-import Subscribe from "../../../Components/Landing/Subscribe/Subscribe";
+import Faq from "../../../Components/Landing/Faq";
 import Footer from "../../../Components/Landing/Footer/footer";
 
 class Index1 extends Component {
@@ -21,8 +20,8 @@ class Index1 extends Component {
         {/* Importing Pricing */}
         <Pricing />
 
-        {/* Importing Sunscribe */}
-        <Subscribe />
+        {/* Importing Clients */}
+        <Faq />
 
         {/* Importing Footer */}
         <Footer />

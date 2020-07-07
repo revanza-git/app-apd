@@ -13,11 +13,13 @@ class ClientBox extends Component {
               <Container>
                 <Row className="ml-2 mb-5">
                   <img
-                    src={AdvantageImg}
+                    className="about-image"
+                    src={BenefitImg}
                     style={{ height: "5em", width: "auto" }}
                   />
                   <Col className="mt-3">
                     <span
+                      className="about-title"
                       style={{
                         fontSize: "2.1em",
                         fontWeight: "600",
@@ -25,7 +27,7 @@ class ClientBox extends Component {
                         color: "black",
                       }}
                     >
-                      Keunggulan
+                      Manfaat
                     </span>
                   </Col>
                 </Row>
@@ -72,11 +74,13 @@ class ClientBox extends Component {
               <Container>
                 <Row className="ml-2 mb-5">
                   <img
-                    src={BenefitImg}
+                    className="about-image"
+                    src={AdvantageImg}
                     style={{ height: "5em", width: "auto" }}
                   />
                   <Col className="mt-3">
                     <span
+                      className="about-title"
                       style={{
                         fontSize: "2.1em",
                         fontWeight: "600",
@@ -84,7 +88,7 @@ class ClientBox extends Component {
                         color: "black",
                       }}
                     >
-                      Manfaat
+                      Keunggulan
                     </span>
                   </Col>
                 </Row>

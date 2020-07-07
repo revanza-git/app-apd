@@ -15,18 +15,24 @@ class Pricing extends Component {
         {
           title: "Individu",
           price: "70.000",
+          pre: "",
+          discount: "",
           tagline: "Buat kamu yang masih sendiri aja",
           img: "Icon-Plan-Individu.svg",
         },
         {
           title: "Pasangan",
           price: "140.000",
+          pre: "Diskon Premi ",
+          discount: "10%",
           tagline: "Buat kamu yang ingin ajak pasangan atau teman dekatmu",
           img: "Icon-Plan-Pasangan.svg",
         },
         {
           title: "Keluarga",
           price: "250.000",
+          pre: "Diskon Premi ",
+          discount: "20%",
           tagline:
             "Buat kamu yang ingin melindungi keluarga atau kerabat dekatmu",
           img: "Icon-Plan-Keluarga.svg",
@@ -46,7 +52,7 @@ class Pricing extends Component {
               title="Sesuaikan Dengan Kebutuhanmu"
             />
 
-            <TabContent activeTab={this.state.activeTab}>
+            <TabContent id={"tab-section"} activeTab={this.state.activeTab}>
               <TabPane tabId="1">
                 <Row>
                   <PricingBox pricings={this.state.pricings1} />

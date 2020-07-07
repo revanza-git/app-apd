@@ -62,8 +62,8 @@ p {
 
 .section {
   position: relative;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 8em;
+  padding-bottom: 8em;
 }
 
 .vertical-content {
@@ -243,11 +243,10 @@ p {
   line-height: 1;
   -moz-appearance: none;
   -webkit-appearance: none;
-  vertical-align: middle;
-  display: inline-block;
+
   color: #fff;
   margin: 0 auto;
-  padding: 0.75em 1.5em;
+
   background: $background;
   border: $border;
   max-width: 10em;
@@ -274,70 +273,49 @@ p {
 *******************/
 
 .hero-section {
-  //   padding-top: 275px;
   background-image: url("../images/simedis/Banner-color_gradient-01.png");
   background-size: cover;
-  height: 85vh;
+  height: 100vh;
   overflow: hidden;
 }
 
-.hero-wrapper {
-  border: dotted;
-  width: 30vw;
-  margin-top: 12em;
+.logo-simedis {
+  height: 7em;
 }
 
-.hero-title {
-  font-weight: 550;
-  font-size: 3em;
+.intro-title {
+  font-weight: 500;
+  font-size: 2.7em;
   color: white;
 }
 
-.home-img {
-  position: relative;
-  min-width: 150%;
-  right: 100px;
-  top: 40px;
+.intro-bottom-part {
+  height: 100vh;
 }
 
-.logo-img {
-  max-width: 130px;
-  height: auto;
-  margin-left: 20px;
+.intro-wrapper {
+  margin-top: 5em;
+  padding-left: 10em;
+  width: 60vh;
+  z-index: 1;
 }
 
-.hero-content {
-  border: dotted;
+.intro-content {
+  margin-left: 7em;
+}
+
+.logo-home {
+  position: absolute;
+  width: 70vw;
+  margin-left: 16em;
+  bottom: 0em;
+  z-index: 0;
 }
 
 .btn-learn {
   @include button(linear-gradient(60deg, #74bf44, #ccdb29), 1.5px transparent);
-  font-size: 20px;
-}
-
-.registration-form {
-  .form-control {
-    box-shadow: none;
-    &:focus {
-      border-color: $primary;
-    }
-  }
-}
-
-.play-icon-circle {
-  height: 50px;
-  width: 50px;
-  background-color: $success;
-  line-height: 50px;
-  text-align: center;
-  border-radius: 50%;
-  display: inline-block;
-  margin-right: 5px;
-}
-
-.play-iconbar {
-  color: $white;
-  font-size: 17px;
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
 /******************
@@ -347,20 +325,6 @@ p {
 .card-carousel {
   border-radius: 1.5em;
   box-shadow: 0 0.1em 0.25em #003b;
-}
-
-.about-content-right {
-  p,
-  span {
-    font-size: 1.3em;
-  }
-  span {
-    color: #007671;
-    font-weight: 600;
-  }
-  p {
-    color: black;
-  }
 }
 
 .testi-carousel {
@@ -393,6 +357,20 @@ p {
   }
 }
 
+.about-content-right {
+  p,
+  span {
+    font-size: 1.3em;
+  }
+  span {
+    color: #007671;
+    font-weight: 600;
+  }
+  p {
+    color: black;
+  }
+}
+
 .left-tagline > p {
   font-size: 1.2em;
   color: black;
@@ -421,7 +399,23 @@ p {
 }
 
 /******************
-    6.Plan
+    6.Faq
+*******************/
+
+.faq-content-left,
+.faq-content-right {
+  p {
+    color: rgba(black, 0.4);
+    font-weight: bold;
+  }
+  span {
+    color: rgba($color: #000000, $alpha: 0.6);
+    font-weight: bolder;
+  }
+}
+
+/******************
+    7.Plan
 *******************/
 .plan-card {
   border-radius: 2em;
@@ -441,9 +435,9 @@ p {
   }
 }
 .section-plan {
-  margin-top: 30px;
+  margin-top: 8em;
+  margin-bottom: 8em;
   background-color: white !important;
-  border: dotted;
 }
 
 .plan-tagline {
@@ -455,6 +449,18 @@ p {
   p {
     font-size: 1.5em;
     color: black;
+  }
+  span {
+    font-size: 2em;
+    font-weight: bolder;
+  }
+}
+
+.plan-discount {
+  p {
+    font-size: 1.2em;
+    font-weight: bolder;
+    color: #74bf44;
   }
   span {
     font-size: 2em;
@@ -482,31 +488,15 @@ p {
     8.Footer
 *******************/
 
-.footer {
-  background-color: $footer-bg;
-  color: rgba($white, 0.5);
-  padding-top: 80px;
-  padding-bottom: 40px;
-}
-
-.footer-list-title {
-  font-size: 16px;
-  color: $white;
-}
-
-.footer-list-menu {
-  li {
-    a {
-      display: inline-block;
-      font-size: 15px;
-      color: rgba($white, 0.5);
-      margin-bottom: 14px;
-      transition: all 0.4s;
-      &:hover {
-        color: rgba($white, 0.9);
-      }
-    }
+.section-footer {
+  background-color: rgba(black, 0.6);
+  img {
+    height: 5em;
   }
+}
+
+.footer {
+  color: rgba($white, 0.5);
 }
 
 /******************
@@ -514,18 +504,108 @@ p {
 *******************/
 
 @media (max-width: 991px) {
+  .logo-home {
+    position: relative;
+  }
 }
 
 @media (max-width: 767.98px) {
+  .logo-home {
+    position: relative;
+  }
   .hero-title {
     font-size: 32px;
   }
 }
 
 @media (max-width: 575.98px) {
+  //Hero Section
+  .hero-section {
+    height: 80vh;
+    overflow: hidden;
+  }
+
+  .logo-simedis {
+    height: 5em;
+  }
+
+  .intro-wrapper {
+    margin-top: 10em;
+    width: 60vh;
+    margin-right: 50em;
+  }
+
+  .intro-title {
+    font-weight: 500;
+    font-size: 2em;
+    color: white;
+  }
+
+  .intro-bottom-part {
+    height: 100vh;
+  }
+  .logo-home {
+    position: relative;
+    width: 100vw;
+    margin-left: 0em;
+    top: 0.5em;
+  }
+
   .testi-carousel {
     .owl-nav {
       display: none;
+    }
+  }
+
+  //About
+  .about-content-right {
+    p,
+    span {
+      font-size: 1.3em;
+    }
+    span {
+      color: #007671;
+      font-weight: 600;
+    }
+    p {
+      color: black;
+    }
+  }
+
+  .card-carousel {
+  }
+
+  .about-image {
+    width: 4em !important;
+  }
+  .about-title {
+    font-size: 1.5em !important;
+  }
+
+  .left-tagline > p {
+    font-size: 1em;
+    color: black;
+  }
+
+  .right-tagline {
+    p {
+      font-size: 1.2em;
+      color: $primary;
+      font-weight: 600;
+    }
+    span {
+      font-size: 1.2em;
+    }
+  }
+
+  .text-center {
+    h5 {
+      color: rgba(black, 0.4) !important;
+      font-weight: 800;
+    }
+    h4 {
+      font-weight: 1000;
+      font-size: 2.2em;
     }
   }
 }
