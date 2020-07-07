@@ -2,11 +2,16 @@ div.about {
   padding-bottom: 100px;
 
   .carousel {
-    height: 550px;
-    width: 600px;
     border-radius: 1.5em;
     box-shadow: 0 0.1em 0.25em #003b;
     background: white;
+    width: auto;
+    height: 500px;
+
+    .carousel-control-next-icon,
+    .carousel-control-prev-icon {
+      display: none;
+    }
   }
 
   .carousel-indicators li {
@@ -21,6 +26,7 @@ div.about {
   }
 
   .about-tagline-header {
+    border: dotted;
     padding-top: 50px;
     padding-left: 50px;
     padding-bottom: 30px;
@@ -33,28 +39,31 @@ div.about {
     }
 
     img {
-      width: 100px;
-      height: 90px;
+      width: auto;
+      height: 80px;
     }
   }
 
   .about-tagline-content-left {
+    border: dotted;
+    margin-left: 0;
     h1 {
       color: gray;
       font-family: "Roboto", sans-serif;
       font-weight: 500;
-      font-size: 24px;
+      font-size: 20px;
       padding-top: 20px;
-      padding-left: 30px;
+      margin-left: 30px;
     }
   }
 
   .about-tagline-content-right {
+    border: dotted;
     h1 {
       color: #009489;
       font-family: "Roboto", sans-serif;
       font-weight: 800;
-      font-size: 40px;
+      font-size: 30px;
       padding-top: 20px;
       padding-bottom: 20px;
     }
@@ -64,7 +73,49 @@ div.about {
       font-weight: 800;
       font-size: 20px;
     }
+  }
 
-    right: 30px;
+  .about-left-content {
+    padding-right: 0;
+    margin-right: 20px;
+    border: dotted;
+  }
+
+  .about-right-content {
+    border: dotted;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+
+  div.about {
+    .carousel {
+      max-width: 39vh;
+      height: auto;
+    }
+
+    .about-tagline-content-left {
+      h1 {
+        font-size: 15px;
+      }
+    }
+
+    .about-tagline-content-right {
+      h1,
+      a {
+        font-size: 18px;
+      }
+    }
+
+    .about-left-content {
+      min-width: 100%;
+      border: dotted;
+    }
+
+    .about-right-content {
+      padding-left: 10px;
+      border: dotted;
+    }
   }
 }

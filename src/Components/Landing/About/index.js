@@ -6,8 +6,8 @@ import icon from "../About/Images/icon-benefit-04.png";
 const About = () => (
   <div className="about">
     <Container>
-      <Row>
-        <Col>
+      <Row className="content">
+        <Col className="about-left-content">
           <Carousel>
             <Carousel.Item>
               <Container>
@@ -16,7 +16,7 @@ const About = () => (
                   <h1> Manfaat</h1>
                 </Row>
                 <Row className="about-tagline-content">
-                  <Col xs="8" className="about-tagline-content-left">
+                  <Col xs="7" className="about-tagline-content-left">
                     <h1>Meninggal dunia karena Penyakit atau Kecelakaan</h1>
                     <h1>Meninggal dunia karena terinfeksi COVID-19</h1>
                     <h1>
@@ -40,7 +40,28 @@ const About = () => (
             </Carousel.Item>
           </Carousel>
         </Col>
-        <Col></Col>
+        <Col className="about-right-content">
+          <Container>
+            <p>
+              <span>Simedis</span>, layaknya tenaga medis yang selalu siaga
+              menghadapi COVID-19.
+            </p>
+            <p>
+              <span>Simedis</span> merupakan program Asuransi Jiwa Berjangka
+              dari Equity life Indonesia yang memberikan perlindungan terhadap
+              risiko meninggal dunia dan terinfeksi virus COVID-19 dalam bentuk
+              santunan tunai.
+            </p>
+            <p>
+              <span>Simedis</span> hadir dengan premi yang sangat terjangkau dan
+              beragam pilihan plan yang dapat disesuaikan dengan kebutuhanmu.
+              Ayo, sambut new normal dengan lindungi diri dan orang yang kamu
+              sayangi sekarang juga!
+            </p>
+
+            <p>#simedis #staysafestayhealthy</p>
+          </Container>
+        </Col>
       </Row>
     </Container>
   </div>

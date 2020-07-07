@@ -76,7 +76,8 @@ class RegistrationPage extends Component {
         updateFormStatus("form_status", "Format email tidak benar");
         return false;
       } else {
-        updateFormStatus("form_status", "Form Tersubmit");
+        console.log("form tersubmit");
+        updateFormStatus("form_status", "ok");
         return true;
       }
     }

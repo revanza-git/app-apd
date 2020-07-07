@@ -9,6 +9,7 @@ import "./index.css";
 import qs from "qs";
 
 import { Card } from "react-bootstrap";
+import { simedisChange } from "../../Store/Form/actions";
 
 class ActivationPage extends Component {
   componentDidMount() {
@@ -20,8 +21,27 @@ class ActivationPage extends Component {
       ignoreQueryPrefix: true,
     });
 
+    loadHandler(true);
+
     console.log(query.validate_key);
-    // loadHandler(true);
+    const url =
+      "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/customers/validateKey";
+    const data = {
+      uniqueActivationKey: query.validate_key,
+    };
+
+    axios.post(url, data, "").then((i) => {
+      const res = i.data.data.customer;
+
+      changeHandler("customer_code", res.customerCode);
+      changeHandler("customer_name", res.customerName);
+      changeHandler("customer_status", res.customerStatus);
+      changeHandler("username", res.emailAddress);
+      changeHandler("registration_code", res.registrationCode);
+      changeHandler("active", res.active);
+
+      loadHandler(false);
+    });
   }
 
   validation = (param) => {
@@ -39,12 +59,13 @@ class ActivationPage extends Component {
       updateFormStatus("form_status", "Form harus diisi semua");
       return false;
     } else {
-      updateFormStatus("form_status", "Form Tersubmit");
+      updateFormStatus("form_status", "ok");
       return true;
     }
   };
 
   render() {
+    console.log(this.props);
     const { states, simedisAccountChange } = this.props;
 
     if (!states || states.is_loading === true) {

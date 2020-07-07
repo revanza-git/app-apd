@@ -14,11 +14,6 @@ class FinishedPayment extends Component {
       ignoreQueryPrefix: true,
     });
 
-    // order_id: "BI2007030036"
-    // status_code: "201"
-    // transaction_status: "pending"
-    // moment(new Date()).format("YYYY-MM-DD")
-
     (async () => {
       try {
         const response = await this.getTransactionDetail(

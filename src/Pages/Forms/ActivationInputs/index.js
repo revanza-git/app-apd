@@ -18,6 +18,7 @@ const MainInfo = ({ data, changeHandler, validation, updateValidFlag }) => {
           updateValidFlag={updateValidFlag}
           Value={dataForm.username}
           HandleChange={changeHandler}
+          Disabled={true}
         />
         <TextBox
           Data={dataForm}

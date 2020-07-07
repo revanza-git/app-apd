@@ -15,7 +15,8 @@ div.plan {
       font-family: "Roboto", sans-serif;
       margin-left: auto;
       img {
-        height: 100px;
+        height: auto;
+        width: 100%;
       }
       p {
         color: gray;
@@ -36,8 +37,9 @@ div.plan {
 
     .plan-body {
       align-items: center;
-      Image {
-        height: 200px;
+      img {
+        height: auto;
+        width: 100%;
         margin-top: 90px;
       }
     }

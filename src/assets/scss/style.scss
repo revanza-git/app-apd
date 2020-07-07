@@ -1,0 +1,531 @@
+/*
+Template Name: Invoza - Bootstrap 4 Landing Page Tamplat
+Author: Themesdesign
+File: Main scss file
+*/
+
+/*******************************
+1.General
+2.Helper
+3.Navbar
+4.Hero section
+5.Testimonial
+6.Pricing
+7.Subscribe
+8.Footer
+9.Responsive
+********************************/
+
+@import "variables";
+
+/*******************
+    1.General
+*******************/
+
+body {
+  font-size: $font-size-base;
+  color: $body-color;
+  font-family: $font-family-primary;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $dark;
+  font-family: $font-family-secondary;
+  font-weight: $font-weight-medium;
+}
+
+a {
+  text-decoration: none !important;
+  outline: none;
+}
+
+p {
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+/*******************
+    2.Helper
+*******************/
+
+.card {
+  border: none;
+  box-shadow: $box-shadow;
+  border-radius: 7px;
+  margin-bottom: 30px;
+}
+
+.section {
+  position: relative;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.vertical-content {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  -webkit-align-items: center;
+  justify-content: center;
+  -webkit-justify-content: center;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+}
+
+.bg-overlay {
+  background-color: rgba(35, 37, 47, 0.7);
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.small-title {
+  letter-spacing: 1px;
+  font-size: 14px;
+}
+
+.btn {
+  font-size: 0.9rem;
+  padding: 0.7rem 1.4rem;
+  font-weight: $font-weight-medium;
+  transition: all 0.4s;
+  border-radius: 7px;
+  &:hover {
+    transform: translateY(-4px);
+    outline: none;
+    text-decoration: none;
+  }
+}
+
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+.btn-rounded {
+  border-radius: 30px;
+}
+
+@each $name, $value in $colors {
+  .bg-#{$name} {
+    background-color: #{$value} !important;
+  }
+
+  .bg-soft-#{$name} {
+    background-color: rgba(($value), 0.1) !important;
+  }
+  .text-#{$name} {
+    color: #{$value} !important;
+  }
+
+  // Icons
+  .icon-dual-#{$name} {
+    color: $value;
+    fill: rgba($value, 0.2);
+  }
+
+  .btn-#{$name} {
+    color: $white;
+    background: #{$value};
+    border-color: #{$value};
+    box-shadow: 0 8px 14px rgba($value, 0.2);
+    border-radius: 1.5em;
+    width: 12em;
+
+    font-weight: 900;
+    font-size: 1.2em;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.active,
+    &.focus,
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled):active:focus,
+    .open > .dropdown-toggle.btn-primary {
+      box-shadow: 0px 16px 31px -16px #{$value};
+
+      background: darken($value, 4%);
+      border-color: darken($value, 4%);
+    }
+  }
+
+  .btn-outline-#{$name} {
+    color: #{$value};
+    border-color: #{$value};
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.active,
+    &.focus,
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled):active:focus,
+    .open > .dropdown-toggle.btn-primary {
+      box-shadow: 0px 16px 31px -16px #{$value};
+      background: darken($value, 4%);
+      border-color: darken($value, 4%);
+    }
+  }
+}
+
+.font-14 {
+  font-size: 14px;
+}
+
+.font-16 {
+  font-size: 16px;
+}
+
+.font-18 {
+  font-size: 18px;
+}
+
+.font-20 {
+  font-size: 20px;
+}
+
+.font-22 {
+  font-size: 22px;
+}
+
+.font-24 {
+  font-size: 24px;
+}
+
+.icons-sm {
+  height: 16px;
+  width: 16px;
+}
+
+.icons-md {
+  height: 32px;
+  width: 32px;
+}
+
+.icons-lg {
+  height: 40px;
+  width: 40px;
+}
+
+.box-shadow {
+  box-shadow: $box-shadow;
+}
+
+.avatar-md {
+  height: 3.5rem;
+  width: 3.5rem;
+}
+
+.avatar-title {
+  align-items: center;
+  background-color: $primary;
+  color: $white;
+  display: flex;
+  font-weight: $font-weight-medium;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
+
+@mixin button($background, $border) {
+  line-height: 1;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  vertical-align: middle;
+  display: inline-block;
+  color: #fff;
+  margin: 0 auto;
+  padding: 0.75em 1.5em;
+  background: $background;
+  border: $border;
+  max-width: 10em;
+  height: auto;
+  background-size: 100% 100%,
+    calc(100% + var(--border-width) + var(--border-width))
+      calc(100% + var(--border-width) + var(--border-width));
+  border-radius: 1.5em;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active,
+  &.focus,
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled):active:focus,
+  .open > .dropdown-toggle.btn-primary {
+    color: #fff;
+  }
+}
+
+/******************
+    4.Hero section
+*******************/
+
+.hero-section {
+  //   padding-top: 275px;
+  background-image: url("../images/simedis/Banner-color_gradient-01.png");
+  background-size: cover;
+  height: 85vh;
+  overflow: hidden;
+}
+
+.hero-wrapper {
+  border: dotted;
+  width: 30vw;
+  margin-top: 12em;
+}
+
+.hero-title {
+  font-weight: 550;
+  font-size: 3em;
+  color: white;
+}
+
+.home-img {
+  position: relative;
+  min-width: 150%;
+  right: 100px;
+  top: 40px;
+}
+
+.logo-img {
+  max-width: 130px;
+  height: auto;
+  margin-left: 20px;
+}
+
+.hero-content {
+  border: dotted;
+}
+
+.btn-learn {
+  @include button(linear-gradient(60deg, #74bf44, #ccdb29), 1.5px transparent);
+  font-size: 20px;
+}
+
+.registration-form {
+  .form-control {
+    box-shadow: none;
+    &:focus {
+      border-color: $primary;
+    }
+  }
+}
+
+.play-icon-circle {
+  height: 50px;
+  width: 50px;
+  background-color: $success;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.play-iconbar {
+  color: $white;
+  font-size: 17px;
+}
+
+/******************
+    5.About
+*******************/
+
+.card-carousel {
+  border-radius: 1.5em;
+  box-shadow: 0 0.1em 0.25em #003b;
+}
+
+.about-content-right {
+  p,
+  span {
+    font-size: 1.3em;
+  }
+  span {
+    color: #007671;
+    font-weight: 600;
+  }
+  p {
+    color: black;
+  }
+}
+
+.testi-carousel {
+  .owl-nav {
+    display: none;
+  }
+
+  .owl-item {
+    padding: 0px 10px;
+  }
+
+  .owl-dots {
+    .owl-dot {
+      &:focus {
+        outline: 0;
+      }
+      span {
+        background: rgba($primary, 0.2);
+        border: 2px solid transparent;
+      }
+
+      &.active,
+      &:hover {
+        span {
+          background: $primary;
+          border: 2px solid $primary;
+        }
+      }
+    }
+  }
+}
+
+.left-tagline > p {
+  font-size: 1.2em;
+  color: black;
+}
+
+.right-tagline {
+  p {
+    font-size: 1.5em;
+    color: $primary;
+    font-weight: 600;
+  }
+  span {
+    font-size: 1.5em;
+  }
+}
+
+.text-center {
+  h5 {
+    color: rgba(black, 0.4) !important;
+    font-weight: 800;
+  }
+  h4 {
+    font-weight: 1000;
+    font-size: 2.2em;
+  }
+}
+
+/******************
+    6.Plan
+*******************/
+.plan-card {
+  border-radius: 2em;
+  box-shadow: 0 0.1em 0.25em #003b;
+  h1 {
+    border: solid rgba(255, 255, 255, 0);
+  }
+  img {
+    margin-left: 1em;
+    height: 10vh;
+  }
+
+  h5 {
+    margin-left: 1em;
+    font-size: 2em;
+    color: black !important;
+  }
+}
+.section-plan {
+  margin-top: 30px;
+  background-color: white !important;
+  border: dotted;
+}
+
+.plan-tagline {
+  font-size: 0.5em;
+  color: rgba($color: black, $alpha: 0.6);
+}
+
+.plan-pricing {
+  p {
+    font-size: 1.5em;
+    color: black;
+  }
+  span {
+    font-size: 2em;
+    font-weight: bolder;
+  }
+}
+
+/******************
+    7.Subscribe
+*******************/
+
+.subscribe {
+  .form-control {
+    height: 46px;
+    border-radius: 7px;
+    font-size: 15px;
+    box-shadow: none;
+    &:focus {
+      border-color: $primary;
+    }
+  }
+}
+
+/******************
+    8.Footer
+*******************/
+
+.footer {
+  background-color: $footer-bg;
+  color: rgba($white, 0.5);
+  padding-top: 80px;
+  padding-bottom: 40px;
+}
+
+.footer-list-title {
+  font-size: 16px;
+  color: $white;
+}
+
+.footer-list-menu {
+  li {
+    a {
+      display: inline-block;
+      font-size: 15px;
+      color: rgba($white, 0.5);
+      margin-bottom: 14px;
+      transition: all 0.4s;
+      &:hover {
+        color: rgba($white, 0.9);
+      }
+    }
+  }
+}
+
+/******************
+    9.Responsive
+*******************/
+
+@media (max-width: 991px) {
+}
+
+@media (max-width: 767.98px) {
+  .hero-title {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .testi-carousel {
+    .owl-nav {
+      display: none;
+    }
+  }
+}
