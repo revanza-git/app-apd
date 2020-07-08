@@ -111,8 +111,8 @@ class FinishedPayment extends Component {
 
     const res = await axios
       .post(url, data, "")
-      .then(() => {
-        updateHandler("base64", res.data.data.certificate.data.certificate);
+      .then((es) => {
+        updateHandler("base64", es.data.data.certificate.data.certificate);
       })
       .catch(function (error) {
         updateHandler("form_status", "Koneksi bermasalah");
