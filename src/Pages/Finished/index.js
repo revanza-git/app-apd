@@ -31,33 +31,35 @@ class FinishedPayment extends Component {
         console.log(err);
       }
     })().then(() => {
-      console.log(this.props.states);
       const res = this.registerPayment(
         this.props.states,
         updateHandler,
         loadHandler
       );
       console.log(res);
+      console.log(this.props.states);
       loadHandler(false);
     });
   }
 
   onClick = () => {
-    // //Create a Blob from the PDF Stream
-    // const file = new Blob([data64], { type: "application/pdf" });
+    //Create a Blob from the PDF Stream
+    const file = new Blob([this.props.states.simedis.base64], {
+      type: "application/pdf",
+    });
 
-    // //Build a URL from the file
-    // const fileURL = URL.createObjectURL(file);
-    //Open the URL on new Window
-    // window.open(data64);
+    //Build a URL from the file
+    const fileURL = URL.createObjectURL(file);
+    // Open the URL on new Window
+    window.open(fileURL);
 
-    window
-      .open("")
-      .document.write(
-        "<iframe width='100%' height='100%' src='" +
-          this.props.states.simedis.base64 +
-          "'></iframe>"
-      );
+    // window
+    //   .open("")
+    //   .document.write(
+    //     "<iframe width='100%' height='100%' src='" +
+    //       this.props.states.simedis.base64 +
+    //       "'></iframe>"
+    //   );
     // window.open(this.props.states.simedis.base64);
   };
 
