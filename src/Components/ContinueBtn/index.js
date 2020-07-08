@@ -64,7 +64,9 @@ const ConBtn = ({ data, targetURL, valid }) => {
               }
             })
             .catch(function (error) {
-              console.log(error);
+              personalChange("form_status", "Koneksi bermasalah");
+              personalChange("is_valid", false);
+              loadHandler(false);
             });
         } else {
           personalChange("is_valid", false);
@@ -88,13 +90,20 @@ const ConBtn = ({ data, targetURL, valid }) => {
 
           loadHandler(true);
 
-          axios.post(url, data, "").then((res) => {
-            console.log(targetURL);
-            updateFormAccountChange("active", true);
-            console.log(res);
-            loadHandler(false);
-            history.push(targetURL);
-          });
+          axios
+            .post(url, data, "")
+            .then((res) => {
+              console.log(targetURL);
+              updateFormAccountChange("active", true);
+              console.log(res);
+              loadHandler(false);
+              history.push(targetURL);
+            })
+            .catch(function (error) {
+              updateFormAccountChange("form_status", "Koneksi bermasalah");
+              updateFormAccountChange("is_valid", false);
+              loadHandler(false);
+            });
         }
       } else if (targetURL === "/dashboard") {
         loadHandler(true);
@@ -105,24 +114,30 @@ const ConBtn = ({ data, targetURL, valid }) => {
           password: accountFormData.password,
         };
 
-        axios.post(url, data, "").then((res) => {
-          console.log(targetURL);
-          console.log(res);
-          const token = res.data.token;
-          const userData = res.data.data.user;
-          const resMessage = res.data.data.message;
+        axios
+          .post(url, data, "")
+          .then((res) => {
+            console.log(res);
+            const token = res.data.token;
+            const userData = res.data.data.user;
+            const resMessage = res.data.data.message;
 
-          if (resMessage === "username or password are invalid") {
-            updateFormAccountChange("form_status", resMessage);
+            if (resMessage === "username or password are invalid") {
+              updateFormAccountChange("form_status", resMessage);
+              updateFormAccountChange("is_valid", false);
+              loadHandler(false);
+            } else {
+              loadHandler(false);
+              updateFormAccountChange("username", userData.username);
+              updateFormAccountChange("token", token);
+              history.push(targetURL + "?id=" + userData.id);
+            }
+          })
+          .catch(function (error) {
+            updateFormAccountChange("form_status", "Koneksi bermasalah");
             updateFormAccountChange("is_valid", false);
             loadHandler(false);
-          } else {
-            loadHandler(false);
-            updateFormAccountChange("username", userData.username);
-            updateFormAccountChange("token", token);
-            history.push(targetURL + "?id=" + userData.id);
-          }
-        });
+          });
       } else {
         console.log("Halaman Belum Terdaftar");
         history.push(targetURL);

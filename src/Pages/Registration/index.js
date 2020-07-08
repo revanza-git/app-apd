@@ -52,13 +52,24 @@ class RegistrationPage extends Component {
     const data = param;
     const updateFormStatus = this.props.addChange;
     const email = data.email;
+    const first_name = data.first_name;
+    const last_name = data.last_name;
+    const gender = data.gender;
+    const identification_number = data.identification_number;
+    const birth_date = data.birth_date;
+    const occupation = data.occupation;
+    const phone_number = data.phone_number;
 
-    const dataArray = Object.values(data);
-    const regex = dataArray
-      .map((e) => e.toString().replace(/[-[\]/{}()*+?.\\^$|]/g, "\\$&"))
-      .join("|");
-    const re = new RegExp(regex);
-    if (re.exec("")) {
+    if (
+      first_name === "" ||
+      last_name === "" ||
+      gender === "" ||
+      identification_number === "" ||
+      birth_date === "" ||
+      occupation === "" ||
+      phone_number === "" ||
+      email === ""
+    ) {
       updateFormStatus("form_status", "Form harus diisi semua");
       return false;
     } else if (email !== "") {
@@ -76,7 +87,6 @@ class RegistrationPage extends Component {
         updateFormStatus("form_status", "Format email tidak benar");
         return false;
       } else {
-        console.log("form tersubmit");
         updateFormStatus("form_status", "ok");
         return true;
       }

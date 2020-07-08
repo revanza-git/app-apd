@@ -13,16 +13,16 @@ class PaymentPage extends Component {
     this.process(this.props.states);
   }
 
-  randomizer(length) {
-    var result = "";
-    var characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    var charactersLength = characters.length;
-    for (var i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
-  }
+  // randomizer(length) {
+  //   var result = "";
+  //   var characters =
+  //     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  //   var charactersLength = characters.length;
+  //   for (var i = 0; i < length; i++) {
+  //     result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  //   }
+  //   return result;
+  // }
 
   process(param) {
     const personal = param.personal;
@@ -42,6 +42,10 @@ class PaymentPage extends Component {
         phone: personal.phone_number,
       },
       enabled_payments: account.enabled_payments,
+      gopay: {
+        enable_callback: true,
+        callback_url: "/finish",
+      },
     };
 
     const config = {

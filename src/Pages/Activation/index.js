@@ -9,7 +9,6 @@ import "./index.css";
 import qs from "qs";
 
 import { Card } from "react-bootstrap";
-import { simedisChange } from "../../Store/Form/actions";
 
 class ActivationPage extends Component {
   componentDidMount() {
@@ -30,18 +29,25 @@ class ActivationPage extends Component {
       uniqueActivationKey: query.validate_key,
     };
 
-    axios.post(url, data, "").then((i) => {
-      const res = i.data.data.customer;
+    axios
+      .post(url, data, "")
+      .then((i) => {
+        const res = i.data.data.customer;
 
-      changeHandler("customer_code", res.customerCode);
-      changeHandler("customer_name", res.customerName);
-      changeHandler("customer_status", res.customerStatus);
-      changeHandler("username", res.emailAddress);
-      changeHandler("registration_code", res.registrationCode);
-      changeHandler("active", res.active);
+        changeHandler("customer_code", res.customerCode);
+        changeHandler("customer_name", res.customerName);
+        changeHandler("customer_status", res.customerStatus);
+        changeHandler("username", res.emailAddress);
+        changeHandler("registration_code", res.registrationCode);
+        changeHandler("active", res.active);
 
-      loadHandler(false);
-    });
+        loadHandler(false);
+      })
+      .catch(function (error) {
+        changeHandler("form_status", "Koneksi bermasalah");
+        changeHandler("is_valid", false);
+        loadHandler(false);
+      });
   }
 
   validation = (param) => {

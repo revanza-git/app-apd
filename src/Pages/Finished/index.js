@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import qs from "qs";
 import axios from "axios";
 import moment from "moment";
+import Loader from "react-loader-spinner";
+import Alerts from "../../Components/Alerts";
 
-import { Card } from "react-bootstrap";
+import { Card, Button, Row, Container, Col } from "react-bootstrap";
 
 class FinishedPayment extends Component {
   componentDidMount() {
@@ -13,13 +15,16 @@ class FinishedPayment extends Component {
     const query = qs.parse(this.props.location.search, {
       ignoreQueryPrefix: true,
     });
+    const loadHandler = this.props.updatePageLoad;
 
     (async () => {
       try {
+        loadHandler(true);
         const response = await this.getTransactionDetail(
           data,
           query.order_id,
-          updateHandler
+          updateHandler,
+          loadHandler
         );
         console.log(response);
       } catch (err) {
@@ -27,12 +32,17 @@ class FinishedPayment extends Component {
       }
     })().then(() => {
       console.log(this.props.states);
-      const res = this.registerPayment(this.props.states);
+      const res = this.registerPayment(
+        this.props.states,
+        updateHandler,
+        loadHandler
+      );
       console.log(res);
+      loadHandler(false);
     });
   }
 
-  getTransactionDetail(data, orderId, updateHandler) {
+  async getTransactionDetail(data, orderId, updateHandler, loadHandler) {
     const url =
       "https://cors-anywhere.herokuapp.com/https://api.sandbox.midtrans.com/v2/" +
       orderId +
@@ -49,23 +59,24 @@ class FinishedPayment extends Component {
       },
     };
 
-    return axios.get(url, config).then((res) => {
-      const data = res.data;
-
-      updateHandler("payment_desc", data.payment_type);
-      updateHandler("bill_code", orderId);
-      updateHandler("payment_ref_code", data.transaction_id);
-      updateHandler("paid_amount", data.gross_amount);
-      updateHandler(
-        "transaction_date",
-        moment(data.transaction_time).format("YYYY-MM-DD")
-      );
-
-      return data;
+    const res = await axios.get(url, config).catch(function (error) {
+      updateHandler("form_status", "Koneksi bermasalah");
+      updateHandler("is_valid", false);
+      loadHandler(false);
     });
+    const data_1 = res.data;
+    updateHandler("payment_desc", data_1.payment_type);
+    updateHandler("bill_code", orderId);
+    updateHandler("payment_ref_code", data_1.transaction_id);
+    updateHandler("paid_amount", data_1.gross_amount);
+    updateHandler(
+      "transaction_date",
+      moment(data_1.transaction_time).format("YYYY-MM-DD")
+    );
+    return data_1;
   }
 
-  registerPayment(states) {
+  async registerPayment(states, updateHandler, loadHandler) {
     const simedis = states.simedis;
 
     const url =
@@ -81,13 +92,73 @@ class FinishedPayment extends Component {
       paymentStatus: true,
     };
 
-    return axios.post(url, data, "").then((res) => {
-      console.log(res);
-      return res;
+    const res = await axios.post(url, data, "").catch(function (error) {
+      updateHandler("form_status", "Koneksi bermasalah");
+      updateHandler("is_valid", false);
+      loadHandler(false);
     });
+    updateHandler("base64", res.data.data.certificate.data.certificate);
+    console.log(res);
+    return res;
   }
 
   render() {
+    const { states } = this.props;
+    console.log(states);
+    if (!states || states.is_loading === true) {
+      return (
+        <Card>
+          <Card.Header>Loading</Card.Header>
+          <Card.Body>
+            <Loader
+              style={{
+                width: "100%",
+                height: "100",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              type="ThreeDots"
+              color="#2BAD60"
+              height="100"
+              width="100"
+            />
+          </Card.Body>
+        </Card>
+      );
+    }
+
+    let content;
+
+    if (states.simedis.is_valid === false) {
+      content = (
+        <Container>
+          <Row>
+            <Col lg={4}></Col>
+            <Col lg={4}>
+              <Alerts data={states.simedis} valid={states.simedis.is_valid} />
+            </Col>
+            <Col lg={4}></Col>
+          </Row>
+        </Container>
+      );
+    } else {
+      content = (
+        <Container>
+          <Row>
+            Pembayaran Telah Selesai, Silahkan Cek Email Yang Anda Daftarkan
+            Untuk Aktivasi Account
+          </Row>
+          <Row className="mt-5" style={{ border: "dotted" }}>
+            <Col lg={4}></Col>
+            <Col lg={4}>
+              <Button>Download Certificate</Button>
+            </Col>
+            <Col lg={4}></Col>
+          </Row>
+        </Container>
+      );
+    }
     return (
       <div>
         <Card>
@@ -95,10 +166,7 @@ class FinishedPayment extends Component {
           <Card.Body>
             <Card>
               <Card.Header>Pembayaran Selesai</Card.Header>
-              <Card.Body>
-                Pembayaran Telah Selesai, Silahkan Cek Email Yang Anda Daftarkan
-                Untuk Aktivasi Account
-              </Card.Body>
+              <Card.Body>{content}</Card.Body>
             </Card>
           </Card.Body>
         </Card>

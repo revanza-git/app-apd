@@ -38,7 +38,7 @@ class Dashboard extends Component {
     });
   }
 
-  getCustomerPolicy(accountData, updateAccountData) {
+  async getCustomerPolicy(accountData, updateAccountData) {
     const url =
       "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/policy";
     const data = {
@@ -48,16 +48,15 @@ class Dashboard extends Component {
       Authorization: accountData.token,
     };
 
-    return axios.post(url, data, config).then((res) => {
-      const customerPolicy = res.data.data.customerPolicy;
-      console.log(res);
-      updateAccountData("policy_no", customerPolicy.policyNo);
-      updateAccountData("customer_code", customerPolicy.customerCode);
-      updateAccountData("sum_insured_ajb", customerPolicy.sumInsuredAjb);
-    });
+    const res = await axios.post(url, data, config);
+    const customerPolicy = res.data.data.customerPolicy;
+
+    updateAccountData("policy_no", customerPolicy.policyNo);
+    updateAccountData("customer_code", customerPolicy.customerCode);
+    updateAccountData("sum_insured_ajb", customerPolicy.sumInsuredAjb);
   }
 
-  getCustomerDetail(accountData, loadHandler, updatePersonal) {
+  async getCustomerDetail(accountData, loadHandler, updatePersonal) {
     const url =
       "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/customers/" +
       accountData.customer_code;
@@ -67,20 +66,16 @@ class Dashboard extends Component {
       },
     };
 
-    return axios.get(url, config).then((res) => {
-      console.log(res);
-      const dataCustomer = res.data.data;
-
-      updatePersonal("first_name", dataCustomer.customerName);
-      updatePersonal("birth_date", dataCustomer.dateOfBirth);
-      updatePersonal("gender", dataCustomer.genderCode);
-      updatePersonal("email", dataCustomer.emailAddress);
-      updatePersonal("phone_number", dataCustomer.phoneNo);
-
-      loadHandler(false);
-
-      return true;
-    });
+    const res = await axios.get(url, config);
+    console.log(res);
+    const dataCustomer = res.data.data;
+    updatePersonal("first_name", dataCustomer.customerName);
+    updatePersonal("birth_date", dataCustomer.dateOfBirth);
+    updatePersonal("gender", dataCustomer.genderCode);
+    updatePersonal("email", dataCustomer.emailAddress);
+    updatePersonal("phone_number", dataCustomer.phoneNo);
+    loadHandler(false);
+    return true;
   }
 
   render() {
