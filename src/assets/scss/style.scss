@@ -360,6 +360,7 @@ p {
 .about-content-right {
   p,
   span {
+    margin-top: 2em;
     font-size: 1.3em;
   }
   span {
@@ -572,7 +573,97 @@ p {
     }
   }
 
-  .card-carousel {
+  .about-image {
+    width: 4em !important;
+  }
+  .about-title {
+    font-size: 1.5em !important;
+  }
+
+  .left-tagline > p {
+    font-size: 1em;
+    color: black;
+  }
+
+  .right-tagline {
+    p {
+      font-size: 1.2em;
+      color: $primary;
+      font-weight: 600;
+    }
+    span {
+      font-size: 1.2em;
+    }
+  }
+
+  .text-center {
+    h5 {
+      color: rgba(black, 0.4) !important;
+      font-weight: 800;
+    }
+    h4 {
+      font-weight: 1000;
+      font-size: 2.2em;
+    }
+  }
+}
+
+@media (max-height: 680px) {
+  //Hero Section
+  .hero-section {
+    height: 80vh;
+    overflow: hidden;
+  }
+
+  .logo-simedis {
+    height: 4em;
+  }
+
+  .hero-wrapper {
+    margin-top: 1em !important;
+    width: 60vh;
+    margin-right: 50em;
+  }
+
+  .intro-title {
+    font-weight: 500;
+    font-size: 2em;
+    color: white;
+  }
+
+  .btn-learn {
+    font-size: 1.1em;
+  }
+
+  .intro-bottom-part {
+    height: 100vh;
+  }
+  .logo-home {
+    position: relative;
+    width: 100vw;
+    margin-left: 0em;
+    top: -1em;
+  }
+
+  .testi-carousel {
+    .owl-nav {
+      display: none;
+    }
+  }
+
+  //About
+  .about-content-right {
+    p,
+    span {
+      font-size: 1.3em;
+    }
+    span {
+      color: #007671;
+      font-weight: 600;
+    }
+    p {
+      color: black;
+    }
   }
 
   .about-image {
