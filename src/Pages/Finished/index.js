@@ -50,15 +50,16 @@ class FinishedPayment extends Component {
   }
 
   onClick = () => {
+    console.log(this.props.states.simedis.base64);
     //Create a Blob from the PDF Stream
-    const file = new Blob([this.props.states.simedis.base64], {
-      type: "application/pdf",
-    });
+    // const file = new Blob([this.props.states.simedis.base64], {
+    //   type: "application/pdf",
+    // });
 
-    //Build a URL from the file
-    const fileURL = URL.createObjectURL(file);
-    // Open the URL on new Window
-    window.open(fileURL);
+    // //Build a URL from the file
+    // const fileURL = URL.createObjectURL(file);
+    // // Open the URL on new Window
+    // window.open(fileURL);
 
     // window
     //   .open("")
@@ -67,7 +68,7 @@ class FinishedPayment extends Component {
     //       this.props.states.simedis.base64 +
     //       "'></iframe>"
     //   );
-    // window.open(this.props.states.simedis.base64);
+    window.open(this.props.states.simedis.base64);
   };
 
   async getTransactionDetail(data, orderId, updateHandler, loadHandler) {
@@ -133,7 +134,6 @@ class FinishedPayment extends Component {
         console.log(error);
       });
 
-    console.log(res);
     return res;
   }
 
