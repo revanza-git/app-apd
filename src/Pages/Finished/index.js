@@ -56,7 +56,7 @@ class FinishedPayment extends Component {
     //   .document.write(
     //     "<iframe width='100%' height='100%' src='" + data64 + "'></iframe>"
     //   );
-    window.open(this.props.states.simedis.base64, "_blank");
+    window.open(this.props.states.simedis.base64);
   };
 
   async getTransactionDetail(data, orderId, updateHandler, loadHandler) {
@@ -109,17 +109,13 @@ class FinishedPayment extends Component {
       paymentStatus: true,
     };
 
-    const res = await axios
-      .post(url, data, "")
-      .then((es) => {
-        updateHandler("base64", es.data.data.certificate.data.certificate);
-      })
-      .catch(function (error) {
-        updateHandler("form_status", "Koneksi bermasalah");
-        updateHandler("is_valid", false);
-        loadHandler(false);
-        console.log(error);
-      });
+    const res = await axios.post(url, data, "").catch(function (error) {
+      updateHandler("form_status", "Koneksi bermasalah");
+      updateHandler("is_valid", false);
+      loadHandler(false);
+      console.log(error);
+    });
+    updateHandler("base64", res.data.data.certificate.data.certificate);
     console.log(res);
     return res;
   }
