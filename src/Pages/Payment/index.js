@@ -71,8 +71,7 @@ class PaymentPage extends Component {
 
   render() {
     if (this.state.redirect_url !== null) {
-      // window.location.assign(this.state.redirect_url);
-      window.snap.pay(this.state.token);
+      window.location.assign(this.state.redirect_url);
     }
     return (
       <div>
