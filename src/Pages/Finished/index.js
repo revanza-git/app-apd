@@ -49,28 +49,6 @@ class FinishedPayment extends Component {
       });
   }
 
-  onClick = () => {
-    console.log(this.props.states.simedis.base64);
-    //Create a Blob from the PDF Stream
-    // const file = new Blob([this.props.states.simedis.base64], {
-    //   type: "application/pdf",
-    // });
-
-    // //Build a URL from the file
-    // const fileURL = URL.createObjectURL(file);
-    // // Open the URL on new Window
-    // window.open(fileURL);
-
-    // window
-    //   .open("")
-    //   .document.write(
-    //     "<iframe width='100%' height='100%' src='" +
-    //       this.props.states.simedis.base64 +
-    //       "'></iframe>"
-    //   );
-    window.open(this.props.states.simedis.base64);
-  };
-
   async getTransactionDetail(data, orderId, updateHandler, loadHandler) {
     const url =
       "https://cors-anywhere.herokuapp.com/https://api.sandbox.midtrans.com/v2/" +
@@ -186,13 +164,15 @@ class FinishedPayment extends Component {
           <Row className="mt-5" style={{ border: "dotted" }}>
             <Col lg={4}></Col>
             <Col lg={4}>
-              <Button
-                onClick={() => {
-                  this.onClick();
-                }}
+              <a
+                className="btn btn-primary"
+                download={`certificate_${states.simedis.bill_code}.pdf`}
+                href={states.simedis.base64}
               >
                 Download Certificate
-              </Button>
+              </a>
+
+              {/* </Button> */}
             </Col>
             <Col lg={4}></Col>
           </Row>
