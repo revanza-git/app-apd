@@ -47,6 +47,11 @@ class Clients extends Component {
                 </Col>
                 <Col lg={6} className="about-content-right">
                   <p>
+                    COVID-19 dapat mengintai siapapun, termasuk kamu dan orang
+                    tedekatmu. Selalu tingkatkan kewaspadaan dan berikan
+                    perlindungan untuk orang yang kamu sayangi.
+                  </p>
+                  <p>
                     <span>Simedis</span>, layaknya tenaga medis yang selalu
                     siaga menghadapi COVID-19. Simedis merupakan program
                     Asuransi Jiwa Berjangka dari Equity life Indonesia yang

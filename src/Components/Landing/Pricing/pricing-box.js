@@ -13,8 +13,8 @@ const PricingBox = ({ pricings }) => {
   return (
     <React.Fragment>
       {pricings.map((pricing, key) => (
-        <Col lg={4} key={key}>
-          <div className="pricing-plan card text-center">
+        <Col className="col-card" lg={4} key={key} id={key}>
+          <div className=" text-center">
             <CardBody className="plan-card p-4">
               <Row>
                 <img
@@ -23,7 +23,7 @@ const PricingBox = ({ pricings }) => {
                 <h5 className="mt-3">{pricing.title}</h5>
               </Row>
 
-              <h1 className="mt-4">
+              <h1 className={`tagline-${key} mt-4`}>
                 <span className="plan-tagline">{pricing.tagline}</span>
               </h1>
 

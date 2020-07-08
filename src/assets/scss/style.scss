@@ -360,7 +360,6 @@ p {
 .about-content-right {
   p,
   span {
-    margin-top: 2em;
     font-size: 1.3em;
   }
   span {
@@ -400,30 +399,20 @@ p {
 }
 
 /******************
-    6.Faq
-*******************/
-
-.faq-content-left,
-.faq-content-right {
-  p {
-    color: rgba(black, 0.4);
-    font-weight: bold;
-  }
-  span {
-    color: rgba($color: #000000, $alpha: 0.6);
-    font-weight: bolder;
-  }
-}
-
-/******************
     7.Plan
 *******************/
+
 .plan-card {
   border-radius: 2em;
   box-shadow: 0 0.1em 0.25em #003b;
+
   h1 {
-    border: solid rgba(255, 255, 255, 0);
+    &.tagline-0,
+    &.tagline-1 {
+      margin-bottom: 1.5em;
+    }
   }
+
   img {
     margin-left: 1em;
     height: 10vh;
@@ -443,7 +432,7 @@ p {
 
 .plan-tagline {
   font-size: 0.5em;
-  color: rgba($color: black, $alpha: 0.6);
+  color: rgba($color: black, $alpha: 1);
 }
 
 .plan-pricing {
@@ -470,18 +459,18 @@ p {
 }
 
 /******************
-    7.Subscribe
+    6.Faq
 *******************/
 
-.subscribe {
-  .form-control {
-    height: 46px;
-    border-radius: 7px;
-    font-size: 15px;
-    box-shadow: none;
-    &:focus {
-      border-color: $primary;
-    }
+.faq-content-left,
+.faq-content-right {
+  p {
+    color: rgba(black, 0.4);
+    font-weight: bold;
+  }
+  span {
+    color: rgba($color: #000000, $alpha: 0.6);
+    font-weight: bolder;
   }
 }
 

@@ -14,27 +14,29 @@ class Pricing extends Component {
       pricings1: [
         {
           title: "Individu",
-          price: "70.000",
+          price: "75.000",
           pre: "",
+          pre2: "",
           discount: "",
-          tagline: "Buat kamu yang masih sendiri aja",
+          tagline: "Buat kamu sendiri",
           img: "Icon-Plan-Individu.svg",
         },
         {
           title: "Pasangan",
           price: "140.000",
-          pre: "Diskon Premi ",
-          discount: "10%",
-          tagline: "Buat kamu yang ingin ajak pasangan atau teman dekatmu",
+          pre: "Hemat ",
+          pre2: "",
+          discount: "10.000",
+          tagline: "Buat kamu berdua",
           img: "Icon-Plan-Pasangan.svg",
         },
         {
           title: "Keluarga",
-          price: "250.000",
-          pre: "Diskon Premi ",
-          discount: "20%",
-          tagline:
-            "Buat kamu yang ingin melindungi keluarga atau kerabat dekatmu",
+          price: "275.000",
+          pre: "Hemat ",
+          pre2: "",
+          discount: "100.000",
+          tagline: "Buat kamu sekeluarga (maks 5 Orang)",
           img: "Icon-Plan-Keluarga.svg",
         },
       ],
@@ -54,7 +56,7 @@ class Pricing extends Component {
 
             <TabContent id={"tab-section"} activeTab={this.state.activeTab}>
               <TabPane tabId="1">
-                <Row>
+                <Row className="plan-controller">
                   <PricingBox pricings={this.state.pricings1} />
                 </Row>
               </TabPane>

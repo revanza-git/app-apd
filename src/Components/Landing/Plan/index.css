@@ -1,0 +1,79 @@
+div.plan {
+  background-color: white;
+  padding-bottom: 50px;
+}
+
+div.plan .container .card {
+  margin-top: 100px;
+  border-radius: 1.5em;
+  -webkit-box-shadow: 0 0.1em 0.25em #003b;
+          box-shadow: 0 0.1em 0.25em #003b;
+  padding-bottom: 30px;
+}
+
+div.plan .container .plan-header {
+  -ms-flex-line-pack: center;
+      align-content: center;
+  margin-top: 50px;
+  font-family: "Roboto", sans-serif;
+  margin-left: auto;
+}
+
+div.plan .container .plan-header img {
+  height: auto;
+  width: 100%;
+}
+
+div.plan .container .plan-header p {
+  color: gray;
+  margin-bottom: 0;
+  font-size: 25px;
+}
+
+div.plan .container .plan-header h1 {
+  top: 100px;
+  font-weight: bolder;
+  margin-bottom: 30px;
+}
+
+div.plan .container .plan-header .tagline {
+  width: 250px;
+  height: 150px;
+}
+
+div.plan .container .plan-body {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+div.plan .container .plan-body img {
+  height: auto;
+  width: 100%;
+  margin-top: 90px;
+}
+
+div.plan .container .buy-plan {
+  vertical-align: middle;
+  display: inline-block;
+  color: #fff;
+  font-weight: 800;
+  margin: 0 auto;
+  padding: 0.75em 1.5em;
+  background: linear-gradient(60deg, #007671, #009489);
+  border: 1.5px transparent;
+  width: 200px;
+  height: 50px;
+  background-size: 100% 100%, calc(100% + var(--border-width) + var(--border-width)) calc(100% + var(--border-width) + var(--border-width));
+  border-radius: 3em;
+}
+
+div.plan .container .buy-plan:hover {
+  background: gray;
+  border: 1.5px solid gray;
+}
+
+div.plan .container .line {
+  border-top: solid black;
+}
+/*# sourceMappingURL=index.css.map */

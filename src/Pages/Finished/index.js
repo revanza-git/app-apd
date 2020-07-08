@@ -161,7 +161,7 @@ class FinishedPayment extends Component {
             Pembayaran Telah Selesai, Silahkan Cek Email Yang Anda Daftarkan
             Untuk Aktivasi Account
           </Row>
-          <Row className="mt-5" style={{ border: "dotted" }}>
+          <Row className="mt-5">
             <Col lg={4}></Col>
             <Col lg={4}>
               <a
