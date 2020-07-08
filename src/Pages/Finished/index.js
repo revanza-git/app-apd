@@ -42,6 +42,23 @@ class FinishedPayment extends Component {
     });
   }
 
+  onClick = () => {
+    // //Create a Blob from the PDF Stream
+    // const file = new Blob([data64], { type: "application/pdf" });
+
+    // //Build a URL from the file
+    // const fileURL = URL.createObjectURL(file);
+    //Open the URL on new Window
+    // window.open(data64);
+
+    // window
+    //   .open("")
+    //   .document.write(
+    //     "<iframe width='100%' height='100%' src='" + data64 + "'></iframe>"
+    //   );
+    window.open(this.props.states.simedis.base64, "_blank");
+  };
+
   async getTransactionDetail(data, orderId, updateHandler, loadHandler) {
     const url =
       "https://cors-anywhere.herokuapp.com/https://api.sandbox.midtrans.com/v2/" +
@@ -92,19 +109,23 @@ class FinishedPayment extends Component {
       paymentStatus: true,
     };
 
-    const res = await axios.post(url, data, "").catch(function (error) {
-      updateHandler("form_status", "Koneksi bermasalah");
-      updateHandler("is_valid", false);
-      loadHandler(false);
-    });
-    updateHandler("base64", res.data.data.certificate.data.certificate);
+    const res = await axios
+      .post(url, data, "")
+      .then(() => {
+        updateHandler("base64", res.data.data.certificate.data.certificate);
+      })
+      .catch(function (error) {
+        updateHandler("form_status", "Koneksi bermasalah");
+        updateHandler("is_valid", false);
+        loadHandler(false);
+        console.log(error);
+      });
     console.log(res);
     return res;
   }
 
   render() {
     const { states } = this.props;
-    console.log(states);
     if (!states || states.is_loading === true) {
       return (
         <Card>
@@ -152,7 +173,13 @@ class FinishedPayment extends Component {
           <Row className="mt-5" style={{ border: "dotted" }}>
             <Col lg={4}></Col>
             <Col lg={4}>
-              <Button>Download Certificate</Button>
+              <Button
+                onClick={() => {
+                  this.onClick();
+                }}
+              >
+                Download Certificate
+              </Button>
             </Col>
             <Col lg={4}></Col>
           </Row>
