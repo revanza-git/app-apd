@@ -42,6 +42,42 @@ class Clients extends Component {
                     <br />- Masuk ke dashboard dan cek e-polis kamu
                   </p>
                   <h5>
+                    <strong>Apa saja keuntungan dari program Simedis?</strong>
+                    &nbsp;
+                  </h5>
+                  <p>
+                    Dengan membeli Plan Simedis kamu akan mendapatkan poin:{" "}
+                    <br />
+                    Plan Individu : 1 poin <br />
+                    Plan Pasangan : 2 poin <br />
+                    Plan Keluarga : 3 poin <br />
+                    Referensikan saudara, kerabat atau teman, kamu akan
+                    mendapatkan: <br />
+                    Per orang : 2 poin <br />
+                    yang terhitung secara kelipatan, jadi semakin banyak kamu{" "}
+                    <br />
+                    mereferensikan temanmu semakin besar pula poin yang <br />
+                    diperoleh.&nbsp;
+                  </p>
+                  <p>
+                    Berapa nilai 1 poin Simedis? <br />1 poin senilai
+                    Rp10.000&nbsp;
+                  </p>
+
+                  <h5>
+                    <strong>
+                      Bagaimana saya menggunakan poin Simedis? Masuk ke
+                      dashboard proﬁl kamu&nbsp;
+                    </strong>
+                  </h5>
+                  <p>
+                    - Pilih menu poin <br />- Cek jumlah poin yang terkumpul{" "}
+                    <br />- Pilih tukar poin lalu pilih hadiah yang kamu
+                    inginkan: <br />- Voucher belanja Alfamart atau Indomaret{" "}
+                    <br />- Voucher potongan harga Traveloka <br />- Voucher
+                    potongan harga Gopay{" "}
+                  </p>
+                  <h5>
                     <strong>Kapan masa pertanggungan SImedis berakhir?</strong>
                   </h5>
                   <p>
@@ -64,6 +100,40 @@ class Clients extends Component {
                   </p>
                 </Col>
                 <Col lg={6} className="faq-content-right">
+                  <h5>
+                    <strong>
+                      Apa saja Plan Simedis? <br />
+                    </strong>
+                  </h5>
+                  <p>
+                    <span>
+                      <strong>Plan Individu </strong>
+                    </span>
+                    <br />
+                    Tertanggung mendaftarkan dirinya sendiri dalam Produk
+                    Asuransi &nbsp;
+                  </p>
+                  <p>
+                    <span>
+                      <strong>Plan Pasangan </strong>
+                    </span>
+                    <br />
+                    Tertanggung mendaftarkan dirinya dan Pasangan Tertanggung
+                    secara bersama-sama untuk satu Produk Asuransi dimana
+                    Manfaat Asuransinya berlaku untuk masing-masing Tertanggung
+                    dan Pasangan Tertanggung.&nbsp;
+                  </p>
+                  <p>
+                    <span>
+                      <strong>Plan Keluarga </strong>
+                    </span>
+                    <br />
+                    Tertanggung mendaftarkan dirinya,Pasangan Tertanggung dan
+                    anak-anaknya secara bersama-sama untuk satu Produk Asuransi
+                    dimanaManfaat Asuransinya berlaku untuk masingmasing
+                    Tertanggung
+                  </p>
+                  <p>&nbsp;</p>
                   <h5>
                     <strong>Apa saja ketentuan pengecualian Simedis?</strong>
                   </h5>
