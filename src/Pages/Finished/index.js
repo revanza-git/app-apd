@@ -51,12 +51,14 @@ class FinishedPayment extends Component {
     //Open the URL on new Window
     // window.open(data64);
 
-    // window
-    //   .open("")
-    //   .document.write(
-    //     "<iframe width='100%' height='100%' src='" + data64 + "'></iframe>"
-    //   );
-    window.open(this.props.states.simedis.base64);
+    window
+      .open("")
+      .document.write(
+        "<iframe width='100%' height='100%' src='" +
+          this.props.states.simedis.base64 +
+          "'></iframe>"
+      );
+    // window.open(this.props.states.simedis.base64);
   };
 
   async getTransactionDetail(data, orderId, updateHandler, loadHandler) {
