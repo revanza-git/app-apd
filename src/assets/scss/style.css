@@ -887,6 +887,7 @@ p {
   border-radius: 2em;
   -webkit-box-shadow: 0 0.1em 0.25em #003b;
           box-shadow: 0 0.1em 0.25em #003b;
+  margin-bottom: 3em;
 }
 
 .plan-card h1.tagline-0, .plan-card h1.tagline-1 {

@@ -154,42 +154,42 @@ class ClientBox extends Component {
                   </Col>
                 </Row>
                 <Row>
-                  <Col xs={6} className="left-tagline">
+                  <Col xs={7} className="left-tagline">
                     <p>Usia Masuk</p>
                   </Col>
-                  <Col xs={6} className="left-tagline">
+                  <Col xs={5} className="left-tagline">
                     <p>:1-59 tahun</p>
                   </Col>
                 </Row>
                 <Row>
-                  <Col xs={6} className="left-tagline">
+                  <Col xs={7} className="left-tagline">
                     <p>Masa Pertanggungan</p>
                   </Col>
-                  <Col xs={6} className="left-tagline">
+                  <Col xs={5} className="left-tagline">
                     <p>:3 bulan</p>
                   </Col>
                 </Row>
                 <Row>
-                  <Col xs={6} className="left-tagline">
+                  <Col xs={7} className="left-tagline">
                     <p>Masa Pembayaran Premi</p>
                   </Col>
-                  <Col xs={6} className="left-tagline">
+                  <Col xs={5} className="left-tagline">
                     <p>: Tunggal</p>
                   </Col>
                 </Row>
                 <Row>
-                  <Col xs={6} className="left-tagline">
+                  <Col xs={7} className="left-tagline">
                     <p>Mata Uang</p>
                   </Col>
-                  <Col xs={6} className="left-tagline">
+                  <Col xs={5} className="left-tagline">
                     <p>: Rupiah</p>
                   </Col>
                 </Row>
                 <Row>
-                  <Col xs={6} className="left-tagline">
+                  <Col xs={7} className="left-tagline">
                     <p>Pembayaran Premi:</p>
                   </Col>
-                  <Col xs={6} className="left-tagline">
+                  <Col xs={5} className="left-tagline">
                     <p>: Virtual Account,Gopay,OVO</p>
                   </Col>
                 </Row>
