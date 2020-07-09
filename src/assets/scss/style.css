@@ -847,9 +847,17 @@ p {
   color: black;
 }
 
-.left-tagline > p {
+.left-tagline p {
   font-size: 1.2em;
   color: black;
+}
+
+.left-tagline .dot {
+  height: 0.5em;
+  width: 0.5em;
+  background-color: #007671;
+  border-radius: 50%;
+  display: inline-block;
 }
 
 .right-tagline p {

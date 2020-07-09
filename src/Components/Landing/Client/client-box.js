@@ -94,35 +94,34 @@ class ClientBox extends Component {
                   </Col>
                 </Row>
                 <Row>
-                  <Col xs={7} className="left-tagline">
-                    <p>Meninggal dunia karena penyakit atau kecelakaan</p>
-                  </Col>
-                  <Col xs={5} className="right-tagline">
+                  <Col xs={12} className="left-tagline">
                     <p>
-                      <span>20</span> Juta
+                      Simedis dirancang sesuai kebutuhanmu dengan 3 keunggulan,
+                      yaitu:
                     </p>
                   </Col>
                 </Row>
                 <Row>
-                  <Col xs={7} className="left-tagline">
-                    <p>Meninggal dunia karena terinfeksi COVID-19</p>
-                  </Col>
-                  <Col xs={5} className="right-tagline">
+                  <Col xs={12} className="left-tagline">
                     <p>
-                      <span>30</span> Juta
+                      <span className="dot"></span>&nbsp; Perlindungan dengan
+                      Premi terjangkau
                     </p>
                   </Col>
                 </Row>
                 <Row>
-                  <Col xs={7} className="left-tagline">
+                  <Col xs={12} className="left-tagline">
                     <p>
-                      Santunan Biaya Perawatan Harian Rumah Sakit akibat
-                      terinfeksi Virus COVID-19
+                      <span className="dot"></span>&nbsp; Tanpa perlu cek medis
+                      dan 100% online
                     </p>
                   </Col>
-                  <Col xs={5} className="right-tagline">
+                </Row>
+                <Row>
+                  <Col xs={12} className="left-tagline">
                     <p>
-                      <span>200</span> Ribu/hari
+                      <span className="dot"></span>&nbsp; Perlindungan terhadap
+                      risiko terinfeksi Virus COVID-19
                     </p>
                   </Col>
                 </Row>
@@ -150,41 +149,48 @@ class ClientBox extends Component {
                         color: "black",
                       }}
                     >
-                      Keunggulan
+                      Ketentuan
                     </span>
                   </Col>
                 </Row>
                 <Row>
-                  <Col xs={7} className="left-tagline">
-                    <p>Meninggal dunia karena penyakit atau kecelakaan</p>
+                  <Col xs={6} className="left-tagline">
+                    <p>Usia Masuk</p>
                   </Col>
-                  <Col xs={5} className="right-tagline">
-                    <p>
-                      <span>20</span> Juta
-                    </p>
+                  <Col xs={6} className="left-tagline">
+                    <p>:1-59 tahun</p>
                   </Col>
                 </Row>
                 <Row>
-                  <Col xs={7} className="left-tagline">
-                    <p>Meninggal dunia karena terinfeksi COVID-19</p>
+                  <Col xs={6} className="left-tagline">
+                    <p>Masa Pertanggungan</p>
                   </Col>
-                  <Col xs={5} className="right-tagline">
-                    <p>
-                      <span>30</span> Juta
-                    </p>
+                  <Col xs={6} className="left-tagline">
+                    <p>:3 bulan</p>
                   </Col>
                 </Row>
                 <Row>
-                  <Col xs={7} className="left-tagline">
-                    <p>
-                      Santunan Biaya Perawatan Harian Rumah Sakit akibat
-                      terinfeksi Virus COVID-19
-                    </p>
+                  <Col xs={6} className="left-tagline">
+                    <p>Masa Pembayaran Premi</p>
                   </Col>
-                  <Col xs={5} className="right-tagline">
-                    <p>
-                      <span>200</span> Ribu/hari
-                    </p>
+                  <Col xs={6} className="left-tagline">
+                    <p>: Tunggal</p>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs={6} className="left-tagline">
+                    <p>Mata Uang</p>
+                  </Col>
+                  <Col xs={6} className="left-tagline">
+                    <p>: Rupiah</p>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs={6} className="left-tagline">
+                    <p>Pembayaran Premi:</p>
+                  </Col>
+                  <Col xs={6} className="left-tagline">
+                    <p>: Virtual Account,Gopay,OVO</p>
                   </Col>
                 </Row>
               </Container>
