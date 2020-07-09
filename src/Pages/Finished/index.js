@@ -39,7 +39,6 @@ class FinishedPayment extends Component {
         );
         console.log(res);
         console.log(this.props.states);
-        loadHandler(false);
       })
       .catch(function (error) {
         updateHandler("form_status", "Koneksi bermasalah");
@@ -111,6 +110,8 @@ class FinishedPayment extends Component {
         loadHandler(false);
         console.log(error);
       });
+
+    loadHandler(false);
 
     return res;
   }
