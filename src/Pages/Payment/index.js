@@ -44,7 +44,7 @@ class PaymentPage extends Component {
       enabled_payments: account.enabled_payments,
       gopay: {
         enable_callback: true,
-        callback_url: "/finish",
+        callback_url: "https://app-apd.herokuapp.com/finish",
       },
     };
 
@@ -76,6 +76,7 @@ class PaymentPage extends Component {
   render() {
     if (this.state.redirect_url !== null) {
       window.location.assign(this.state.redirect_url);
+      // window.snap.pay(this.state.token);
     }
     return (
       <div>
