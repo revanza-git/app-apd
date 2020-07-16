@@ -1,10 +1,6 @@
 import { connect } from "react-redux";
 import Registration from "../../../Pages/Registration";
-import {
-  getFormView,
-  getStates,
-  getHasChanged,
-} from "../../../Store/Form/selectors";
+import { getStates, getHasChanged } from "../../../Store/Form/selectors";
 import {
   addChange,
   updateFormType,
@@ -16,7 +12,6 @@ import {
 } from "../../../Store/Form/actions";
 
 const mapStateToProps = (state) => ({
-  formView: getFormView(state),
   states: getStates(state),
   hasChanged: getHasChanged(state),
 });

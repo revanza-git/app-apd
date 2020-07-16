@@ -21,14 +21,15 @@ const Selects = ({
           as="select"
           onChange={(event) => HandleChange(StateKey, event.target.value)}
         >
-          <option value="">Pilih...</option>
+          {/* <option value="">Pilih...</option>
           <option value="L">Laki-laki</option>
-          <option value="P">Perempuan</option>
-          {/* {Data.map((item) => (
+          <option value="P">Perempuan</option> */}
+          <option value="">Pilih...</option>
+          {Data.map((item) => (
             <option key={item.genderCode} value={item.genderCode}>
               {item.genderDesc}
             </option>
-          ))} */}
+          ))}
         </Form.Control>
       </Col>
     </Form.Group>

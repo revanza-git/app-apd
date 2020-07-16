@@ -6,6 +6,7 @@ const initialState = {
   state: {
     form_type: "",
     reg_type: "",
+    app_code: "APP202007001",
     is_loading: false,
     personal: {
       first_name: "",
@@ -19,7 +20,7 @@ const initialState = {
       form_status: "",
       is_valid: null,
     },
-    spouse: {
+    partner: {
       first_name: "",
       last_name: "",
       gender: "",

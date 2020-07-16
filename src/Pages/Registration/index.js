@@ -22,29 +22,31 @@ class RegistrationPage extends Component {
       ignoreQueryPrefix: true,
     });
 
-    // loadHandler(true);
+    loadHandler(true);
 
     updateFormType(query.type);
 
     if (query.type === "individu") {
-      updateRegType("R001");
+      updateRegType("R2007001");
     } else if (query.type === "pasangan") {
-      updateRegType("R002");
+      updateRegType("R2007002");
     } else {
-      updateRegType("R003");
+      updateRegType("R2007003");
     }
 
-    // const url =
-    //   "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/gender";
+    const url =
+      "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/gender";
 
-    // axios
-    //   .get(url, "")
-    //   .then((res) => {
-    //     updateGender(res.data.data);
-    //   })
-    //   .then(() => {
-    //     loadHandler(false);
-    //   });
+    axios
+      .get(url, "")
+      .then((res) => {
+        console.log(res);
+        updateGender(res.data.data);
+        loadHandler(false);
+      })
+      .then(() => {
+        loadHandler(false);
+      });
   }
 
   validation = (param) => {

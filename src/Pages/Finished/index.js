@@ -96,6 +96,7 @@ class FinishedPayment extends Component {
       paidAmount: simedis.paid_amount,
       transactionDate: simedis.transaction_date,
       paymentStatus: true,
+      usedReferralCode: "",
     };
 
     const res = await axios

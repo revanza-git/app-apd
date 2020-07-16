@@ -2,9 +2,7 @@ import React from "react";
 import { Row, Col, Image, Container, Card, Button } from "react-bootstrap";
 import "./index.scss";
 import { useHistory } from "react-router-dom";
-import icon_plan_individu from "../Plan/Images/icon-plan-individu.png";
-import icon_plan_pasangan from "../Plan/Images/icon-plan-pasangan.png";
-import icon_plan_keluarga from "../Plan/Images/icon-plan-keluarga.png";
+
 import individu_tagline_icon from "../Plan/Images/individu-tagline-icon.png";
 
 const Plan = () => {

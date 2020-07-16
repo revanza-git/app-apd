@@ -20,7 +20,8 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <Route exact path="/">
-            <Redirect to="/landing" />
+            {/* <Redirect to="/landing" /> */}
+            <Redirect to="/registration" />
           </Route>
           <Route exact path="/registration">
             <Redirect to="/registration?type=individu" />

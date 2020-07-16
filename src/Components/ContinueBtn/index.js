@@ -26,6 +26,8 @@ const ConBtn = ({ data, targetURL, valid }) => {
             "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/customers/register";
           const data = {
             registrationTypeCode: states.reg_type,
+            appCode: states.app_code,
+            usedReferralCode: "",
             customers: [
               {
                 customerName:
