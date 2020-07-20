@@ -3,10 +3,8 @@ import LoginInputs from "../Forms/LoginInputs";
 import ContinueBtn from "../../Components/ContinueBtn";
 import Alerts from "../../Components/Alerts";
 import Loader from "react-loader-spinner";
-import axios from "axios";
 
 import "./index.css";
-import qs from "qs";
 
 import { Card } from "react-bootstrap";
 

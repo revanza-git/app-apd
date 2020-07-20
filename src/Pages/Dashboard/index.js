@@ -15,7 +15,7 @@ class Dashboard extends Component {
   componentDidMount() {
     console.log(this.props);
     const updateAccountData = this.props.simedisAccountChange;
-    const updatePersonal = this.props.addChange;
+    const updateformOne = this.props.formOne;
     const loadHandler = this.props.updatePageLoad;
 
     loadHandler(true);
@@ -33,7 +33,7 @@ class Dashboard extends Component {
       this.getCustomerDetail(
         this.props.states.simedis_account,
         loadHandler,
-        updatePersonal
+        updateformOne
       );
     });
   }
@@ -56,7 +56,7 @@ class Dashboard extends Component {
     updateAccountData("sum_insured_ajb", customerPolicy.sumInsuredAjb);
   }
 
-  async getCustomerDetail(accountData, loadHandler, updatePersonal) {
+  async getCustomerDetail(accountData, loadHandler, updateformOne) {
     const url =
       "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/customers/" +
       accountData.customer_code;
@@ -69,11 +69,11 @@ class Dashboard extends Component {
     const res = await axios.get(url, config);
     console.log(res);
     const dataCustomer = res.data.data;
-    updatePersonal("first_name", dataCustomer.customerName);
-    updatePersonal("birth_date", dataCustomer.dateOfBirth);
-    updatePersonal("gender", dataCustomer.genderCode);
-    updatePersonal("email", dataCustomer.emailAddress);
-    updatePersonal("phone_number", dataCustomer.phoneNo);
+    updateformOne("first_name", dataCustomer.customerName);
+    updateformOne("birth_date", dataCustomer.dateOfBirth);
+    updateformOne("gender", dataCustomer.genderCode);
+    updateformOne("email", dataCustomer.emailAddress);
+    updateformOne("phone_number", dataCustomer.phoneNo);
     loadHandler(false);
     return true;
   }
@@ -138,7 +138,7 @@ class Dashboard extends Component {
                         </Tab.Pane>
                         <Tab.Pane eventKey="second">
                           <CustomerView
-                            data={states.personal}
+                            data={states.form_1}
                             changeHandler={addChange}
                           />
                         </Tab.Pane>

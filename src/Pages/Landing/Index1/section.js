@@ -42,7 +42,7 @@ class Section extends Component {
 
                   <div className="mt-4">
                     <Link
-                      to="/landing/#tab-section"
+                      to="/welcome/#tab-section"
                       className="btn btn-learn"
                       onClick={() => {
                         window.scrollTo(0, 830);

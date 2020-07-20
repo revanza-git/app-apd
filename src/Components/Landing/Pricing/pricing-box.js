@@ -5,8 +5,8 @@ import { useHistory, Link } from "react-router-dom";
 
 const PricingBox = ({ pricings }) => {
   const history = useHistory();
-  const handleClick = () => {
-    history.push("/registration?type=individu");
+  const handleClick = (redirect) => {
+    history.push("/registration?type=" + redirect);
     window.location.reload();
   };
 
@@ -42,7 +42,10 @@ const PricingBox = ({ pricings }) => {
               </div>
 
               <div>
-                <Link className="btn btn-primary" onClick={() => handleClick()}>
+                <Link
+                  className="btn btn-primary"
+                  onClick={() => handleClick(pricing.redirect)}
+                >
                   Beli Plan
                 </Link>
               </div>

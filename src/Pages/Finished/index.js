@@ -4,8 +4,9 @@ import axios from "axios";
 import moment from "moment";
 import Loader from "react-loader-spinner";
 import Alerts from "../../Components/Alerts";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
-import { Card, Button, Row, Container, Col } from "react-bootstrap";
+import { Card, Button, Row, Container, Col, Form } from "react-bootstrap";
 
 class FinishedPayment extends Component {
   componentDidMount() {
@@ -47,6 +48,13 @@ class FinishedPayment extends Component {
         console.log(error);
       });
   }
+
+  copyCodeToClipboard = (text) => {
+    console.log(text);
+    const el = text;
+    el.select();
+    document.execCommand("copy");
+  };
 
   async getTransactionDetail(data, orderId, updateHandler, loadHandler) {
     const url =
@@ -119,6 +127,7 @@ class FinishedPayment extends Component {
 
   render() {
     const { states } = this.props;
+    const text = "Bagikan ke teman anda https://bit.ly/30t7Pn3";
     if (!states || states.is_loading === true) {
       return (
         <Card>
@@ -148,11 +157,9 @@ class FinishedPayment extends Component {
       content = (
         <Container>
           <Row>
-            <Col lg={4}></Col>
-            <Col lg={4}>
+            <Col lg={12} className="text-center">
               <Alerts data={states.simedis} valid={states.simedis.is_valid} />
             </Col>
-            <Col lg={4}></Col>
           </Row>
         </Container>
       );
@@ -160,23 +167,31 @@ class FinishedPayment extends Component {
       content = (
         <Container>
           <Row>
-            Pembayaran Telah Selesai, Silahkan Cek Email Yang Anda Daftarkan
-            Untuk Aktivasi Account
+            <Col lg={12} className="text-center">
+              Pembayaran Telah Selesai, Silahkan Cek Email Yang Anda Daftarkan
+              Untuk Aktivasi Account
+            </Col>
           </Row>
-          <Row className="mt-5">
-            <Col lg={4}></Col>
-            <Col lg={4}>
+          <Row className="mt-2">
+            <Col lg={12} className="text-center">
               <a
-                className="btn btn-primary"
+                className="btn btn-primary mb-4"
                 download={`certificate_${states.simedis.bill_code}.pdf`}
                 href={states.simedis.base64}
               >
                 Download Certificate
               </a>
+              <Form.Control
+                type="text"
+                disabled={true}
+                defaultValue={text}
+                className="text-center"
+              />
 
-              {/* </Button> */}
+              <CopyToClipboard text={text}>
+                <Button className="mt-4">Copy to Clipboard</Button>
+              </CopyToClipboard>
             </Col>
-            <Col lg={4}></Col>
           </Row>
         </Container>
       );

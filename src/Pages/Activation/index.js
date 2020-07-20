@@ -21,12 +21,10 @@ class ActivationPage extends Component {
     });
 
     loadHandler(true);
-
-    console.log(query.validate_key);
     const url =
       "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/customers/validateKey";
     const data = {
-      uniqueActivationKey: query.validate_key,
+      uniqueActivationKey: query.token,
     };
 
     axios
@@ -44,7 +42,8 @@ class ActivationPage extends Component {
         loadHandler(false);
       })
       .catch(function (error) {
-        changeHandler("form_status", "Koneksi bermasalah");
+        changeHandler("form_status", "Koneksi bermasalah: ");
+        console.log(error);
         changeHandler("is_valid", false);
         loadHandler(false);
       });

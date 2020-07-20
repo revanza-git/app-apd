@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import UserInputs from "../Forms/UserInputs";
-import UserOtherInputs from "../Forms/UserOtherInputs";
+import FormOneInputs from "../Forms/FormOneInputs";
+import FormTwoInputs from "../Forms/FormTwoInputs";
 import ContinueBtn from "../../Components/ContinueBtn";
 import Alerts from "../../Components/Alerts";
 import Loader from "react-loader-spinner";
@@ -17,13 +17,16 @@ class RegistrationPage extends Component {
     const updateFormType = this.props.updateFormType;
     const updateGender = this.props.updateGender;
     const updateRegType = this.props.updateRegType;
+    const updateHandler = this.props.formOne;
+    const updateRelationship = this.props.updateRelationship;
+
     //parsing URL
     const query = qs.parse(this.props.location.search, {
       ignoreQueryPrefix: true,
     });
 
     loadHandler(true);
-
+    console.log(query.type);
     updateFormType(query.type);
 
     if (query.type === "individu") {
@@ -34,70 +37,53 @@ class RegistrationPage extends Component {
       updateRegType("R2007003");
     }
 
+    (async () => {
+      try {
+        await this.getGender(updateGender, updateHandler);
+        await this.getRelationship(updateRelationship, updateHandler);
+        loadHandler(false);
+      } catch (err) {
+        updateHandler("form_status", "Koneksi bermasalah");
+        updateHandler("is_valid", false);
+        console.log(err);
+      }
+    })();
+  }
+
+  async getGender(updateGender, updateHandler) {
     const url =
       "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/gender";
 
-    axios
+    await axios
       .get(url, "")
       .then((res) => {
-        console.log(res);
         updateGender(res.data.data);
-        loadHandler(false);
       })
-      .then(() => {
-        loadHandler(false);
+      .catch(function (error) {
+        updateHandler("form_status", "Koneksi bermasalah");
+        updateHandler("is_valid", false);
+        console.log(error);
       });
   }
 
-  validation = (param) => {
-    console.log(this.props.states);
-    const data = param;
-    const updateFormStatus = this.props.addChange;
-    const email = data.email;
-    const first_name = data.first_name;
-    const last_name = data.last_name;
-    const gender = data.gender;
-    const identification_number = data.identification_number;
-    const birth_date = data.birth_date;
-    const occupation = data.occupation;
-    const phone_number = data.phone_number;
+  async getRelationship(updateRelationship, updateHandler) {
+    const url =
+      "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/relationships";
 
-    if (
-      first_name === "" ||
-      last_name === "" ||
-      gender === "" ||
-      identification_number === "" ||
-      birth_date === "" ||
-      occupation === "" ||
-      phone_number === "" ||
-      email === ""
-    ) {
-      updateFormStatus("form_status", "Form harus diisi semua");
-      return false;
-    } else if (email !== "") {
-      let lastAtPos = email.lastIndexOf("@");
-      let lastDotPos = email.lastIndexOf(".");
-      if (
-        !(
-          lastAtPos < lastDotPos &&
-          lastAtPos > 0 &&
-          email.indexOf("@@") === -1 &&
-          lastDotPos > 2 &&
-          email.length - lastDotPos > 2
-        )
-      ) {
-        updateFormStatus("form_status", "Format email tidak benar");
-        return false;
-      } else {
-        updateFormStatus("form_status", "ok");
-        return true;
-      }
-    }
-  };
+    await axios
+      .get(url, "")
+      .then((res) => {
+        updateRelationship(res.data.data);
+      })
+      .catch(function (error) {
+        updateHandler("form_status", "Koneksi bermasalah");
+        updateHandler("is_valid", false);
+        console.log(error);
+      });
+  }
 
   render() {
-    console.log(this.props);
-    const { states, addChange, addSpouse } = this.props;
+    const { states, formOne, formTwo } = this.props;
     const form_type = states.form_type;
 
     if (!states || form_type === "" || states.is_loading === true) {
@@ -129,23 +115,20 @@ class RegistrationPage extends Component {
         <Card>
           <Card.Header>Pribadi</Card.Header>
           <Card.Body>
-            <UserInputs
-              data={states}
-              changeHandler={addChange}
-              validation={this.validation}
-            />
-            <Alerts data={states.personal} valid={states.personal.is_valid} />
+            <FormOneInputs data={states} changeHandler={formOne} />
+            <Alerts data={states.form_1} valid={states.form_1.is_valid} />
           </Card.Body>
 
           <Card.Header>Pasangan</Card.Header>
           <Card.Body>
-            <UserOtherInputs
-              data={states.spouse}
-              changeHandler={addSpouse}
-              validation={this.validation}
-            />
-            <Alerts data={states.spouse} valid={states.spouse.is_valid} />
+            <FormTwoInputs data={states} changeHandler={formTwo} />
+            <Alerts data={states.form_2} valid={states.form_2.is_valid} />
           </Card.Body>
+          <ContinueBtn
+            data={this.props}
+            targetURL="/confirmation"
+            valid={states.form_2.is_valid}
+          />
         </Card>
       );
     } else {
@@ -153,13 +136,14 @@ class RegistrationPage extends Component {
         <Card>
           <Card.Header>Pribadi</Card.Header>
           <Card.Body>
-            <UserInputs
-              data={states}
-              changeHandler={addChange}
-              validation={this.validation}
-            />
-            <Alerts data={states.personal} valid={states.personal.is_valid} />
+            <FormOneInputs data={states} changeHandler={formOne} />
+            <Alerts data={states.form_1} valid={states.form_1.is_valid} />
           </Card.Body>
+          <ContinueBtn
+            data={this.props}
+            targetURL="/confirmation"
+            valid={this.props.states.form_1.is_valid}
+          />
         </Card>
       );
     }
@@ -168,14 +152,7 @@ class RegistrationPage extends Component {
       <div>
         <Card>
           <Card.Header>Registrasi</Card.Header>
-          <Card.Body>
-            {card}
-            <ContinueBtn
-              data={this.props}
-              targetURL="/confirmation"
-              valid={this.props.states.personal.is_valid}
-            />
-          </Card.Body>
+          <Card.Body>{card}</Card.Body>
         </Card>
       </div>
     );

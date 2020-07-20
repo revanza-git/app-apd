@@ -21,17 +21,17 @@ class App extends Component {
         <Router>
           <Route exact path="/">
             {/* <Redirect to="/landing" /> */}
-            <Redirect to="/registration" />
+            <Redirect to="/welcome" />
           </Route>
-          <Route exact path="/registration">
+          {/* <Route exact path="/registration">
             <Redirect to="/registration?type=individu" />
-          </Route>
+          </Route> */}
           <Route path="/dashboard" component={DashboardPage} />
           <Route exact path="/activation" component={ActivationPage} />
 
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/confirmation" component={ConfirmationPage} />
-          <Route exact path="/landing" component={LandingPage} />
+          <Route exact path="/welcome" component={LandingPage} />
           <Route exact path="/registration" component={RegistrationPage} />
           <Route exact path="/payment" component={PaymentPage} />
           <Route exact path="/payment/notification" />

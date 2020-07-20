@@ -1,16 +1,14 @@
 import { connect } from "react-redux";
 import Payment from "../../../Pages/Payment";
-import { getStates, getHasChanged } from "../../../Store/Form/selectors";
-import { addChange, postApi } from "../../../Store/Form/actions";
+import { getStates } from "../../../Store/Form/selectors";
+import { formOne, postApi } from "../../../Store/Form/actions";
 
 const mapStateToProps = (state) => ({
   states: getStates(state),
-  hasChanged: getHasChanged(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addChange: (fieldName, fieldValue) =>
-    dispatch(addChange(fieldName, fieldValue)),
+  formOne: (fieldName, fieldValue) => dispatch(formOne(fieldName, fieldValue)),
   postApi: (url, data, config) => dispatch(postApi(url, data, config)),
 });
 

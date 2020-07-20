@@ -4,7 +4,7 @@ import { getStates } from "../../../Store/Form/selectors";
 import {
   simedisAccountChange,
   updatePageLoad,
-  addChange,
+  formOne,
 } from "../../../Store/Form/actions";
 
 const mapStateToProps = (state) => ({
@@ -14,8 +14,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   simedisAccountChange: (fieldName, fieldValue) =>
     dispatch(simedisAccountChange(fieldName, fieldValue)),
-  addChange: (fieldName, fieldValue) =>
-    dispatch(addChange(fieldName, fieldValue)),
+  formOne: (fieldName, fieldValue) => dispatch(formOne(fieldName, fieldValue)),
   updatePageLoad: (fieldValue) => dispatch(updatePageLoad(fieldValue)),
 });
 

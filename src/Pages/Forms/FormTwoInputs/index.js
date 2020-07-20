@@ -1,36 +1,61 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 import TextBox from "../../../Components/Textbox";
-import Select from "../../../Components/Selects";
+import Gender from "../../../Components/Selects/Gender";
+import Relationship from "../../../Components/Selects/Relationship";
 import Datepicker from "../../../Components/Datepicker";
 
-const UserOther = ({ data, changeHandler, validation, updateValidFlag }) => {
-  const dataForm = data;
+const UserOther = ({ data, changeHandler }) => {
+  console.log(data);
+  const dataForm = data.form_2;
+  const genderData = data.gender;
+  const relationshipData = data.relationship;
+
+  const validation = (param) => {
+    const params = param;
+    const updateFormStatus = changeHandler;
+    const name = params.full_name.split(" ");
+    const gender = params.gender;
+    const birth_date = params.birth_date;
+    const occupation = params.occupation;
+
+    if (
+      name === "" ||
+      gender === "" ||
+      birth_date === "" ||
+      occupation === ""
+    ) {
+      updateFormStatus("form_status", "Form harus diisi semua");
+      return false;
+    } else {
+      updateFormStatus("form_status", "ok");
+      return true;
+    }
+  };
+
   return (
     <div>
       <Form>
-        <TextBox
-          Data={data}
+        <Relationship
           labelCol="2"
-          labelVal="Nama Depan"
-          StateKey="first_name"
+          labelVal="relationship"
           TextCol="10"
-          TextType="text"
           Validation={validation}
-          updateValidFlag={updateValidFlag}
-          Value={dataForm.first_name}
+          StateKey="relation_code"
           HandleChange={changeHandler}
+          Display={true}
+          Data={relationshipData}
+          BlockChoices={["0"]}
         />
         <TextBox
-          Data={data}
+          Data={dataForm}
           labelCol="2"
-          labelVal="Nama Belakang"
-          StateKey="last_name"
+          labelVal="Nama"
+          StateKey="full_name"
           TextCol="10"
           TextType="text"
           Validation={validation}
-          updateValidFlag={updateValidFlag}
-          Value={dataForm.last_name}
+          Value={dataForm.full_name}
           HandleChange={changeHandler}
         />
         <Datepicker
@@ -42,37 +67,23 @@ const UserOther = ({ data, changeHandler, validation, updateValidFlag }) => {
           StartDate={dataForm.birth_date}
           HandleChange={changeHandler}
         />
-        <TextBox
-          Data={data}
-          labelCol="2"
-          labelVal="Email"
-          StateKey="email"
-          TextCol="10"
-          TextType="email"
-          Validation={validation}
-          updateValidFlag={updateValidFlag}
-          Value={dataForm.email}
-          Placeholder="Please enter your email"
-          HandleChange={changeHandler}
-        />
-        <Select
-          Data={data}
+        <Gender
           labelCol="2"
           labelVal="Kelamin"
           TextCol="10"
           Validation={validation}
           StateKey="gender"
           HandleChange={changeHandler}
+          Data={genderData}
         />
         <TextBox
-          Data={data}
+          Data={dataForm}
           labelCol="2"
           labelVal="Pekerjaan"
           StateKey="occupation"
           TextCol="10"
           TextType="text"
           Validation={validation}
-          updateValidFlag={updateValidFlag}
           Value={dataForm.occupation}
           HandleChange={changeHandler}
         />

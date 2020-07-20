@@ -20,6 +20,7 @@ class Pricing extends Component {
           discount: "",
           tagline: "Buat kamu sendiri",
           img: "Icon-Plan-Individu.svg",
+          redirect: "individu",
         },
         {
           title: "Pasangan",
@@ -29,6 +30,7 @@ class Pricing extends Component {
           discount: "10.000",
           tagline: "Buat kamu berdua",
           img: "Icon-Plan-Pasangan.svg",
+          redirect: "pasangan",
         },
         {
           title: "Keluarga",
@@ -38,6 +40,7 @@ class Pricing extends Component {
           discount: "100.000",
           tagline: "Buat kamu sekeluarga (maks 5 Orang)",
           img: "Icon-Plan-Keluarga.svg",
+          redirect: "keluarga",
         },
       ],
       activeTab: "1",

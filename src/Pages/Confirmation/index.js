@@ -20,7 +20,7 @@ class MainInfo extends Component {
               <ContinueBtn
                 data={data}
                 targetURL="/payment"
-                valid={data.states.personal.is_valid}
+                valid={data.states.form_1.is_valid}
               />
             </Card>
           </Card.Body>

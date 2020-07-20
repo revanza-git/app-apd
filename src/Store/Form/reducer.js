@@ -8,30 +8,6 @@ const initialState = {
     reg_type: "",
     app_code: "APP202007001",
     is_loading: false,
-    personal: {
-      first_name: "",
-      last_name: "",
-      gender: "",
-      identification_number: "",
-      birth_date: moment(new Date()).format("YYYY-MM-DD"),
-      occupation: "",
-      phone_number: "",
-      email: "",
-      form_status: "",
-      is_valid: null,
-    },
-    partner: {
-      first_name: "",
-      last_name: "",
-      gender: "",
-      identification_number: "",
-      birth_date: moment(new Date()).format("YYYY-MM-DD"),
-      occupation: "",
-      phone_number: "",
-      email: "",
-      form_status: "",
-      is_valid: null,
-    },
     midtrans_account: {
       api_url:
         "https://cors-anywhere.herokuapp.com/https://app.sandbox.midtrans.com/snap/v1/transactions",
@@ -62,7 +38,6 @@ const initialState = {
       password_retype: "",
       customer_code: "",
       customer_name: "",
-      registration_code: "",
       customer_status: "",
       active: "",
       token: "",
@@ -80,31 +55,52 @@ const initialState = {
       form_status: "",
     },
     gender: [],
+    relationship: [],
+    selected_relationship: [],
+    forms: [],
+    form_1: {
+      relation_code: "0",
+      full_name: "",
+      gender: "",
+      identification_number: "",
+      birth_date: moment(new Date()).format("YYYY-MM-DD"),
+      occupation: "",
+      phone_number: "",
+      email: "",
+      form_status: "",
+      is_valid: null,
+    },
+    form_2: {
+      relation_code: "",
+      full_name: "",
+      gender: "",
+      identification_number: "",
+      birth_date: moment(new Date()).format("YYYY-MM-DD"),
+      occupation: "",
+      phone_number: "",
+      email: "",
+      form_status: "",
+      is_valid: null,
+    },
   },
 };
 
-function viewReducer(state = initialState.state, action) {
-  switch (action.type) {
-    default:
-      return state;
-  }
-}
-
 function editReducer(state = initialState.state, action) {
   switch (action.type) {
-    case constants.ADD_CHANGE:
-      const newForm = { ...state.personal };
+    case constants.FORM_ONE:
+      const newForm = { ...state.form_1 };
       newForm[action.fieldName] = action.fieldValue;
+      console.log(newForm);
       return {
         ...state,
-        personal: newForm,
+        form_1: newForm,
       };
-    case constants.ADD_SPOUSE:
-      const spouseNew = { ...state.spouse };
-      spouseNew[action.fieldName] = action.fieldValue;
+    case constants.FORM_TWO:
+      const partnerNew = { ...state.form_2 };
+      partnerNew[action.fieldName] = action.fieldValue;
       return {
         ...state,
-        spouse: spouseNew,
+        form_2: partnerNew,
       };
     case constants.SIMEDIS_CHANGE:
       const load = { ...state.simedis };
@@ -144,12 +140,17 @@ function editReducer(state = initialState.state, action) {
         gender: action.payload,
         status: constants.GENDER,
       };
+    case constants.RELATIONSHIP:
+      return {
+        ...state,
+        relationship: action.payload,
+        status: constants.RELATIONSHIP,
+      };
     default:
       return state;
   }
 }
 
 export default combineReducers({
-  view: viewReducer,
   edit: editReducer,
 });

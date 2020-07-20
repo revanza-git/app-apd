@@ -25,7 +25,7 @@ class PaymentPage extends Component {
   // }
 
   process(param) {
-    const personal = param.personal;
+    const formOne = param.form_1;
     const account = param.midtrans_account;
     const simedis = param.simedis;
 
@@ -36,10 +36,10 @@ class PaymentPage extends Component {
         gross_amount: simedis.bill_amount,
       },
       customer_details: {
-        first_name: personal.first_name,
-        last_name: personal.last_name,
-        email: personal.email,
-        phone: personal.phone_number,
+        first_name: formOne.first_name,
+        last_name: formOne.last_name,
+        email: formOne.email,
+        phone: formOne.phone_number,
       },
       enabled_payments: account.enabled_payments,
       gopay: {

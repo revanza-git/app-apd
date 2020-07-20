@@ -4,46 +4,85 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 const ConBtn = ({ data, targetURL, valid }) => {
+  //depended need fix for dynamic form
+  const dataFormOne = data.states.form_1;
+  const dataFormTwo = data.states.form_2;
+  const personalChange = data.formOne;
+
   const history = useHistory();
   const isValid = valid;
-  const dataPersonal = data.states.personal;
+
   const loadHandler = data.updatePageLoad;
   const states = data.states;
   const updateData = data.simedisChange;
-  const personalChange = data.addChange;
   const accountFormData = data.states.simedis_account;
   const updateFormAccountChange = data.simedisAccountChange;
 
+  const GenerateData = () => {
+    if (data.form_type === "individu") {
+      const data = {
+        registrationTypeCode: states.reg_type,
+        appCode: states.app_code,
+        usedReferralCode: "",
+        customers: [
+          {
+            customerName: dataFormOne.full_name,
+            ktpNO: dataFormOne.identification_number,
+            dateOfBirth: dataFormOne.birth_date,
+            emailAddress: dataFormOne.email,
+            genderCode: dataFormOne.gender,
+            occupation: dataFormOne.occupation,
+            phoneNo: dataFormOne.phone_number,
+            customerStatus: dataFormOne.relation_code,
+          },
+        ],
+      };
+
+      return data;
+    } else {
+      const data = {
+        registrationTypeCode: states.reg_type,
+        appCode: states.app_code,
+        usedReferralCode: "",
+        customers: [
+          {
+            customerName: dataFormOne.full_name,
+            ktpNO: dataFormOne.identification_number,
+            dateOfBirth: dataFormOne.birth_date,
+            emailAddress: dataFormOne.email,
+            genderCode: dataFormOne.gender,
+            occupation: dataFormOne.occupation,
+            phoneNo: dataFormOne.phone_number,
+            customerStatus: dataFormOne.relation_code,
+          },
+          {
+            customerName: dataFormTwo.full_name,
+            ktpNO: dataFormTwo.identification_number,
+            dateOfBirth: dataFormTwo.birth_date,
+            emailAddress: dataFormTwo.email,
+            genderCode: dataFormTwo.gender,
+            occupation: dataFormTwo.occupation,
+            phoneNo: dataFormTwo.phone_number,
+            customerStatus: dataFormTwo.relation_code,
+          },
+        ],
+      };
+
+      return data;
+    }
+  };
+
   const handleClick = () => {
-    console.log(data);
-    console.log("click terhandle");
+    console.log(isValid);
     if (isValid) {
       if (targetURL === "/confirmation") {
-        if (dataPersonal.form_status === "ok") {
-          console.log(targetURL);
+        if (dataFormOne.form_status === "ok") {
+          console.log(dataFormOne.form_status);
           loadHandler(true);
           const url =
             "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/customers/register";
-          const data = {
-            registrationTypeCode: states.reg_type,
-            appCode: states.app_code,
-            usedReferralCode: "",
-            customers: [
-              {
-                customerName:
-                  dataPersonal.first_name + " " + dataPersonal.last_name,
-                ktpNO: dataPersonal.identification_number,
-                dateOfBirth: dataPersonal.birth_date,
-                emailAddress: dataPersonal.email,
-                genderCode: dataPersonal.gender,
-                occupation: dataPersonal.occupation,
-                phoneNo: dataPersonal.phone_number,
-                customerStatus: "0",
-              },
-            ],
-          };
 
-          console.log(data);
+          const data = GenerateData();
 
           axios
             .post(url, data, "")
@@ -138,6 +177,7 @@ const ConBtn = ({ data, targetURL, valid }) => {
           .catch(function (error) {
             updateFormAccountChange("form_status", "Koneksi bermasalah");
             updateFormAccountChange("is_valid", false);
+            console.log(error);
             loadHandler(false);
           });
       } else {

@@ -11,7 +11,7 @@ const routes = [
   // { path: "/index4", component: Index4 },
   // { path: "/index3", component: Index3 },
   // { path: "/index2", component: Index2 },
-  { path: "/landing", component: Index1 },
+  { path: "/welcome", component: Index1 },
 ];
 
 export default routes;

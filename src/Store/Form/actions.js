@@ -1,20 +1,14 @@
 import * as constants from "./constants";
 import axios from "axios";
 
-export const addChange = (fieldName, fieldValue) => ({
-  type: constants.ADD_CHANGE,
+export const formOne = (fieldName, fieldValue) => ({
+  type: constants.FORM_ONE,
   fieldName,
   fieldValue,
 });
 
-export const addSpouse = (fieldName, fieldValue) => ({
-  type: constants.ADD_SPOUSE,
-  fieldName,
-  fieldValue,
-});
-
-export const personalChange = (fieldName, fieldValue) => ({
-  type: constants.PERSONAL_CHANGE,
+export const formTwo = (fieldName, fieldValue) => ({
+  type: constants.FORM_TWO,
   fieldName,
   fieldValue,
 });
@@ -53,6 +47,11 @@ export const updateRegType = (fieldValue) => ({
 
 export const updateGender = (payload) => ({
   type: constants.GENDER,
+  payload,
+});
+
+export const updateRelationship = (payload) => ({
+  type: constants.RELATIONSHIP,
   payload,
 });
 
