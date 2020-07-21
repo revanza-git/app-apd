@@ -19,7 +19,7 @@ const ConBtn = ({ data, targetURL, valid }) => {
   const updateFormAccountChange = data.simedisAccountChange;
 
   const GenerateData = () => {
-    if (data.form_type === "individu") {
+    if (data.states.form_type === "individu") {
       const data = {
         registrationTypeCode: states.reg_type,
         appCode: states.app_code,
@@ -55,16 +55,16 @@ const ConBtn = ({ data, targetURL, valid }) => {
             phoneNo: dataFormOne.phone_number,
             customerStatus: dataFormOne.relation_code,
           },
-          {
-            customerName: dataFormTwo.full_name,
-            ktpNO: dataFormTwo.identification_number,
-            dateOfBirth: dataFormTwo.birth_date,
-            emailAddress: dataFormTwo.email,
-            genderCode: dataFormTwo.gender,
-            occupation: dataFormTwo.occupation,
-            phoneNo: dataFormTwo.phone_number,
-            customerStatus: dataFormTwo.relation_code,
-          },
+          // {
+          //   customerName: dataFormTwo.full_name,
+          //   ktpNO: dataFormTwo.identification_number,
+          //   dateOfBirth: dataFormTwo.birth_date,
+          //   emailAddress: dataFormTwo.email,
+          //   genderCode: dataFormTwo.gender,
+          //   occupation: dataFormTwo.occupation,
+          //   phoneNo: dataFormTwo.phone_number,
+          //   customerStatus: dataFormTwo.relation_code,
+          // },
         ],
       };
 
