@@ -19,7 +19,7 @@ const ConBtn = ({ data, targetURL, valid }) => {
   const updateFormAccountChange = data.simedisAccountChange;
 
   const GenerateData = () => {
-    if (data.form_type === "individu") {
+    if (data.states.form_type === "individu") {
       const data = {
         registrationTypeCode: states.reg_type,
         appCode: states.app_code,
