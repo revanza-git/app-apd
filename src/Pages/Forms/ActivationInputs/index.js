@@ -1,12 +1,12 @@
 import React from "react";
-import { Form } from "react-bootstrap";
+import { Form, Container } from "react-bootstrap";
 import TextBox from "../../../Components/Textbox";
 
 const MainInfo = ({ data, changeHandler, validation, updateValidFlag }) => {
   const dataForm = data.simedis_account;
   return (
     <div>
-      <Form>
+      <Form style={{ border: "dotted" }}>
         <TextBox
           Data={dataForm}
           labelCol="2"

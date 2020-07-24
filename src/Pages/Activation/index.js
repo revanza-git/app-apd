@@ -4,17 +4,19 @@ import ContinueBtn from "../../Components/ContinueBtn";
 import Alerts from "../../Components/Alerts";
 import Loader from "react-loader-spinner";
 import axios from "axios";
+import BackgroundImg from "../../assets/images/simedis/Banner-color_gradient-01.png";
 
-import "./index.css";
+import "./index.scss";
 import qs from "qs";
 
-import { Card } from "react-bootstrap";
+import { Card, Container, Row, Col } from "react-bootstrap";
 
 class ActivationPage extends Component {
   componentDidMount() {
     console.log(this.props);
     const loadHandler = this.props.updatePageLoad;
     const changeHandler = this.props.simedisAccountChange;
+
     //parsing URL
     const query = qs.parse(this.props.location.search, {
       ignoreQueryPrefix: true,
@@ -27,26 +29,26 @@ class ActivationPage extends Component {
       uniqueActivationKey: query.token,
     };
 
-    axios
-      .post(url, data, "")
-      .then((i) => {
-        const res = i.data.data.customer;
+    // axios
+    //   .post(url, data, "")
+    //   .then((i) => {
+    //     const res = i.data.data.customer;
 
-        changeHandler("customer_code", res.customerCode);
-        changeHandler("customer_name", res.customerName);
-        changeHandler("customer_status", res.customerStatus);
-        changeHandler("username", res.emailAddress);
-        changeHandler("registration_code", res.registrationCode);
-        changeHandler("active", res.active);
+    //     changeHandler("customer_code", res.customerCode);
+    //     changeHandler("customer_name", res.customerName);
+    //     changeHandler("customer_status", res.customerStatus);
+    //     changeHandler("username", res.emailAddress);
+    //     changeHandler("registration_code", res.registrationCode);
+    //     changeHandler("active", res.active);
 
-        loadHandler(false);
-      })
-      .catch(function (error) {
-        changeHandler("form_status", "Koneksi bermasalah: ");
-        console.log(error);
-        changeHandler("is_valid", false);
-        loadHandler(false);
-      });
+    //     loadHandler(false);
+    //   })
+    //   .catch(function (error) {
+    //     changeHandler("form_status", "Koneksi bermasalah: ");
+    //     console.log(error);
+    //     changeHandler("is_valid", false);
+    //     loadHandler(false);
+    //   });
   }
 
   validation = (param) => {
@@ -72,55 +74,54 @@ class ActivationPage extends Component {
     console.log(this.props);
     const { states, simedisAccountChange } = this.props;
 
-    if (!states || states.is_loading === true) {
-      return (
-        <Card>
-          <Card.Header>Loading</Card.Header>
-          <Card.Body>
-            <Loader
-              style={{
-                width: "100%",
-                height: "100",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-              type="ThreeDots"
-              color="#2BAD60"
-              height="100"
-              width="100"
-            />
-          </Card.Body>
-        </Card>
-      );
-    }
+    // if (!states || states.is_loading === true) {
+    //   return (
+    //     <Card>
+    //       <Card.Header>Loading</Card.Header>
+    //       <Card.Body>
+    //         <Loader
+    //           style={{
+    //             width: "100%",
+    //             height: "100",
+    //             display: "flex",
+    //             justifyContent: "center",
+    //             alignItems: "center",
+    //           }}
+    //           type="ThreeDots"
+    //           color="#2BAD60"
+    //           height="100"
+    //           width="100"
+    //         />
+    //       </Card.Body>
+    //     </Card>
+    //   );
+    // }
+
+    // <ActivationInputs
+    //                 data={states}
+    //                 changeHandler={simedisAccountChange}
+    //                 validation={this.validation}
+    //               />
+    //               <Alerts
+    //                 data={states.simedis_account}
+    //                 valid={states.simedis_account.is_valid}
+    //               />
 
     return (
-      <div>
-        <Card>
-          <Card.Header>Account Activation</Card.Header>
-          <Card.Body>
-            <Card>
-              <Card.Header>Account</Card.Header>
-              <Card.Body>
+      <div className="main-activation">
+        <Container className="main-container" fluid>
+          <Row className="align-item-center">
+            <Col style={{ border: "dotted" }}>
+              <Card>
                 <ActivationInputs
                   data={states}
                   changeHandler={simedisAccountChange}
                   validation={this.validation}
                 />
-                <Alerts
-                  data={states.simedis_account}
-                  valid={states.simedis_account.is_valid}
-                />
-              </Card.Body>
-            </Card>
-            <ContinueBtn
-              data={this.props}
-              targetURL="/login"
-              valid={states.simedis_account.is_valid}
-            />
-          </Card.Body>
-        </Card>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
       </div>
     );
   }
