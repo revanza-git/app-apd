@@ -8,7 +8,7 @@ const MainInfo = ({ data, changeHandler, validation, updateValidFlag }) => {
   const dataForm = data.simedis_account;
   return (
     <div>
-      <Form className="activation">
+      <Form className="activation-inputs">
         <TextBox
           Data={dataForm}
           labelCol="2"

@@ -97,7 +97,7 @@ class ActivationPage extends Component {
 
     return (
       <div className="main-activation">
-        <Container className="main-container" fluid>
+        <Container className="activation-container-0" fluid>
           <Row>
             <Col>
               <Card className="activation-card">

@@ -3,10 +3,12 @@ import LoginInputs from "../Forms/LoginInputs";
 import ContinueBtn from "../../Components/ContinueBtn";
 import Alerts from "../../Components/Alerts";
 import Loader from "react-loader-spinner";
+import Logo from "../../../src/assets/images/simedis/logo-simedis.svg";
+import Illustrasi from "../../../src/assets/images/simedis/Simedis-Illutrasi-01-Homepage.svg";
 
-import "./index.css";
+import "./index.scss";
 
-import { Card } from "react-bootstrap";
+import { Card, Container, Row, Col, Image } from "react-bootstrap";
 
 class Login extends Component {
   componentDidMount() {}
@@ -55,33 +57,42 @@ class Login extends Component {
         </Card>
       );
     }
+    // <ContinueBtn
+    //           data={this.props}
+    //           targetURL="/dashboard"
+    //           valid={states.simedis_account.is_valid}
+    //         />
 
     return (
-      <div>
-        <Card>
-          <Card.Header>Account Activation</Card.Header>
-          <Card.Body>
-            <Card>
-              <Card.Header>Account</Card.Header>
-              <Card.Body>
-                <LoginInputs
-                  data={states}
-                  changeHandler={simedisAccountChange}
-                  validation={this.validation}
-                />
-                <Alerts
-                  data={states.simedis_account}
-                  valid={states.simedis_account.is_valid}
-                />
-              </Card.Body>
-            </Card>
+      <div className="main-login">
+        <Container className="login-container-0" fluid>
+          <Card className="login-images">
+            <Image className="login-logo" src={Logo} alt="simedis-logo" />
+            <Image
+              className="login-banner"
+              src={Illustrasi}
+              alt="simedis-illustrasi"
+            />
+          </Card>
+
+          <Card className="login-card">
+            <span className="login-tagline">
+              Selamat datang di layanan{" "}
+              <span className="login-bold-simedis">Simedis</span>
+            </span>
+            <LoginInputs
+              data={states}
+              changeHandler={simedisAccountChange}
+              validation={this.validation}
+            />
             <ContinueBtn
               data={this.props}
               targetURL="/dashboard"
               valid={states.simedis_account.is_valid}
+              label="Masuk"
             />
-          </Card.Body>
-        </Card>
+          </Card>
+        </Container>
       </div>
     );
   }
