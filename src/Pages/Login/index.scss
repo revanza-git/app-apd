@@ -1,16 +1,18 @@
 .main-login {
   background-image: url("../../assets/images/simedis/Banner-color_gradient-01.png");
-  background-size: 100% 100%;
+  background-size: cover;
   height: 100vh;
   display: flex;
   flex-flow: row wrap;
   align-items: center;
   justify-content: center;
   @media (max-width: 800px) {
+    background-image: url("");
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-position: center;
   }
+  overflow-x: hidden;
 }
 
 .login-container-0 {
@@ -24,7 +26,6 @@
   background-size: cover;
   display: flex;
   flex-flow: row wrap;
-  margin: 0;
   justify-content: center;
   min-width: 30rem;
   height: auto;
@@ -32,12 +33,16 @@
   border-top-left-radius: 1.2em;
   border-bottom-left-radius: 1.2em;
   @media (max-width: 800px) {
+    margin-bottom: 0;
     background-color: transparent;
-    background-image: url("");
-    min-width: 20rem;
-    min-height: 20rem;
-    align-items: center;
+    min-width: 100vw;
+    min-height: 35rem;
     border-color: transparent;
+    border-radius: 0em;
+  }
+
+  @media (max-width: 600px) {
+    min-height: 25rem;
   }
 }
 .login-logo {
@@ -68,9 +73,8 @@
   border-top-right-radius: 1.2em;
   border-bottom-right-radius: 1.2em;
   @media (max-width: 800px) {
-    border-top-right-radius: 0;
-    border-bottom-left-radius: 1.2em;
-    border-bottom-right-radius: 1.2em;
+    box-shadow: none;
+    min-width: 100vw;
   }
 }
 

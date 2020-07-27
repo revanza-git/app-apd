@@ -35,11 +35,11 @@ class Login extends Component {
   render() {
     const { states, simedisAccountChange } = this.props;
 
+    let card;
     if (!states || states.is_loading === true) {
-      return (
-        <Card>
-          <Card.Header>Loading</Card.Header>
-          <Card.Body>
+      card = (
+        <Container className="login-container-0" fluid>
+          <Card className="activation-card">
             <Loader
               style={{
                 width: "100%",
@@ -48,23 +48,16 @@ class Login extends Component {
                 justifyContent: "center",
                 alignItems: "center",
               }}
-              type="ThreeDots"
+              type="TailSpin"
               color="#2BAD60"
               height="100"
               width="100"
             />
-          </Card.Body>
-        </Card>
+          </Card>
+        </Container>
       );
-    }
-    // <ContinueBtn
-    //           data={this.props}
-    //           targetURL="/dashboard"
-    //           valid={states.simedis_account.is_valid}
-    //         />
-
-    return (
-      <div className="main-login">
+    } else {
+      card = (
         <Container className="login-container-0" fluid>
           <Card className="login-images">
             <Image className="login-logo" src={Logo} alt="simedis-logo" />
@@ -74,7 +67,6 @@ class Login extends Component {
               alt="simedis-illustrasi"
             />
           </Card>
-
           <Card className="login-card">
             <span className="login-tagline">
               Selamat datang di layanan{" "}
@@ -93,8 +85,10 @@ class Login extends Component {
             />
           </Card>
         </Container>
-      </div>
-    );
+      );
+    }
+
+    return <div className="main-login">{card}</div>;
   }
 }
 

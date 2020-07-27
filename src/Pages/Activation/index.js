@@ -43,7 +43,10 @@ class ActivationPage extends Component {
         loadHandler(false);
       })
       .catch(function (error) {
-        changeHandler("form_status", "Koneksi bermasalah: ");
+        changeHandler(
+          "form_status",
+          "Mohon maaf koneksi mengalami kendala,silahkan coba lagi"
+        );
         console.log(error);
         changeHandler("is_valid", false);
         loadHandler(false);
@@ -72,25 +75,44 @@ class ActivationPage extends Component {
     console.log(this.props);
     const { states, simedisAccountChange } = this.props;
 
+    let card;
+
     if (!states || states.is_loading === true) {
-      return (
-        <Card>
-          <Card.Header>Loading</Card.Header>
-          <Card.Body>
-            <Loader
-              style={{
-                width: "100%",
-                height: "100",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-              type="ThreeDots"
-              color="#2BAD60"
-              height="100"
-              width="100"
-            />
-          </Card.Body>
+      card = (
+        <Card className="activation-card">
+          <Loader
+            style={{
+              width: "100%",
+              height: "100",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+            type="TailSpin"
+            color="#2BAD60"
+            height="100"
+            width="100"
+          />
+        </Card>
+      );
+    } else {
+      card = (
+        <Card className="activation-card">
+          <span className="activation-tagline">
+            Buat kata sandi untuk akses layanan{" "}
+            <span className="activation-bold-simedis">Simedis</span>
+          </span>
+          <ActivationInputs
+            data={states}
+            changeHandler={simedisAccountChange}
+            validation={this.validation}
+          />
+          <ContinueBtn
+            data={this.props}
+            targetURL="/login"
+            valid={states.simedis_account.is_valid}
+            label="Aktivasi"
+          />
         </Card>
       );
     }
@@ -99,25 +121,7 @@ class ActivationPage extends Component {
       <div className="main-activation">
         <Container className="activation-container-0" fluid>
           <Row>
-            <Col>
-              <Card className="activation-card">
-                <span className="activation-tagline">
-                  Buat kata sandi untuk akses layanan{" "}
-                  <span className="activation-bold-simedis">Simedis</span>
-                </span>
-                <ActivationInputs
-                  data={states}
-                  changeHandler={simedisAccountChange}
-                  validation={this.validation}
-                />
-                <ContinueBtn
-                  data={this.props}
-                  targetURL="/login"
-                  valid={states.simedis_account.is_valid}
-                  label="Aktivasi"
-                />
-              </Card>
-            </Col>
+            <Col>{card}</Col>
           </Row>
         </Container>
       </div>
