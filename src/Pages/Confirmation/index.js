@@ -21,6 +21,7 @@ class MainInfo extends Component {
                 data={data}
                 targetURL="/payment"
                 valid={data.states.form_1.is_valid}
+                label="Submit & Continue"
               />
             </Card>
           </Card.Body>

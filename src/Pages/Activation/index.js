@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ActivationInputs from "../Forms/ActivationInputs";
 import ContinueBtn from "../../Components/ContinueBtn";
-import Alerts from "../../Components/Alerts";
 import Loader from "react-loader-spinner";
 import axios from "axios";
 import BackgroundImg from "../../assets/images/simedis/Banner-color_gradient-01.png";
@@ -29,30 +28,29 @@ class ActivationPage extends Component {
       uniqueActivationKey: query.token,
     };
 
-    // axios
-    //   .post(url, data, "")
-    //   .then((i) => {
-    //     const res = i.data.data.customer;
+    axios
+      .post(url, data, "")
+      .then((i) => {
+        const res = i.data.data.customer;
 
-    //     changeHandler("customer_code", res.customerCode);
-    //     changeHandler("customer_name", res.customerName);
-    //     changeHandler("customer_status", res.customerStatus);
-    //     changeHandler("username", res.emailAddress);
-    //     changeHandler("registration_code", res.registrationCode);
-    //     changeHandler("active", res.active);
+        changeHandler("customer_code", res.customerCode);
+        changeHandler("customer_name", res.customerName);
+        changeHandler("customer_status", res.customerStatus);
+        changeHandler("username", res.emailAddress);
+        changeHandler("registration_code", res.registrationCode);
+        changeHandler("active", res.active);
 
-    //     loadHandler(false);
-    //   })
-    //   .catch(function (error) {
-    //     changeHandler("form_status", "Koneksi bermasalah: ");
-    //     console.log(error);
-    //     changeHandler("is_valid", false);
-    //     loadHandler(false);
-    //   });
+        loadHandler(false);
+      })
+      .catch(function (error) {
+        changeHandler("form_status", "Koneksi bermasalah: ");
+        console.log(error);
+        changeHandler("is_valid", false);
+        loadHandler(false);
+      });
   }
 
   validation = (param) => {
-    console.log(this.props.states);
     const data = param;
     const simedisAccount = this.props.states.simedis_account;
     const updateFormStatus = this.props.simedisAccountChange;
@@ -74,49 +72,49 @@ class ActivationPage extends Component {
     console.log(this.props);
     const { states, simedisAccountChange } = this.props;
 
-    // if (!states || states.is_loading === true) {
-    //   return (
-    //     <Card>
-    //       <Card.Header>Loading</Card.Header>
-    //       <Card.Body>
-    //         <Loader
-    //           style={{
-    //             width: "100%",
-    //             height: "100",
-    //             display: "flex",
-    //             justifyContent: "center",
-    //             alignItems: "center",
-    //           }}
-    //           type="ThreeDots"
-    //           color="#2BAD60"
-    //           height="100"
-    //           width="100"
-    //         />
-    //       </Card.Body>
-    //     </Card>
-    //   );
-    // }
-
-    // <ActivationInputs
-    //                 data={states}
-    //                 changeHandler={simedisAccountChange}
-    //                 validation={this.validation}
-    //               />
-    //               <Alerts
-    //                 data={states.simedis_account}
-    //                 valid={states.simedis_account.is_valid}
-    //               />
+    if (!states || states.is_loading === true) {
+      return (
+        <Card>
+          <Card.Header>Loading</Card.Header>
+          <Card.Body>
+            <Loader
+              style={{
+                width: "100%",
+                height: "100",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              type="ThreeDots"
+              color="#2BAD60"
+              height="100"
+              width="100"
+            />
+          </Card.Body>
+        </Card>
+      );
+    }
 
     return (
       <div className="main-activation">
         <Container className="main-container" fluid>
-          <Row className="align-item-center">
-            <Col style={{ border: "dotted" }}>
-              <Card>
+          <Row>
+            <Col>
+              <Card className="activation-card">
+                <span className="activation-tagline">
+                  Buat kata sandi untuk akses layanan{" "}
+                  <span className="activation-bold-simedis">Simedis</span>
+                </span>
                 <ActivationInputs
                   data={states}
                   changeHandler={simedisAccountChange}
                   validation={this.validation}
+                />
+                <ContinueBtn
+                  data={this.props}
+                  targetURL="/login"
+                  valid={states.simedis_account.is_valid}
+                  label="Aktivasi"
                 />
               </Card>
             </Col>

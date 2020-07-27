@@ -1,0 +1,11 @@
+Form.activation {
+  display: flex;
+  flex-flow: column wrap;
+  margin-top: 8vh;
+  margin-bottom: 8vh;
+  width: 25vw;
+
+  @media (max-width: 800px) {
+    width: 70vw;
+  }
+}

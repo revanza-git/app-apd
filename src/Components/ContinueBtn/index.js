@@ -2,8 +2,9 @@ import React from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import "./index.scss";
 
-const ConBtn = ({ data, targetURL, valid }) => {
+const ConBtn = ({ data, targetURL, valid, label }) => {
   //depended need fix for dynamic form
   const dataFormOne = data.states.form_1;
   const dataFormTwo = data.states.form_2;
@@ -189,14 +190,13 @@ const ConBtn = ({ data, targetURL, valid }) => {
   return (
     <div>
       <Form.Group as={Row}>
-        <Col sm={{ span: 12, offset: 0 }}>
+        <Col>
           <Button
-            className="float-right"
+            className="btn-continue"
             onClick={() => handleClick()}
             type="submit"
-            style={{ backgroundColor: "#7bc697" }}
           >
-            Submit & Continue
+            <span className="btn-tagline">{label}</span>
           </Button>
         </Col>
       </Form.Group>

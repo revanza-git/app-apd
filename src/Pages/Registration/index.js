@@ -128,6 +128,7 @@ class RegistrationPage extends Component {
             data={this.props}
             targetURL="/confirmation"
             valid={states.form_2.is_valid}
+            label="Submit & Continue"
           />
         </Card>
       );
@@ -143,6 +144,7 @@ class RegistrationPage extends Component {
             data={this.props}
             targetURL="/confirmation"
             valid={this.props.states.form_1.is_valid}
+            label="Submit & Continue"
           />
         </Card>
       );

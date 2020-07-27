@@ -1,32 +1,21 @@
 import React from "react";
-import { Form, Container } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import TextBox from "../../../Components/Textbox";
+import Alerts from "../../../Components/Alerts";
+import "./index.scss";
 
 const MainInfo = ({ data, changeHandler, validation, updateValidFlag }) => {
   const dataForm = data.simedis_account;
   return (
     <div>
-      <Form style={{ border: "dotted" }}>
+      <Form className="activation">
         <TextBox
           Data={dataForm}
           labelCol="2"
-          labelVal="Username"
-          StateKey="username"
-          TextCol="10"
-          TextType="text"
-          Validation={validation}
-          updateValidFlag={updateValidFlag}
-          Value={dataForm.username}
-          HandleChange={changeHandler}
-          Disabled={true}
-        />
-        <TextBox
-          Data={dataForm}
-          labelCol="2"
-          labelVal="Password"
           StateKey="password"
-          TextCol="10"
+          TextCol="12"
           TextType="password"
+          Placeholder="Masukkan kata sandi"
           Validation={validation}
           updateValidFlag={updateValidFlag}
           Value={dataForm.password}
@@ -35,15 +24,16 @@ const MainInfo = ({ data, changeHandler, validation, updateValidFlag }) => {
         <TextBox
           Data={dataForm}
           labelCol="2"
-          labelVal="Re-type Password"
           StateKey="password_retype"
-          TextCol="10"
+          TextCol="12"
           TextType="password"
+          Placeholder="Masukkan ulang kata sandi"
           Validation={validation}
           updateValidFlag={updateValidFlag}
           Value={dataForm.password_retype}
           HandleChange={changeHandler}
         />
+        <Alerts data={dataForm} valid={dataForm.is_valid} />
       </Form>
     </div>
   );

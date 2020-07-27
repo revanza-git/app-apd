@@ -1,10 +1,11 @@
 import React from "react";
 import { Form, Col, Row } from "react-bootstrap";
+import "./index.scss";
 
 const Textbox = ({
   Data,
   labelCol,
-  labelVal,
+  labelVal = "",
   StateKey,
   TextType,
   TextCol,
@@ -34,11 +35,15 @@ const Textbox = ({
   return (
     <div>
       <Form.Group as={Row}>
-        <Form.Label column sm={labelCol}>
-          {labelVal}
-        </Form.Label>
+        {labelVal !== "" && (
+          <Form.Label column sm={labelCol}>
+            {labelVal}
+          </Form.Label>
+        )}
+
         <Col sm={TextCol}>
           <Form.Control
+            className="textbox"
             type={TextType}
             placeholder={Placeholder}
             disabled={Disabled}

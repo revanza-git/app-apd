@@ -17,6 +17,7 @@ class ClientBox extends Component {
                     className="about-image"
                     src={BenefitImg}
                     style={{ height: "5em", width: "auto" }}
+                    alt="tes"
                   />
                   <Col className="mt-3">
                     <span
@@ -78,6 +79,7 @@ class ClientBox extends Component {
                     className="about-image"
                     src={AdvantageImg}
                     style={{ height: "5em", width: "auto" }}
+                    alt=""
                   />
                   <Col className="mt-3">
                     <span
@@ -138,6 +140,7 @@ class ClientBox extends Component {
                     className="about-image"
                     src={PolicyImg}
                     style={{ height: "5em", width: "auto" }}
+                    alt=""
                   />
                   <Col className="mt-3">
                     <span
