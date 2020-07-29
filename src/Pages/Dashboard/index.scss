@@ -1,0 +1,71 @@
+.main-dashboard-loading {
+  background-image: url("../../assets/images/simedis/Banner-color_gradient-01.png");
+  background-size: cover;
+}
+
+.dashboard-loading-container-0 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.dashboard-loading-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 1.2em;
+  height: auto;
+  box-shadow: 0 0 40px -10px #000;
+  padding: 5vh 5vh;
+  max-width: calc(100vw - 40px);
+}
+
+.main-dashboard {
+  overflow-x: hidden;
+}
+
+.dashboard-sidebar {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  border: dotted;
+}
+
+.dashboard-content {
+  padding-left: 0;
+  background-color: #ededee;
+}
+
+.dashboard-tab-content {
+  border: dotted;
+  height: calc(100vh - 60px);
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-top {
+  border: dotted;
+}
+
+.dashboard-burger-menu-image {
+  height: 1.5rem;
+}
+
+.dashboard-navbar-dropdown {
+  margin-right: 5rem;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.dropdown-menu {
+  min-width: 0rem;
+}
