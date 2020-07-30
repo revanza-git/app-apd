@@ -35,60 +35,64 @@ class Login extends Component {
   render() {
     const { states, simedisAccountChange } = this.props;
 
-    let card;
+    let content;
     if (!states || states.is_loading === true) {
-      card = (
-        <Container className="login-container-0" fluid>
-          <Card className="activation-card">
-            <Loader
-              style={{
-                width: "100%",
-                height: "100",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-              type="TailSpin"
-              color="#2BAD60"
-              height="100"
-              width="100"
-            />
-          </Card>
-        </Container>
+      content = (
+        <div className="main-loading-login">
+          <Container className="login-loading-container" fluid>
+            <Card className="login-loading-card">
+              <Loader
+                style={{
+                  width: "100%",
+                  height: "100",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                type="TailSpin"
+                color="#2BAD60"
+                height="100"
+                width="100"
+              />
+            </Card>
+          </Container>
+        </div>
       );
     } else {
-      card = (
-        <Container className="login-container-0" fluid>
-          <Card className="login-images">
-            <Image className="login-logo" src={Logo} alt="simedis-logo" />
-            <Image
-              className="login-banner"
-              src={Illustrasi}
-              alt="simedis-illustrasi"
-            />
-          </Card>
-          <Card className="login-card">
-            <span className="login-tagline">
-              Selamat datang di layanan{" "}
-              <span className="login-bold-simedis">Simedis</span>
-            </span>
-            <LoginInputs
-              data={states}
-              changeHandler={simedisAccountChange}
-              validation={this.validation}
-            />
-            <ContinueBtn
-              data={this.props}
-              targetURL="/dashboard"
-              valid={states.simedis_account.is_valid}
-              label="Masuk"
-            />
-          </Card>
-        </Container>
+      content = (
+        <div className="main-login">
+          <Container className="login-container-0" fluid>
+            <Card className="login-images">
+              <Image className="login-logo" src={Logo} alt="simedis-logo" />
+              <Image
+                className="login-banner"
+                src={Illustrasi}
+                alt="simedis-illustrasi"
+              />
+            </Card>
+            <Card className="login-card">
+              <span className="login-tagline">
+                Selamat datang di layanan{" "}
+                <span className="login-bold-simedis">Simedis</span>
+              </span>
+              <LoginInputs
+                data={states}
+                changeHandler={simedisAccountChange}
+                validation={this.validation}
+              />
+              <ContinueBtn
+                data={this.props}
+                targetURL="/dashboard"
+                valid={states.simedis_account.is_valid}
+                label="Masuk"
+              />
+            </Card>
+          </Container>
+        </div>
       );
     }
 
-    return <div className="main-login">{card}</div>;
+    return content;
   }
 }
 

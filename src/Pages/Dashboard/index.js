@@ -1,21 +1,13 @@
 import React, { Component } from "react";
 import PolicyView from "../Forms/PolicyDetailView";
 import CustomerView from "../Forms/CustomerDetailView";
+import Sidebar from "../../Components/Sidebar";
+import Navuser from "../../Components/Navbar";
+import Footer from "../../Components/Footer/footer.js";
 import Loader from "react-loader-spinner";
-import {
-  Tab,
-  Row,
-  Col,
-  Nav,
-  Container,
-  Navbar,
-  NavDropdown,
-  Image,
-} from "react-bootstrap";
+import { Tab, Row, Col, Container, Navbar } from "react-bootstrap";
 import axios from "axios";
-import Logo from "../../../src/assets/images/simedis/logo-simedis.svg";
-import Menu from "../../../src/assets/images/simedis/Icon-menu.svg";
-import UserProfile from "../../../src/assets/images/simedis/icon-user-profil-2.svg";
+
 import { Link } from "react-router-dom";
 
 import "./index.scss";
@@ -37,20 +29,20 @@ class Dashboard extends Component {
     const simedisAcccount = this.props.states.simedis_account;
     const loadHandler = this.props.updatePageLoad;
 
-    loadHandler(true);
+    // loadHandler(true);
 
-    this.getCustomerPolicy(
-      this.props.states.simedis_account,
-      updateAccountData,
-      loadHandler
-    );
+    // this.getCustomerPolicy(
+    //   this.props.states.simedis_account,
+    //   updateAccountData,
+    //   loadHandler
+    // );
 
-    this.getCustomerDetail(
-      this.props.states.simedis_account,
-      loadHandler,
-      updateformOne,
-      updateAccountData
-    );
+    // this.getCustomerDetail(
+    //   this.props.states.simedis_account,
+    //   loadHandler,
+    //   updateformOne,
+    //   updateAccountData
+    // );
 
     this.updateDimensions();
     window.addEventListener("resize", this.updateDimensions.bind(this));
@@ -139,8 +131,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { states, simedisAccountChange, addChange } = this.props;
-    console.log(this.props.states);
+    const { states } = this.props;
 
     console.log(this.state);
 
@@ -174,53 +165,20 @@ class Dashboard extends Component {
 
     return (
       <div className="main-dashboard">
-        <Tab.Container defaultActiveKey="first" className="">
+        <Tab.Container defaultActiveKey="profile" className="">
           <Row>
-            <Col lg={3} sm={12} className="dashboard-sidebar">
-              <Nav variant="items" className="flex-column">
-                <Nav.Item>
-                  <Nav.Link eventKey="first">
-                    <Image src={Logo} />
-                  </Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="first">Profile</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="second">E-Sertifikat</Nav.Link>
-                </Nav.Item>
-              </Nav>
-            </Col>
+            <Sidebar data={states.form_1} />
             <Col lg={9} sm={12} className="dashboard-content">
-              <Navbar expand="lg" variant="light" bg="light">
-                <Navbar.Brand href="#home"></Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                  <Nav className="ml-auto">
-                    <NavDropdown
-                      title={
-                        <Image
-                          className="dashboard-burger-menu-image"
-                          src={Menu}
-                        />
-                      }
-                      className="dashboard-navbar-dropdown"
-                    >
-                      <NavDropdown.Item className="navbar-item" href="/login">
-                        Keluar
-                      </NavDropdown.Item>
-                    </NavDropdown>
-                  </Nav>
-                </Navbar.Collapse>
-              </Navbar>
+              <Navuser data={states.form_1} />
               <Tab.Content className="dashboard-tab-content">
-                <Tab.Pane eventKey="first">
+                <Tab.Pane eventKey="profile">
                   <CustomerView data={states.form_1} />
                 </Tab.Pane>
-                <Tab.Pane eventKey="second">
+                <Tab.Pane eventKey="policy">
                   <PolicyView data={states.simedis_account} />
                 </Tab.Pane>
               </Tab.Content>
+              <Footer />
             </Col>
           </Row>
         </Tab.Container>

@@ -27,45 +27,15 @@
   overflow-x: hidden;
 }
 
-.dashboard-sidebar {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  border: dotted;
-}
-
 .dashboard-content {
-  padding-left: 0;
   background-color: #ededee;
-}
 
-.dashboard-tab-content {
-  border: dotted;
-  height: calc(100vh - 60px);
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: center;
-}
-
-.navbar-top {
-  border: dotted;
-}
-
-.dashboard-burger-menu-image {
-  height: 1.5rem;
-}
-
-.dashboard-navbar-dropdown {
-  margin-right: 5rem;
-}
-
-.dropdown-toggle::after {
-  display: none;
-}
-
-.dropdown-menu {
-  min-width: 0rem;
+  .dashboard-tab-content {
+    border: dotted;
+    height: calc(100vh - 138px);
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+  }
 }
