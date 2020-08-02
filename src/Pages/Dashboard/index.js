@@ -1,3 +1,5 @@
+//https://codepen.io/klocek/pen/pdYgmx?__cf_chl_jschl_tk__=e018a7a328fa6e2c78351c73a13d99099ce14235-1596170501-0-AcuHdF4ENDvOGt2GIqhHQpU_Om0VyNAThFVDpH7r6VK4LPH6UXibwYaf8JPEZJRbD5ixvCKxSatf7OUAyV6KJ64t4PG_Mdu3ErPx9jconvunPuMaGSq0Cq1oe0djD4X39I9hoofRA6JmTABRoB1qM3ZhQIfbTtQCySMwc1l4T2N6ht2XidKLWEQxPB5nAbY4_WjxenVdWFnYlEafNcovnTLTWdjvuRv1dQiD0y4O65ThtLA6vJxAH1k0RT6Iw5M_2T3a_YFLcHK78kRpRTzJPNQouQnZOY-eR7Njlv9GMviFa8EzA5U7-eueOSfW65JSdQ6Cue38DXecOb_TGB3XmKKI8B1n8LKcup6mImmyYFvs
+
 import React, { Component } from "react";
 import PolicyView from "../Forms/PolicyDetailView";
 import CustomerView from "../Forms/CustomerDetailView";
@@ -29,19 +31,6 @@ class Dashboard extends Component {
     const loadHandler = this.props.updatePageLoad;
 
     loadHandler(true);
-    // this.getCustomerPolicy(
-    //   this.props.states.simedis_account,
-    //   updateAccountData,
-    //   loadHandler,
-    //   updatePolicies,
-    //   updateRegistrationType
-    // );
-    // this.getCustomerDetail(
-    //   this.props.states.simedis_account,
-    //   loadHandler,
-    //   updateformOne,
-    //   updateAccountData
-    // );
 
     this.processData(
       updateAccountData,
