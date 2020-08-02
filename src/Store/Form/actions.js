@@ -55,6 +55,16 @@ export const updateRelationship = (payload) => ({
   payload,
 });
 
+export const updatePolicies = (payload) => ({
+  type: constants.POLICIES,
+  payload,
+});
+
+export const updateRegistrationType = (payload) => ({
+  type: constants.REGISTRATION_TYPE,
+  payload,
+});
+
 // export function
 export const postApi = (url, data, config) => {
   return () => {

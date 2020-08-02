@@ -4,7 +4,8 @@ import Menu from "../../../src/assets/images/simedis/Icon-menu.svg";
 import UserProfile2 from "../../../src/assets/images/simedis/icon-user-profil-3.svg";
 import { Nav, Navbar, NavDropdown, Image } from "react-bootstrap";
 import "./index.scss";
-const navbar = (data) => {
+const navbar = ({ data }) => {
+  console.log(data);
   return (
     <Navbar expand="lg" variant="light" bg="light">
       <Navbar.Collapse id="basic-navbar-nav">

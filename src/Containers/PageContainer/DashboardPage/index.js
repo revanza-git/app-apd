@@ -5,6 +5,8 @@ import {
   simedisAccountChange,
   updatePageLoad,
   formOne,
+  updatePolicies,
+  updateRegistrationType,
 } from "../../../Store/Form/actions";
 
 const mapStateToProps = (state) => ({
@@ -16,6 +18,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(simedisAccountChange(fieldName, fieldValue)),
   formOne: (fieldName, fieldValue) => dispatch(formOne(fieldName, fieldValue)),
   updatePageLoad: (fieldValue) => dispatch(updatePageLoad(fieldValue)),
+  updatePolicies: (payload) => dispatch(updatePolicies(payload)),
+  updateRegistrationType: (payload) =>
+    dispatch(updateRegistrationType(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

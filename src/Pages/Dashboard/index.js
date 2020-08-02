@@ -5,10 +5,8 @@ import Sidebar from "../../Components/Sidebar";
 import Navuser from "../../Components/Navbar";
 import Footer from "../../Components/Footer/footer.js";
 import Loader from "react-loader-spinner";
-import { Tab, Row, Col, Container, Navbar } from "react-bootstrap";
+import { Tab, Row, Col, Container } from "react-bootstrap";
 import axios from "axios";
-
-import { Link } from "react-router-dom";
 
 import "./index.scss";
 
@@ -25,24 +23,33 @@ class Dashboard extends Component {
   componentDidMount() {
     console.log(this.props);
     const updateAccountData = this.props.simedisAccountChange;
+    const updatePolicies = this.props.updatePolicies;
+    const updateRegistrationType = this.props.updateRegistrationType;
     const updateformOne = this.props.formOne;
-    const simedisAcccount = this.props.states.simedis_account;
     const loadHandler = this.props.updatePageLoad;
 
-    // loadHandler(true);
-
+    loadHandler(true);
     // this.getCustomerPolicy(
     //   this.props.states.simedis_account,
     //   updateAccountData,
-    //   loadHandler
+    //   loadHandler,
+    //   updatePolicies,
+    //   updateRegistrationType
     // );
-
     // this.getCustomerDetail(
     //   this.props.states.simedis_account,
     //   loadHandler,
     //   updateformOne,
     //   updateAccountData
     // );
+
+    this.processData(
+      updateAccountData,
+      loadHandler,
+      updatePolicies,
+      updateRegistrationType,
+      updateformOne
+    );
 
     this.updateDimensions();
     window.addEventListener("resize", this.updateDimensions.bind(this));
@@ -52,18 +59,50 @@ class Dashboard extends Component {
     this.setState({ width: window.innerWidth });
   }
 
-  async getCustomerPolicy(accountData, updateAccountData, loadHandler) {
+  async processData(
+    updateAccountData,
+    loadHandler,
+    updatePolicies,
+    updateRegistrationType,
+    updateformOne
+  ) {
+    const res1 = await this.getCustomerPolicy(
+      updateAccountData,
+      loadHandler,
+      updatePolicies,
+      updateRegistrationType
+    );
+
+    console.log(res1);
+
+    const res2 = await this.getCustomerDetail(
+      loadHandler,
+      updateformOne,
+      updateAccountData
+    );
+
+    console.log(res2);
+    return true;
+  }
+
+  async getCustomerPolicy(
+    updateAccountData,
+    loadHandler,
+    updatePolicies,
+    updateRegistrationType
+  ) {
+    const accountData = this.props.states.simedis_account;
     try {
       const url =
         "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/policy";
       const data = {
-        // emailAddress: accountData.username,
-        emailAddress: "revanza-26@yopmail.com",
+        emailAddress: accountData.username,
+        // emailAddress: "revanza-27@yopmail.com",
       };
       const config = {
-        // Authorization: accountData.token,
-        Authorization:
-          "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyZXZhbnphLTI2QHlvcG1haWwuY29tIiwiZXhwIjoxNTk2ODU4NjYwfQ.E-piyaDYCUCgevGTZvcF8l4cAR_g9xhKWAfIOPsXAxMfPHMluKX_FSOtFS8seEmdHjMJCErY68i5HufMrsdCyw",
+        Authorization: accountData.token,
+        //   Authorization:
+        //     "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyZXZhbnphLTI2QHlvcG1haWwuY29tIiwiZXhwIjoxNTk2ODU4NjYwfQ.E-piyaDYCUCgevGTZvcF8l4cAR_g9xhKWAfIOPsXAxMfPHMluKX_FSOtFS8seEmdHjMJCErY68i5HufMrsdCyw",
       };
 
       const res = await axios.post(url, data, config);
@@ -76,10 +115,11 @@ class Dashboard extends Component {
         this.props.history.push("/login");
       }
       const customerPolicy = res.data.data.customerPolicy;
+      const registrationType = res.data.data.registrationType;
 
-      updateAccountData("policy_no", customerPolicy.policyNo);
       updateAccountData("customer_code", customerPolicy.customerCode);
-      updateAccountData("sum_insured_ajb", customerPolicy.sumInsuredAjb);
+      updatePolicies(customerPolicy);
+      updateRegistrationType(registrationType);
 
       return true;
     } catch (err) {
@@ -87,23 +127,18 @@ class Dashboard extends Component {
     }
   }
 
-  async getCustomerDetail(
-    accountData,
-    loadHandler,
-    updateformOne,
-    updateAccountData
-  ) {
+  async getCustomerDetail(loadHandler, updateformOne, updateAccountData) {
     try {
-      console.log(accountData.customer_code);
+      const accountData = this.props.states.simedis_account;
       const url =
         "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/customers/" +
-        // accountData.customer_code;
-        "C2007230054";
+        accountData.customer_code;
+      // "C2007230054";
       const config = {
         headers: {
-          // Authorization: accountData.token,
-          Authorization:
-            "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyZXZhbnphLTI2QHlvcG1haWwuY29tIiwiZXhwIjoxNTk2ODU4NjYwfQ.E-piyaDYCUCgevGTZvcF8l4cAR_g9xhKWAfIOPsXAxMfPHMluKX_FSOtFS8seEmdHjMJCErY68i5HufMrsdCyw",
+          Authorization: accountData.token,
+          //   Authorization:
+          //     "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyZXZhbnphLTI2QHlvcG1haWwuY29tIiwiZXhwIjoxNTk2ODU4NjYwfQ.E-piyaDYCUCgevGTZvcF8l4cAR_g9xhKWAfIOPsXAxMfPHMluKX_FSOtFS8seEmdHjMJCErY68i5HufMrsdCyw",
         },
       };
 
@@ -112,7 +147,6 @@ class Dashboard extends Component {
         loadHandler(false);
         updateAccountData("is_valid", false);
         updateAccountData("form_status", "Koneksi bermasalah");
-
         this.props.history.push("/login");
       }
       console.log(res);
@@ -133,7 +167,7 @@ class Dashboard extends Component {
   render() {
     const { states } = this.props;
 
-    console.log(this.state);
+    console.log(states);
 
     if (!states || states.is_loading === true) {
       return (
@@ -165,17 +199,20 @@ class Dashboard extends Component {
 
     return (
       <div className="main-dashboard">
-        <Tab.Container defaultActiveKey="profile" className="">
+        <Tab.Container defaultActiveKey="policy" className="">
           <Row>
             <Sidebar data={states.form_1} />
             <Col lg={9} sm={12} className="dashboard-content">
               <Navuser data={states.form_1} />
               <Tab.Content className="dashboard-tab-content">
-                <Tab.Pane eventKey="profile">
+                <Tab.Pane className="pane" eventKey="profile">
                   <CustomerView data={states.form_1} />
                 </Tab.Pane>
                 <Tab.Pane eventKey="policy">
-                  <PolicyView data={states.simedis_account} />
+                  <PolicyView
+                    data={states.policies}
+                    reg={states.registration_type}
+                  />
                 </Tab.Pane>
               </Tab.Content>
               <Footer />

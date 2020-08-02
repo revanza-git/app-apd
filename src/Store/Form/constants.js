@@ -8,3 +8,5 @@ export const PAGE_LOAD = "form/page-load";
 export const GENDER = "form/gender";
 export const RELATIONSHIP = "form/relationship";
 export const SIMEDIS_ACCOUNT = "form/simedis-account";
+export const POLICIES = "form/policies";
+export const REGISTRATION_TYPE = "form/registration-type";

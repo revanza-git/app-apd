@@ -1,0 +1,65 @@
+.dashboard-customer-container {
+  @media (max-width: 812px) {
+    width: 100vw;
+  }
+  .dash-customer-top-tagline {
+    font-size: 1.2em;
+    font-weight: lighter;
+    margin-left: 1rem;
+  }
+  .dashboard-customer-card {
+    margin-top: 1rem;
+    margin-bottom: 15rem;
+    display: flex;
+    flex-flow: row wrap;
+    align-self: center;
+    justify-content: center;
+    border-radius: 1.5em;
+    padding: 1rem;
+    padding-left: 2rem;
+    img {
+      margin-top: 1rem;
+      height: 6rem;
+    }
+
+    .dashboard-customer-info {
+      width: 40rem;
+      margin-left: 5rem;
+
+      @media (max-width: 800px) {
+        margin-left: 0rem;
+        margin-top: 1rem;
+      }
+
+      ul {
+        display: flex;
+        flex-flow: row wrap;
+        padding-left: 0;
+      }
+
+      ul li {
+        list-style: none;
+        flex-basis: 33.3333%;
+        margin-top: 1rem;
+        @media (max-width: 800px) {
+          flex-basis: 40%;
+        }
+      }
+
+      .dashboard-customer-info-item {
+        display: flex;
+        flex-flow: column wrap;
+      }
+
+      .dash-customer-tagline-label {
+        font-weight: normal;
+        font-size: 0.8em;
+      }
+      .dash-customer-tagline-content {
+        font-weight: bolder;
+        font-size: 0.9em;
+        color: black;
+      }
+    }
+  }
+}

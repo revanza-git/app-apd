@@ -48,8 +48,7 @@ const initialState = {
       sum_insured_inpatient: "",
       ref_no: "",
       customer_policy_code: "",
-      insurance_date_start: "10 Juli 2020",
-      insurance_date_end: "10 September 2020",
+      insurance_period: "",
       member_total: "1",
       is_valid: null,
       form_status: "",
@@ -58,6 +57,8 @@ const initialState = {
     relationship: [],
     selected_relationship: [],
     forms: [],
+    policies: [],
+    registration_type: [],
     form_1: {
       relation_code: "0",
       full_name: "",
@@ -145,6 +146,19 @@ function editReducer(state = initialState.state, action) {
         ...state,
         relationship: action.payload,
         status: constants.RELATIONSHIP,
+      };
+    case constants.POLICIES:
+      return {
+        ...state,
+        policies: action.payload,
+        status: constants.POLICIES,
+      };
+    case constants.REGISTRATION_TYPE:
+      console.log(action);
+      return {
+        ...state,
+        registration_type: action.payload,
+        status: constants.REGISTRATION_TYPE,
       };
     default:
       return state;

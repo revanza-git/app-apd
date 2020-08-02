@@ -25,17 +25,40 @@
 
 .main-dashboard {
   overflow-x: hidden;
+
+  @media (max-width: 830px) {
+    overflow-y: hidden;
+  }
 }
 
 .dashboard-content {
   background-color: #ededee;
 
+  @media (min-width: 830px) {
+    padding-left: 0px !important;
+  }
+
+  // @media (max-width: 830px) {
+  //   padding-left: unset;
+  // }
+
   .dashboard-tab-content {
-    border: dotted;
+    // border: dotted;
     height: calc(100vh - 138px);
     display: flex;
     flex-flow: row wrap;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 830px) {
+      height: 100vh;
+    }
+
+    // .pane {
+    //   border: dotted;
+
+    //   display: flex;
+    //   flex-flow: column wrap;
+    // }
   }
 }
