@@ -7,9 +7,7 @@ import IconDownload from "../../../assets/images/simedis/icons8-download-24.png"
 
 import "./index.scss";
 
-const MainInfo = ({ data, reg }) => {
-  console.log(data);
-  console.log(reg);
+const MainInfo = ({ data, reg, certificate }) => {
   let plan;
   let active;
 
@@ -116,7 +114,11 @@ const MainInfo = ({ data, reg }) => {
             <li>
               <Container className="dashboard-policy-certiticate">
                 <Image src={IconDownload} />
-                <a className="dash-policy-tagline-certificate">
+                <a
+                  className="dash-policy-tagline-certificate"
+                  download={`certificate.pdf`}
+                  href={certificate}
+                >
                   Unduh Sertifikat
                 </a>
               </Container>

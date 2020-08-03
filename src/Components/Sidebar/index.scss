@@ -1,14 +1,30 @@
 .dashboard-sidebar {
+  max-width: 25%;
+  transition: all 0.5s ease-out;
+  background-color: white;
+
   display: flex;
   flex-flow: column wrap;
   align-items: center;
-  height: 100vh;
-
+  min-height: 100vh;
   padding-right: 0;
   padding-left: 0;
 
+  @media (max-width: 992px) {
+    height: calc(100vh - 248px);
+  }
   .active {
     color: #009489 !important;
+  }
+
+  .sidebar-exit {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+
+    img {
+      height: 2rem;
+    }
   }
 
   .dashboard-logo {
@@ -48,25 +64,34 @@
       }
     }
   }
+
+  &.toggled {
+    max-width: 100%;
+    box-shadow: 0 0 40px -10px #000;
+  }
+
+  &.not-toggled {
+    max-width: 0%;
+  }
 }
 
 .dashboard-menu {
   margin-top: 4rem;
   display: flex;
   flex-flow: row wrap;
-  width: 100%;
+  width: 100vw;
   margin-left: 0rem;
   margin-right: 0rem;
 
   .dashboard-item {
-    width: 100%;
+    width: 100vw;
     .dashboard-item-content {
       color: #818181;
       display: flex;
       flex-flow: row wrap;
       justify-content: center;
 
-      width: 100%;
+      width: 100vw;
 
       img {
         height: 2rem;

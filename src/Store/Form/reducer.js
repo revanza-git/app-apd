@@ -52,6 +52,7 @@ const initialState = {
       member_total: "1",
       is_valid: null,
       form_status: "",
+      base64: "",
     },
     gender: [],
     relationship: [],

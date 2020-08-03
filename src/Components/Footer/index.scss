@@ -6,6 +6,7 @@
   justify-content: center;
   flex-flow: row wrap;
   color: white;
+  width: 100vw;
 
   .dashboard-footer-1 {
     font-size: 0.8em;
@@ -34,7 +35,7 @@
     font-size: 0.8em;
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 830px) {
     flex-flow: row wrap;
     justify-content: unset;
 

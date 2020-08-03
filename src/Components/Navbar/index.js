@@ -7,7 +7,7 @@ import "./index.scss";
 const navbar = ({ data }) => {
   console.log(data);
   return (
-    <Navbar expand="lg" variant="light" bg="light">
+    <Navbar className="dashboard-navbar" expand="lg" variant="light" bg="light">
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
           <Nav.Link className="dashboard-content-profile" disabled>

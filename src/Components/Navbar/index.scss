@@ -1,15 +1,12 @@
 .dashboard-content-profile {
-  display: flex;
-  flex-flow: row column;
-
   img {
     width: 2rem;
   }
   .dashboard-content-tagline {
     font-weight: 900;
     margin-left: 0.5rem;
-    display: flex;
-    flex-flow: row wrap;
+    // display: flex;
+    // flex-flow: row wrap;
     align-items: center;
     color: black;
   }
@@ -29,8 +26,4 @@
 
 .dropdown-menu {
   min-width: 0rem;
-}
-
-.navbar-top {
-  border: dotted;
 }
