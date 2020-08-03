@@ -2,7 +2,6 @@
   max-width: 25%;
   transition: all 0.5s ease-out;
   background-color: white;
-
   display: flex;
   flex-flow: column wrap;
   align-items: center;
@@ -10,9 +9,6 @@
   padding-right: 0;
   padding-left: 0;
 
-  @media (max-width: 992px) {
-    height: calc(100vh - 248px);
-  }
   .active {
     color: #009489 !important;
   }
@@ -79,19 +75,28 @@
   margin-top: 4rem;
   display: flex;
   flex-flow: row wrap;
-  width: 100vw;
+  width: 100%;
   margin-left: 0rem;
   margin-right: 0rem;
 
+  @media (max-width: 992px) {
+    width: 100vw !important;
+  }
+
   .dashboard-item {
-    width: 100vw;
+    width: 100%;
+    @media (max-width: 992px) {
+      width: 100% !important;
+    }
     .dashboard-item-content {
       color: #818181;
       display: flex;
       flex-flow: row wrap;
       justify-content: center;
-
-      width: 100vw;
+      width: 100%;
+      @media (max-width: 992px) {
+        width: 100vw !important;
+      }
 
       img {
         height: 2rem;

@@ -33,15 +33,15 @@ class Dashboard extends Component {
     const updateformOne = this.props.formOne;
     const loadHandler = this.props.updatePageLoad;
 
-    // loadHandler(true);
+    loadHandler(true);
 
-    // this.processData(
-    //   updateAccountData,
-    //   loadHandler,
-    //   updatePolicies,
-    //   updateRegistrationType,
-    //   updateformOne
-    // );
+    this.processData(
+      updateAccountData,
+      loadHandler,
+      updatePolicies,
+      updateRegistrationType,
+      updateformOne
+    );
 
     this.updateDimensions();
     window.addEventListener("resize", this.updateDimensions.bind(this));
@@ -93,8 +93,6 @@ class Dashboard extends Component {
       const config = {
         headers: {
           Authorization: accountData.token,
-          //   Authorization:
-          //     "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyZXZhbnphLTI2QHlvcG1haWwuY29tIiwiZXhwIjoxNTk2ODU4NjYwfQ.E-piyaDYCUCgevGTZvcF8l4cAR_g9xhKWAfIOPsXAxMfPHMluKX_FSOtFS8seEmdHjMJCErY68i5HufMrsdCyw",
         },
       };
 
@@ -155,12 +153,10 @@ class Dashboard extends Component {
       const url =
         "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/customers/" +
         accountData.customer_code;
-      // "C2007230054";
+
       const config = {
         headers: {
           Authorization: accountData.token,
-          //   Authorization:
-          //     "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyZXZhbnphLTI2QHlvcG1haWwuY29tIiwiZXhwIjoxNTk2ODU4NjYwfQ.E-piyaDYCUCgevGTZvcF8l4cAR_g9xhKWAfIOPsXAxMfPHMluKX_FSOtFS8seEmdHjMJCErY68i5HufMrsdCyw",
         },
       };
 
@@ -262,10 +258,10 @@ class Dashboard extends Component {
               <Navuser data={states.form_1} />
               {mobileMenu}
               <Tab.Content className="dashboard-tab-content">
-                <Tab.Pane className="pane" eventKey="profile">
+                <Tab.Pane className="dashboard-tab-pane" eventKey="profile">
                   <CustomerView data={states.form_1} />
                 </Tab.Pane>
-                <Tab.Pane eventKey="policy">
+                <Tab.Pane className="dashboard-tab-pane" eventKey="policy">
                   <PolicyView
                     data={states.policies}
                     reg={states.registration_type}

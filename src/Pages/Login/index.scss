@@ -6,6 +6,7 @@
   flex-flow: row wrap;
   align-items: center;
   justify-content: center;
+
   .login-loading-container {
     display: flex;
     flex-flow: row wrap;
@@ -34,7 +35,8 @@
   flex-flow: row wrap;
   align-items: center;
   justify-content: center;
-  @media (max-width: 830px) {
+
+  @media (max-width: 992px) {
     background-image: url("");
     background-repeat: no-repeat;
     background-attachment: scroll;
@@ -56,12 +58,12 @@
   flex-flow: row wrap;
   justify-content: center;
   min-width: 30rem;
-  height: auto;
+  align-items: center;
   border-radius: 0em;
   border-top-left-radius: 1.2em;
   border-bottom-left-radius: 1.2em;
   box-shadow: 0 0 40px -20px #000;
-  @media (max-width: 830px) {
+  @media (max-width: 992px) {
     margin-bottom: 0;
     background-color: transparent;
     min-width: 100vw;
@@ -79,7 +81,7 @@
   top: 0;
   margin-top: 1rem;
   width: 15rem;
-  @media (max-width: 830px) {
+  @media (max-width: 992px) {
     margin-top: 5rem;
     width: 10rem;
   }
@@ -89,7 +91,7 @@
   position: absolute;
   margin-bottom: 0.3rem;
   bottom: 0;
-  @media (max-width: 830px) {
+  @media (max-width: 992px) {
     margin-bottom: 0;
   }
 }
@@ -106,7 +108,7 @@
   max-width: calc(100vw - 40px);
   border-top-right-radius: 1.2em;
   border-bottom-right-radius: 1.2em;
-  @media (max-width: 830px) {
+  @media (max-width: 992px) {
     box-shadow: none;
     min-width: 100vw;
   }

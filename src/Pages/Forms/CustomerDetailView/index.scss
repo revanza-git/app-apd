@@ -1,5 +1,5 @@
 .dashboard-customer-container {
-  @media (max-width: 812px) {
+  @media (max-width: 992px) {
     width: 100vw;
   }
   .dash-customer-top-tagline {
@@ -22,11 +22,19 @@
       height: 6rem;
     }
 
+    @media (max-width: 992px) {
+      margin-bottom: 0rem;
+      padding-left: 1rem;
+      img {
+        height: 4rem;
+      }
+    }
+
     .dashboard-customer-info {
       width: 40rem;
       margin-left: 5rem;
 
-      @media (max-width: 800px) {
+      @media (max-width: 992px) {
         margin-left: 0rem;
         margin-top: 1rem;
       }
@@ -41,7 +49,7 @@
         list-style: none;
         flex-basis: 33.3333%;
         margin-top: 1rem;
-        @media (max-width: 800px) {
+        @media (max-width: 992px) {
           flex-basis: 40%;
         }
       }
