@@ -149,8 +149,7 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
         }
       } else if (targetURL === "/dashboard") {
         loadHandler(true);
-        const url =
-          "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/auth";
+        const url = "https://sit-eli.myequity.id/auth";
         const data = {
           username: accountFormData.username,
           password: accountFormData.password,
