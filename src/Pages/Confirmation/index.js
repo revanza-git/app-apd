@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { Card } from "react-bootstrap";
 import ContinueBtn from "../../Components/ContinueBtn";
-import "./index.css";
+import "./index.scss";
 
 class MainInfo extends Component {
   render() {

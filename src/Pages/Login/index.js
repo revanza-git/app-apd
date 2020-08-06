@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import LoginInputs from "../Forms/LoginInputs";
 import ContinueBtn from "../../Components/ContinueBtn";
 import Alerts from "../../Components/Alerts";
-import Loader from "react-loader-spinner";
+import Loader from "../../Components/Loader";
 import Logo from "../../../src/assets/images/simedis/logo-simedis.svg";
 import Illustrasi from "../../../src/assets/images/simedis/Simedis-Illutrasi-01-Homepage.svg";
 
@@ -40,21 +40,7 @@ class Login extends Component {
       content = (
         <div className="main-loading-login">
           <Container className="login-loading-container" fluid>
-            <Card className="login-loading-card">
-              <Loader
-                style={{
-                  width: "100%",
-                  height: "100",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-                type="TailSpin"
-                color="#2BAD60"
-                height="100"
-                width="100"
-              />
-            </Card>
+            <Loader />
           </Container>
         </div>
       );

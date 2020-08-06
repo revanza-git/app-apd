@@ -39,7 +39,7 @@ const initialState = {
       customer_code: "",
       customer_name: "",
       customer_status: "",
-      active: "",
+      active: false,
       token: "",
       insurance_type: "",
       member_no: "",

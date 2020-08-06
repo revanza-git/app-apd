@@ -74,116 +74,124 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
   };
 
   const handleClick = () => {
-    console.log(isValid);
-    if (isValid) {
-      if (targetURL === "/confirmation") {
-        if (dataFormOne.form_status === "ok") {
-          console.log(dataFormOne.form_status);
-          loadHandler(true);
-          const url =
-            "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/customers/register";
-
-          const data = GenerateData();
-
-          axios
-            .post(url, data, "")
-            .then((response) => {
-              const ok = response.data.ok;
-              const res = response.data.data;
-
-              if (ok === true) {
-                updateData("bill_amount", res.billAmount);
-                updateData("bill_code", res.billCode);
-                updateData("registration_code", res.registrationCode);
-
-                history.push(targetURL);
-              } else {
-                const errRes = response.data.message;
-
-                personalChange("is_valid", false);
-                personalChange("form_status", errRes);
-                loadHandler(false);
-              }
-            })
-            .catch(function (error) {
-              personalChange("form_status", "Koneksi bermasalah");
-              personalChange("is_valid", false);
-              loadHandler(false);
-            });
-        } else {
-          personalChange("is_valid", false);
-          personalChange("form_status", "form belum valid");
-        }
-      } else if (targetURL === "/login") {
-        if (accountFormData.password !== accountFormData.password_retype) {
-          updateFormAccountChange(
-            "form_status",
-            "Isi ulang password tidak sama dengan password"
-          );
-          updateFormAccountChange("is_valid", false);
-        } else {
-          const url =
-            "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/customers/activate";
-          const data = {
-            registrationCode: accountFormData.registration_code,
-            username: accountFormData.username,
-            password: accountFormData.password,
-          };
-
-          loadHandler(true);
-
-          axios
-            .post(url, data, "")
-            .then((res) => {
-              console.log(targetURL);
-              updateFormAccountChange("active", true);
-              console.log(res);
-              loadHandler(false);
-              history.push(targetURL);
-            })
-            .catch(function (error) {
-              updateFormAccountChange("form_status", "Koneksi bermasalah");
-              updateFormAccountChange("is_valid", false);
-              loadHandler(false);
-            });
-        }
-      } else if (targetURL === "/dashboard") {
+    if (targetURL === "/confirmation") {
+      if (dataFormOne.form_status === "ok") {
+        console.log(dataFormOne.form_status);
         loadHandler(true);
-        const url = "https://sit-eli.myequity.id/auth/";
+        const url =
+          "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/customers/register";
+
+        const data = GenerateData();
+
+        axios
+          .post(url, data, "")
+          .then((response) => {
+            const ok = response.data.ok;
+            const res = response.data.data;
+
+            if (ok === true) {
+              updateData("bill_amount", res.billAmount);
+              updateData("bill_code", res.billCode);
+              updateData("registration_code", res.registrationCode);
+
+              history.push(targetURL);
+            } else {
+              const errRes = response.data.message;
+
+              personalChange("is_valid", false);
+              personalChange("form_status", errRes);
+              loadHandler(false);
+            }
+          })
+          .catch(function (error) {
+            personalChange(
+              "form_status",
+              "Mohon maaf koneksi mengalami kendala, silahkan coba lagi"
+            );
+            personalChange("is_valid", false);
+            loadHandler(false);
+          });
+      } else {
+        personalChange("is_valid", false);
+        personalChange("form_status", "form belum valid");
+      }
+    } else if (targetURL === "/login") {
+      if (accountFormData.password !== accountFormData.password_retype) {
+        updateFormAccountChange(
+          "form_status",
+          "Kata sandi belum sesuai, silahkan ulang kembali."
+        );
+        updateFormAccountChange("is_valid", false);
+      } else {
+        const url =
+          "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/customers/activate";
         const data = {
+          registrationCode: accountFormData.registration_code,
           username: accountFormData.username,
           password: accountFormData.password,
         };
 
+        loadHandler(true);
+
         axios
           .post(url, data, "")
           .then((res) => {
-            console.log(res);
-            const token = res.data.token;
-            const userData = res.data.data.user;
-            const resMessage = res.data.data.message;
+            updateFormAccountChange("active", true);
+            updateFormAccountChange("form_status", "ok");
 
-            if (resMessage === "username or password are invalid") {
-              updateFormAccountChange("form_status", resMessage);
-              updateFormAccountChange("is_valid", false);
-              loadHandler(false);
-            } else {
-              loadHandler(false);
-              updateFormAccountChange("username", userData.username);
-              updateFormAccountChange("token", token);
-              history.push(targetURL + "?id=" + userData.id);
-            }
+            loadHandler(false);
+            history.push(targetURL);
           })
           .catch(function (error) {
-            updateFormAccountChange("form_status", "Koneksi bermasalah");
-            updateFormAccountChange("is_valid", false);
             console.log(error);
+            updateFormAccountChange(
+              "form_status",
+              "Mohon maaf koneksi mengalami kendala, silahkan coba lagi"
+            );
+            updateFormAccountChange("is_valid", false);
+
             loadHandler(false);
           });
-      } else {
-        console.log("Halaman Belum Terdaftar");
-        history.push(targetURL);
       }
+    } else if (targetURL === "/dashboard") {
+      loadHandler(true);
+      const url =
+        "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/auth";
+      const data = {
+        username: accountFormData.username,
+        password: accountFormData.password,
+      };
+
+      axios
+        .post(url, data, "")
+        .then((res) => {
+          const token = res.data.token;
+          const userData = res.data.data.user;
+          const resMessage = res.data.data.message;
+
+          if (resMessage === "username or password are invalid") {
+            updateFormAccountChange("form_status", resMessage);
+            updateFormAccountChange("is_valid", false);
+            loadHandler(false);
+          } else {
+            loadHandler(false);
+            updateFormAccountChange("username", userData.username);
+            updateFormAccountChange("token", token);
+            history.push(targetURL + "?id=" + userData.id);
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+          updateFormAccountChange(
+            "form_status",
+            "Mohon maaf koneksi mengalami kendala, silahkan coba lagi"
+          );
+          updateFormAccountChange("is_valid", false);
+
+          loadHandler(false);
+        });
+    } else {
+      console.log("Halaman Belum Terdaftar");
     }
   };
   return (

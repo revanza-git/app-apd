@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import ActivationInputs from "../Forms/ActivationInputs";
 import ContinueBtn from "../../Components/ContinueBtn";
-import Loader from "react-loader-spinner";
+import Loader from "../../Components/Loader";
+import ActivationSuccess from "../../Components/ActivationSuccess";
 import axios from "axios";
 import BackgroundImg from "../../assets/images/simedis/Banner-color_gradient-01.png";
 
@@ -12,7 +13,6 @@ import { Card, Container, Row, Col } from "react-bootstrap";
 
 class ActivationPage extends Component {
   componentDidMount() {
-    console.log(this.props);
     const loadHandler = this.props.updatePageLoad;
     const changeHandler = this.props.simedisAccountChange;
 
@@ -45,7 +45,7 @@ class ActivationPage extends Component {
       .catch(function (error) {
         changeHandler(
           "form_status",
-          "Mohon maaf koneksi mengalami kendala,silahkan coba lagi"
+          "Mohon maaf koneksi mengalami kendala, silahkan coba lagi"
         );
         console.log(error);
         changeHandler("is_valid", false);
@@ -72,29 +72,14 @@ class ActivationPage extends Component {
   };
 
   render() {
-    console.log(this.props);
     const { states, simedisAccountChange } = this.props;
 
     let card;
 
     if (!states || states.is_loading === true) {
-      card = (
-        <Card className="activation-card">
-          <Loader
-            style={{
-              width: "100%",
-              height: "100",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-            type="TailSpin"
-            color="#2BAD60"
-            height="100"
-            width="100"
-          />
-        </Card>
-      );
+      card = <Loader />;
+    } else if (!states || states.simedis_account.active === true) {
+      card = <ActivationSuccess handler={simedisAccountChange} />;
     } else {
       card = (
         <Card className="activation-card">

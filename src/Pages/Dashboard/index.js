@@ -4,7 +4,7 @@ import CustomerView from "../Forms/CustomerDetailView";
 import Sidebar from "../../Components/Sidebar";
 import Navuser from "../../Components/Navbar";
 import Footer from "../../Components/Footer/footer.js";
-import Loader from "react-loader-spinner";
+import Loader from "../../Components/Loader";
 import { Tab, Row, Col, Container, Image } from "react-bootstrap";
 import axios from "axios";
 import Menu from "../../../src/assets/images/simedis/Icon-menu.svg";
@@ -73,6 +73,12 @@ class Dashboard extends Component {
       updateAccountData
     );
 
+    const res4 = await this.getAccountPoint(updateAccountData, loadHandler);
+
+    if (res1 !== true && res2 !== true && res3 !== true && res4 !== true) {
+      this.failCase(updateAccountData, loadHandler);
+    }
+
     return true;
   }
 
@@ -84,7 +90,8 @@ class Dashboard extends Component {
   ) {
     const accountData = this.props.states.simedis_account;
     try {
-      const url = "https://sit-eli.myequity.id/policy";
+      const url =
+        "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/policy";
       const data = {
         emailAddress: accountData.username,
         // emailAddress: "revanza-27@yopmail.com",
@@ -98,11 +105,7 @@ class Dashboard extends Component {
       const res = await axios.post(url, data, config);
       console.log(res);
       if (!res.data.ok) {
-        loadHandler(false);
-        updateAccountData("is_valid", false);
-        updateAccountData("form_status", "Koneksi bermasalah");
-
-        this.props.history.push("/login");
+        this.failCase(updateAccountData, loadHandler);
       }
       const customerPolicy = res.data.data.customerPolicy;
       const registrationType = res.data.data.registrationType;
@@ -120,7 +123,8 @@ class Dashboard extends Component {
   async getCertificate(updateAccountData, loadHandler) {
     try {
       const accountData = this.props.states.simedis_account;
-      const url = "https://sit-eli.myequity.id/get-certificate";
+      const url =
+        "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/get-certificate";
       const data = {
         customerCode: accountData.customer_code,
       };
@@ -132,11 +136,7 @@ class Dashboard extends Component {
       const res = await axios.post(url, data, config);
       console.log(res);
       if (!res.data.ok) {
-        loadHandler(false);
-        updateAccountData("is_valid", false);
-        updateAccountData("form_status", "Koneksi bermasalah");
-
-        this.props.history.push("/login");
+        this.failCase(updateAccountData, loadHandler);
       }
       updateAccountData("base64", res.data.data.data.certificate);
       return true;
@@ -149,7 +149,8 @@ class Dashboard extends Component {
     try {
       const accountData = this.props.states.simedis_account;
       const url =
-        "https://sit-eli.myequity.id/customers/" + accountData.customer_code;
+        "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/customers/" +
+        accountData.customer_code;
 
       const config = {
         headers: {
@@ -159,10 +160,7 @@ class Dashboard extends Component {
 
       const res = await axios.get(url, config);
       if (!res.data.ok) {
-        loadHandler(false);
-        updateAccountData("is_valid", false);
-        updateAccountData("form_status", "Koneksi bermasalah");
-        this.props.history.push("/login");
+        this.failCase(updateAccountData, loadHandler);
       }
       console.log(res);
       const dataCustomer = await res.data.data;
@@ -177,6 +175,45 @@ class Dashboard extends Component {
       console.log(err);
       return false;
     }
+  }
+
+  async getAccountPoint(updateAccountData, loadHandler) {
+    try {
+      const accountData = this.props.states.simedis_account;
+      const data = {
+        emailAddress: accountData.username,
+        // emailAddress: "revanza-27@yopmail.com",
+      };
+      const url =
+        "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/account-point";
+
+      const config = {
+        headers: {
+          Authorization: accountData.token,
+        },
+      };
+
+      const res = await axios.post(url, data, config);
+
+      console.log(res);
+      if (!res.data.ok) {
+        this.failCase(updateAccountData, loadHandler);
+      }
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
+  }
+
+  failCase(updateAccountData, loadHandler) {
+    loadHandler(false);
+    updateAccountData("is_valid", false);
+    updateAccountData(
+      "form_status",
+      "Mohon maaf koneksi mengalami kendala, silahkan coba lagi"
+    );
+
+    this.props.history.push("/login");
   }
 
   handleMenuClick() {
@@ -197,23 +234,7 @@ class Dashboard extends Component {
         <div className="main-dashboard-loading">
           <Container className="dashboard-loading-container-0" fluid>
             <Row>
-              <Col>
-                <Card className="dashboard-loading-card">
-                  <Loader
-                    style={{
-                      width: "100%",
-                      height: "100",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                    type="TailSpin"
-                    color="#2BAD60"
-                    height="100"
-                    width="100"
-                  />
-                </Card>
-              </Col>
+              <Loader />
             </Row>
           </Container>
         </div>
