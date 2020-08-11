@@ -4,7 +4,6 @@ import ContinueBtn from "../../Components/ContinueBtn";
 import Loader from "../../Components/Loader";
 import ActivationSuccess from "../../Components/ActivationSuccess";
 import axios from "axios";
-import BackgroundImg from "../../assets/images/simedis/Banner-color_gradient-01.png";
 
 import "./index.scss";
 import qs from "qs";
@@ -31,14 +30,16 @@ class ActivationPage extends Component {
     axios
       .post(url, data, "")
       .then((i) => {
-        const res = i.data.data.customer;
+        console.log(i);
+        const res = i.data.data;
+        console.log(res.registrationCode);
+        const resCustomer = res.customer;
 
-        changeHandler("customer_code", res.customerCode);
-        changeHandler("customer_name", res.customerName);
-        changeHandler("customer_status", res.customerStatus);
-        changeHandler("username", res.emailAddress);
+        changeHandler("customer_code", resCustomer.customerCode);
+        changeHandler("customer_name", resCustomer.customerName);
+        changeHandler("customer_status", resCustomer.customerStatus);
+        changeHandler("username", resCustomer.emailAddress);
         changeHandler("registration_code", res.registrationCode);
-        changeHandler("active", res.active);
 
         loadHandler(false);
       })
@@ -73,12 +74,13 @@ class ActivationPage extends Component {
 
   render() {
     const { states, simedisAccountChange } = this.props;
+    console.log(this.props);
 
     let card;
 
     if (!states || states.is_loading === true) {
       card = <Loader />;
-    } else if (!states || states.simedis_account.active === true) {
+    } else if (states.simedis_account.active === true) {
       card = <ActivationSuccess handler={simedisAccountChange} />;
     } else {
       card = (
@@ -94,7 +96,7 @@ class ActivationPage extends Component {
           />
           <ContinueBtn
             data={this.props}
-            targetURL="/login"
+            targetURL="/activation"
             valid={states.simedis_account.is_valid}
             label="Aktivasi"
           />

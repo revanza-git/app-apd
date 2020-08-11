@@ -11,7 +11,6 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
   const personalChange = data.formOne;
 
   const history = useHistory();
-  const isValid = valid;
 
   const loadHandler = data.updatePageLoad;
   const states = data.states;
@@ -115,7 +114,7 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
         personalChange("is_valid", false);
         personalChange("form_status", "form belum valid");
       }
-    } else if (targetURL === "/login") {
+    } else if (targetURL === "/activation") {
       if (accountFormData.password !== accountFormData.password_retype) {
         updateFormAccountChange(
           "form_status",
@@ -123,6 +122,7 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
         );
         updateFormAccountChange("is_valid", false);
       } else {
+        console.log(accountFormData);
         const url =
           "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/customers/activate";
         const data = {
@@ -140,7 +140,7 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
             updateFormAccountChange("form_status", "ok");
 
             loadHandler(false);
-            history.push(targetURL);
+            history.push("/activation");
           })
           .catch(function (error) {
             console.log(error);
@@ -190,6 +190,8 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
 
           loadHandler(false);
         });
+    } else if (targetURL === "/payment") {
+      history.push(targetURL);
     } else {
       console.log("Halaman Belum Terdaftar");
     }

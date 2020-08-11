@@ -1,22 +1,18 @@
 import React, { Component } from "react";
 import LoginInputs from "../Forms/LoginInputs";
 import ContinueBtn from "../../Components/ContinueBtn";
-import Alerts from "../../Components/Alerts";
 import Loader from "../../Components/Loader";
 import Logo from "../../../src/assets/images/simedis/logo-simedis.svg";
 import Illustrasi from "../../../src/assets/images/simedis/Simedis-Illutrasi-01-Homepage.svg";
 
 import "./index.scss";
 
-import { Card, Container, Row, Col, Image } from "react-bootstrap";
+import { Card, Container, Image } from "react-bootstrap";
 
 class Login extends Component {
   componentDidMount() {}
 
-  validation = (param) => {
-    console.log(this.props.states);
-    const data = param;
-    console.log(data);
+  validation = () => {
     const simedisAccount = this.props.states.simedis_account;
     const updateFormStatus = this.props.simedisAccountChange;
 

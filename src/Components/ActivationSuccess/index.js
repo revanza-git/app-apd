@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Card, Container, Image } from "react-bootstrap";
 import ShieldIcon from "../../../src/assets/images/simedis/shieldicon.svg";
 import "./index.scss";
