@@ -1,5 +1,6 @@
 #stage1 - Build app
 FROM node:14-alpine3.12 as build
+RUN apk add --no-cache bash
 WORKDIR /var/www/html
 ENV PATH /app/node_modules/.bin:$PATH
 COPY ./app/package.json /var/www/html
