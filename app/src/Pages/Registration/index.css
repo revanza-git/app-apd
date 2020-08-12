@@ -1,0 +1,14 @@
+.card-header {
+  background-color: #7bc697 !important;
+  color: white;
+  font-weight: bold;
+}
+
+.card .card {
+  margin: 10px;
+}
+
+.card .card .card-header {
+  background-color: #cecece !important;
+  color: black !important;
+}
