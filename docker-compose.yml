@@ -6,11 +6,12 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: app-simedis
+    network_mode: bridge
     ports:
       - 8111:8111
     volumes:
       - ./app/:/var/www/html/:rw
       - "/app/node_modules"
-      # - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
     environment:
       - NODE_ENV=development
