@@ -11,7 +11,4 @@ services:
       - 8111:8111
     volumes:
       - ./app/:/var/www/html/:rw
-      - "/app/node_modules"
       - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
-    environment:
-      - NODE_ENV=development

@@ -51,8 +51,7 @@ class RegistrationPage extends Component {
   }
 
   async getGender(updateGender, updateHandler) {
-    const url =
-      "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/gender";
+    const url = "https://sit-eli.myequity.id/gender";
 
     await axios
       .get(url, "")
@@ -67,8 +66,7 @@ class RegistrationPage extends Component {
   }
 
   async getRelationship(updateRelationship, updateHandler) {
-    const url =
-      "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/relationships";
+    const url = "https://sit-eli.myequity.id/relationships";
 
     await axios
       .get(url, "")

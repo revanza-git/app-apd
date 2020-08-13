@@ -93,8 +93,7 @@ class FinishedPayment extends Component {
   async registerPayment(states, updateHandler, loadHandler) {
     const simedis = states.simedis;
 
-    const url =
-      "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/payments";
+    const url = "https://sit-eli.myequity.id/payments";
 
     const data = {
       paymentDesc: simedis.payment_desc,
