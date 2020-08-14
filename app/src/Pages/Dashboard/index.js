@@ -11,8 +11,6 @@ import Menu from "../../../src/assets/images/simedis/Icon-menu.svg";
 
 import "./index.scss";
 
-import { Card } from "react-bootstrap";
-
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -90,7 +88,8 @@ class Dashboard extends Component {
   ) {
     const accountData = this.props.states.simedis_account;
     try {
-      const url = "https://sit-eli.myequity.id/policy";
+      const url =
+        "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/policy";
       const data = {
         emailAddress: accountData.username,
         // emailAddress: "revanza-27@yopmail.com",
@@ -122,7 +121,8 @@ class Dashboard extends Component {
   async getCertificate(updateAccountData, loadHandler) {
     try {
       const accountData = this.props.states.simedis_account;
-      const url = "https://sit-eli.myequity.id/get-certificate";
+      const url =
+        "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/get-certificate";
       const data = {
         customerCode: accountData.customer_code,
       };
@@ -147,7 +147,8 @@ class Dashboard extends Component {
     try {
       const accountData = this.props.states.simedis_account;
       const url =
-        "https://sit-eli.myequity.id/customers/" + accountData.customer_code;
+        "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/customers/" +
+        accountData.customer_code;
 
       const config = {
         headers: {
@@ -181,7 +182,8 @@ class Dashboard extends Component {
         emailAddress: accountData.username,
         // emailAddress: "revanza-27@yopmail.com",
       };
-      const url = "https://sit-eli.myequity.id/account-point";
+      const url =
+        "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/account-point";
 
       const config = {
         headers: {

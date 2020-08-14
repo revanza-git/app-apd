@@ -77,7 +77,8 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
       if (dataFormOne.form_status === "ok") {
         console.log(dataFormOne.form_status);
         loadHandler(true);
-        const url = "https://sit-eli.myequity.id/customers/register";
+        const url =
+          "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/customers/register";
 
         const data = GenerateData();
 
@@ -122,7 +123,8 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
         updateFormAccountChange("is_valid", false);
       } else {
         console.log(accountFormData);
-        const url = "https://sit-eli.myequity.id/customers/activate";
+        const url =
+          "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/customers/activate";
         const data = {
           registrationCode: accountFormData.registration_code,
           username: accountFormData.username,
@@ -153,7 +155,8 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
       }
     } else if (targetURL === "/dashboard") {
       loadHandler(true);
-      const url = "https://sit-eli.myequity.id/auth";
+      const url =
+        "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/auth";
       const data = {
         username: accountFormData.username,
         password: accountFormData.password,
