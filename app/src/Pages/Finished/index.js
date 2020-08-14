@@ -109,10 +109,7 @@ class FinishedPayment extends Component {
 
     const res = await axios
       .post(url, data, "")
-      .then((es) => {
-        console.log(es);
-        updateHandler("base64", es.data.data.certificate.data.certificate);
-      })
+      .then((es) => {})
       .catch(function (error) {
         updateHandler("form_status", "Koneksi bermasalah");
         updateHandler("is_valid", false);
@@ -174,13 +171,13 @@ class FinishedPayment extends Component {
           </Row>
           <Row className="mt-2">
             <Col lg={12} className="text-center">
-              <a
+              {/* <a
                 className="btn btn-primary mb-4"
                 download={`certificate_${states.simedis.bill_code}.pdf`}
                 href={states.simedis.base64}
               >
                 Download Certificate
-              </a>
+              </a> */}
               <Form.Control
                 type="text"
                 disabled={true}
