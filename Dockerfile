@@ -2,10 +2,10 @@
 FROM node:14-alpine3.12 as build
 RUN apk add --no-cache bash
 WORKDIR /var/www/html
-ENV PATH /app/node_modules/.bin:$PATH
-COPY ./app/package.json /var/www/html
+ENV PATH /node_modules/.bin:$PATH
+COPY ./package.json /var/www/html
 RUN yarn config set "strict-ssl" false
-COPY ./app/ /var/www/html
+COPY ./ /var/www/html
 # RUN yarn
 # RUN yarn build
 
