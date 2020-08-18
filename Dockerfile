@@ -13,7 +13,7 @@ COPY ./ /var/www/html
 FROM nginx:1.9-alpine
 COPY --from=build /var/www/html/build /usr/share/nginx/html
 RUN rm /etc/nginx/conf.d/default.conf
-COPY nginx/nginx.conf /etc/nginx/conf.d
-EXPOSE 8111
+COPY nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
+EXPOSE 8888
 
 CMD ["nginx","-g","daemon off;"]
