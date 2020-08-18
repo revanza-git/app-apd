@@ -92,7 +92,6 @@ function editReducer(state = initialState.state, action) {
     case constants.FORM_ONE:
       const newForm = { ...state.form_1 };
       newForm[action.fieldName] = action.fieldValue;
-      console.log(newForm);
       return {
         ...state,
         form_1: newForm,

@@ -75,6 +75,8 @@ class Dashboard extends Component {
 
     if (res1 !== true && res2 !== true && res3 !== true && res4 !== true) {
       this.failCase(updateAccountData, loadHandler);
+    } else {
+      loadHandler(false);
     }
 
     return true;
@@ -167,7 +169,7 @@ class Dashboard extends Component {
       updateformOne("gender", dataCustomer.genderCode);
       updateformOne("email", dataCustomer.emailAddress);
       updateformOne("phone_number", dataCustomer.phoneNo);
-      loadHandler(false);
+
       return true;
     } catch (err) {
       console.log(err);
@@ -224,8 +226,6 @@ class Dashboard extends Component {
 
   render() {
     const { states } = this.props;
-
-    console.log(states);
 
     if (!states || states.is_loading === true) {
       return (

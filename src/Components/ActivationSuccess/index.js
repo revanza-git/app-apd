@@ -6,12 +6,12 @@ import "./index.scss";
 import { useHistory } from "react-router-dom";
 
 const ActivationSuccess = ({ handler }) => {
-  const history = useHistory();
+  // const history = useHistory();
 
   useEffect(() => {
     setTimeout(() => {
       handler("is_valid", null);
-      history.push("/login");
+      window.location.assign("https://app-apd.herokuapp.com/login");
     }, 5000);
   });
 

@@ -174,7 +174,6 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
             updateFormAccountChange("is_valid", false);
             loadHandler(false);
           } else {
-            loadHandler(false);
             updateFormAccountChange("username", userData.username);
             updateFormAccountChange("token", token);
             history.push(targetURL + "?id=" + userData.id);

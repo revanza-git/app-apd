@@ -55,7 +55,6 @@ class ActivationPage extends Component {
   }
 
   validation = (param) => {
-    const data = param;
     const simedisAccount = this.props.states.simedis_account;
     const updateFormStatus = this.props.simedisAccountChange;
 
