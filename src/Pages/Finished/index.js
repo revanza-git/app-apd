@@ -107,15 +107,12 @@ class FinishedPayment extends Component {
       usedReferralCode: "",
     };
 
-    const res = await axios
-      .post(url, data, "")
-      .then((es) => {})
-      .catch(function (error) {
-        updateHandler("form_status", "Koneksi bermasalah");
-        updateHandler("is_valid", false);
-        loadHandler(false);
-        console.log(error);
-      });
+    const res = await axios.post(url, data, "").catch(function (error) {
+      updateHandler("form_status", "Koneksi bermasalah");
+      updateHandler("is_valid", false);
+      loadHandler(false);
+      console.log(error);
+    });
 
     loadHandler(false);
 
