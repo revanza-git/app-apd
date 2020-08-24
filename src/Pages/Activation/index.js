@@ -21,8 +21,7 @@ class ActivationPage extends Component {
     });
 
     loadHandler(true);
-    const url =
-      "https://cors-anywhere.herokuapp.com/https://sit-eli.myequity.id/customers/validateKey";
+    const url = process.env.REACT_APP_SERVER_URL + "/customers/validateKey";
     const data = {
       uniqueActivationKey: query.token,
     };
