@@ -72,6 +72,7 @@ class Dashboard extends Component {
     );
 
     const res4 = await this.getAccountPoint(updateAccountData, loadHandler);
+    const res5 = await this.getCountries(updateAccountData, loadHandler);
 
     if (res1 !== true && res2 !== true && res3 !== true && res4 !== true) {
       this.failCase(updateAccountData, loadHandler);
@@ -80,6 +81,28 @@ class Dashboard extends Component {
     }
 
     return true;
+  }
+
+  async getCountries(updateAccountData, loadHandler) {
+    const accountData = this.props.states.simedis_account;
+    try {
+      const url = "https://sit-eli.myequity.id/services/v1/countries";
+      const config = {
+        headers: {
+          Authorization: accountData.token,
+        },
+      };
+
+      const res = await axios.get(url, config);
+      console.log(res);
+      if (!res.data.ok) {
+        this.failCase(updateAccountData, loadHandler);
+      }
+
+      return true;
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   async getCustomerPolicy(
@@ -108,8 +131,10 @@ class Dashboard extends Component {
       }
       const customerPolicy = res.data.data.customerPolicy;
       const registrationType = res.data.data.registrationType;
+      const registration = res.data.data.registration;
 
       updateAccountData("customer_code", customerPolicy.customerCode);
+      updateAccountData("registration_code", registration.registrationCode);
       updatePolicies(customerPolicy);
       updateRegistrationType(registrationType);
 
@@ -125,6 +150,7 @@ class Dashboard extends Component {
       const url = process.env.REACT_APP_CUSTOMER_POLICIES_CERTIFICATE_URL;
       const data = {
         customerCode: accountData.customer_code,
+        registrationCode: accountData.registration_code,
       };
       const config = {
         headers: {
