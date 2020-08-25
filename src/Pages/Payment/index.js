@@ -44,7 +44,7 @@ class PaymentPage extends Component {
       enabled_payments: account.enabled_payments,
       gopay: {
         enable_callback: true,
-        callback_url: "https://app-apd.herokuapp.com/payment/finish",
+        callback_url: process.env.REACT_APP_CALLBACK_FINISH_URL,
       },
     };
 

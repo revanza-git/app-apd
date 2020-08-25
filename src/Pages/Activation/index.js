@@ -21,7 +21,7 @@ class ActivationPage extends Component {
     });
 
     loadHandler(true);
-    const url = process.env.REACT_APP_SERVER_URL + "/customers/validateKey";
+    const url = process.env.REACT_APP_USER_VALIDATE_KEY_URL;
     const data = {
       uniqueActivationKey: query.token,
     };

@@ -77,7 +77,7 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
       if (dataFormOne.form_status === "ok") {
         console.log(dataFormOne.form_status);
         loadHandler(true);
-        const url = process.env.REACT_APP_SERVER_URL + "/customers/register";
+        const url = process.env.REACT_APP_USER_REGISTER_URL;
 
         const data = GenerateData();
 
@@ -122,7 +122,7 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
         updateFormAccountChange("is_valid", false);
       } else {
         console.log(accountFormData);
-        const url = process.env.REACT_APP_SERVER_URL + "/customers/activate";
+        const url = process.env.REACT_APP_USER_ACTIVATE_URL;
         const data = {
           registrationCode: accountFormData.registration_code,
           username: accountFormData.username,
@@ -153,7 +153,7 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
       }
     } else if (targetURL === "/dashboard") {
       loadHandler(true);
-      const url = process.env.REACT_APP_SERVER_URL + "/auth";
+      const url = process.env.REACT_APP_LOGIN_URL;
       const data = {
         username: accountFormData.username,
         password: accountFormData.password,

@@ -90,7 +90,7 @@ class Dashboard extends Component {
   ) {
     const accountData = this.props.states.simedis_account;
     try {
-      const url = process.env.REACT_APP_SERVER_URL + "/policy";
+      const url = process.env.REACT_APP_ACCOUNT_POLICY_URL;
       const data = {
         emailAddress: accountData.username,
         // emailAddress: "revanza-27@yopmail.com",
@@ -122,7 +122,7 @@ class Dashboard extends Component {
   async getCertificate(updateAccountData, loadHandler) {
     try {
       const accountData = this.props.states.simedis_account;
-      const url = process.env.REACT_APP_SERVER_URL + "/get-certificate";
+      const url = process.env.REACT_APP_CUSTOMER_POLICIES_CERTIFICATE_URL;
       const data = {
         customerCode: accountData.customer_code,
       };
@@ -147,9 +147,7 @@ class Dashboard extends Component {
     try {
       const accountData = this.props.states.simedis_account;
       const url =
-        process.env.REACT_APP_SERVER_URL +
-        "/customers/" +
-        accountData.customer_code;
+        process.env.REACT_APP_USER_PROFILE_URL + accountData.customer_code;
 
       const config = {
         headers: {
@@ -183,7 +181,7 @@ class Dashboard extends Component {
         emailAddress: accountData.username,
         // emailAddress: "revanza-27@yopmail.com",
       };
-      const url = process.env.REACT_APP_SERVER_URL + "/account-point";
+      const url = process.env.REACT_APP_ACCOUNT_POINT_URL;
 
       const config = {
         headers: {

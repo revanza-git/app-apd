@@ -57,10 +57,7 @@ class FinishedPayment extends Component {
   };
 
   async getTransactionDetail(data, orderId, updateHandler, loadHandler) {
-    const url =
-      "https://cors-anywhere.herokuapp.com/https://api.sandbox.midtrans.com/v2/" +
-      orderId +
-      "/status";
+    const url = process.env.REACT_APP_MIDTRANS_URL + orderId + "/status";
     const config = {
       auth: {
         username: data.server_key,
@@ -93,7 +90,7 @@ class FinishedPayment extends Component {
   async registerPayment(states, updateHandler, loadHandler) {
     const simedis = states.simedis;
 
-    const url = process.env.REACT_APP_SERVER_URL + "/payments";
+    const url = process.env.REACT_APP_PAYMENT_URL;
 
     const data = {
       paymentDesc: simedis.payment_desc,
