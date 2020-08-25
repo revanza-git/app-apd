@@ -18,15 +18,14 @@ const initialState = {
       password: "",
       enabled_payments: ["gopay"],
     },
-    simedis: {
+    simedis_payment: {
+      registration_code: "",
       bill_amount: "",
       bill_code: "",
-      registration_code: "",
       payment_desc: "",
       payment_ref_code: "",
       paid_amount: "",
       transaction_date: "",
-      base64: "",
       payment_status: null,
       is_valid: null,
       form_status: "",
@@ -103,16 +102,18 @@ function editReducer(state = initialState.state, action) {
         ...state,
         form_2: partnerNew,
       };
-    case constants.SIMEDIS_CHANGE:
-      const load = { ...state.simedis };
+    case constants.SIMEDIS_PAYMENT:
+      const load = { ...state.simedis_payment };
+
       load[action.fieldName] = action.fieldValue;
       return {
         ...state,
-        simedis: load,
+        simedis_payment: load,
       };
     case constants.SIMEDIS_ACCOUNT:
       const payload = { ...state.simedis_account };
       payload[action.fieldName] = action.fieldValue;
+      console.log(payload);
       return {
         ...state,
         simedis_account: payload,
@@ -154,7 +155,6 @@ function editReducer(state = initialState.state, action) {
         status: constants.POLICIES,
       };
     case constants.REGISTRATION_TYPE:
-      console.log(action);
       return {
         ...state,
         registration_type: action.payload,

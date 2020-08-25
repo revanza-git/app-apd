@@ -10,11 +10,12 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
   const dataFormTwo = data.states.form_2;
   const personalChange = data.formOne;
 
+  console.log(data);
   const history = useHistory();
 
   const loadHandler = data.updatePageLoad;
   const states = data.states;
-  const updateData = data.simedisChange;
+  const updateData = data.simedisPaymentChange;
   const accountFormData = data.states.simedis_account;
   const updateFormAccountChange = data.simedisAccountChange;
 
@@ -88,6 +89,7 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
             const res = response.data.data;
 
             if (ok === true) {
+              console.log(res);
               updateData("bill_amount", res.billAmount);
               updateData("bill_code", res.billCode);
               updateData("registration_code", res.registrationCode);
@@ -102,6 +104,7 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
             }
           })
           .catch(function (error) {
+            console.log(error);
             personalChange(
               "form_status",
               "Mohon maaf koneksi mengalami kendala, silahkan coba lagi"

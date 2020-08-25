@@ -4,7 +4,7 @@ import { getStates } from "../../../Store/Form/selectors";
 import {
   simedisAccountChange,
   updatePageLoad,
-  simedisChange,
+  simedisPaymentChange,
 } from "../../../Store/Form/actions";
 
 const mapStateToProps = (state) => ({
@@ -14,8 +14,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   simedisAccountChange: (fieldName, fieldValue) =>
     dispatch(simedisAccountChange(fieldName, fieldValue)),
-  simedisChange: (fieldName, fieldValue) =>
-    dispatch(simedisChange(fieldName, fieldValue)),
+  simedisPaymentChange: (fieldName, fieldValue) =>
+    dispatch(simedisPaymentChange(fieldName, fieldValue)),
   updatePageLoad: (fieldValue) => dispatch(updatePageLoad(fieldValue)),
 });
 

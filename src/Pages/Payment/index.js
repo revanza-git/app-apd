@@ -27,13 +27,13 @@ class PaymentPage extends Component {
   process(param) {
     const formOne = param.form_1;
     const account = param.midtrans_account;
-    const simedis = param.simedis;
+    const dataPayment = param.simedis_payment;
 
     const url = account.api_url;
     const data = {
       transaction_details: {
-        order_id: simedis.bill_code,
-        gross_amount: simedis.bill_amount,
+        order_id: dataPayment.bill_code,
+        gross_amount: dataPayment.bill_amount,
       },
       customer_details: {
         first_name: formOne.first_name,
@@ -47,6 +47,8 @@ class PaymentPage extends Component {
         callback_url: process.env.REACT_APP_CALLBACK_FINISH_URL,
       },
     };
+
+    console.log(data);
 
     const config = {
       auth: {

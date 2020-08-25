@@ -51,7 +51,7 @@ class RegistrationPage extends Component {
   }
 
   async getGender(updateGender, updateHandler) {
-    const url = process.env.REACT_APP_GENDER;
+    const url = process.env.REACT_APP_GENDER_URL;
 
     await axios
       .get(url, "")
@@ -71,6 +71,7 @@ class RegistrationPage extends Component {
     await axios
       .get(url, "")
       .then((res) => {
+        console.log(res);
         updateRelationship(res.data.data);
       })
       .catch(function (error) {

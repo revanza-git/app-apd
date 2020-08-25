@@ -13,8 +13,8 @@ export const formTwo = (fieldName, fieldValue) => ({
   fieldValue,
 });
 
-export const simedisChange = (fieldName, fieldValue) => ({
-  type: constants.SIMEDIS_CHANGE,
+export const simedisPaymentChange = (fieldName, fieldValue) => ({
+  type: constants.SIMEDIS_PAYMENT,
   fieldName,
   fieldValue,
 });
