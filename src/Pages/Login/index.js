@@ -10,10 +10,7 @@ import "./index.scss";
 import { Card, Container, Image } from "react-bootstrap";
 
 class Login extends Component {
-  componentDidMount() {
-    console.log(this.props.location);
-    console.log(this.props.history);
-  }
+  componentDidMount() {}
 
   validation = () => {
     const simedisAccount = this.props.states.simedis_account;

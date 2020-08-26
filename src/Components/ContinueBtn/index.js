@@ -167,24 +167,22 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
         .then((res) => {
           const token = res.data.token;
           const userData = res.data.data.user;
-          const resMessage = res.data.data.message;
 
-          if (resMessage === "username or password are invalid") {
-            updateFormAccountChange("form_status", resMessage);
-            updateFormAccountChange("is_valid", false);
-            loadHandler(false);
-          } else {
-            updateFormAccountChange("username", userData.username);
-            updateFormAccountChange("token", token);
-            history.push(targetURL + "?id=" + userData.id);
-          }
+          updateFormAccountChange("username", userData.username);
+          updateFormAccountChange("token", token);
+          history.push(targetURL + "?id=" + userData.id);
         })
         .catch(function (error) {
-          console.log(error);
-          updateFormAccountChange(
-            "form_status",
-            "Mohon maaf koneksi mengalami kendala, silahkan coba lagi"
-          );
+          const resMessage = error.response.data.data.message;
+          let errMessage;
+
+          if (resMessage === "username or password are invalid") {
+            errMessage = "Email atau password tidak valid";
+          } else {
+            errMessage = resMessage;
+          }
+
+          updateFormAccountChange("form_status", errMessage);
           updateFormAccountChange("is_valid", false);
 
           loadHandler(false);
