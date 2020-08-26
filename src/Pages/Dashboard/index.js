@@ -71,8 +71,8 @@ class Dashboard extends Component {
       updateAccountData
     );
 
-    const res4 = await this.getAccountPoint(updateAccountData, loadHandler);
-    const res5 = await this.getCountries(updateAccountData, loadHandler);
+    // const res4 = await this.getAccountPoint(updateAccountData, loadHandler);
+    // const res5 = await this.getCountries(updateAccountData, loadHandler);
 
     if (res1 === true && res2 === true && res3 === true) {
       loadHandler(false);
@@ -308,7 +308,7 @@ class Dashboard extends Component {
                 </Tab.Pane>
                 <Tab.Pane className="dashboard-tab-pane" eventKey="policy">
                   <PolicyView
-                    data={states.policies}
+                    data={states}
                     reg={states.registration_type}
                     certificate={states.simedis_account.base64}
                   />

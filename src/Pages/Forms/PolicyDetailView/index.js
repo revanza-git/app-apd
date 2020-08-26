@@ -8,6 +8,9 @@ import IconDownload from "../../../assets/images/simedis/icons8-download-24.png"
 import "./index.scss";
 
 const MainInfo = ({ data, reg, certificate }) => {
+  const policies = data.policies;
+  const personal = data.form_1;
+  console.log(data);
   let plan;
   let active;
 
@@ -43,7 +46,7 @@ const MainInfo = ({ data, reg, certificate }) => {
     );
   }
 
-  if (data.active === true) {
+  if (policies.active === true) {
     active = (
       <Container className="dashboard-policy-info-status active">
         <span className="dash-policy-tagline-status-dot">{"\u2B24"}</span>
@@ -70,7 +73,7 @@ const MainInfo = ({ data, reg, certificate }) => {
                 <Container className="dashboard-policy-info-item">
                   <span className="dash-policy-tagline-label">Nomor Polis</span>
                   <span className="dash-policy-tagline-content">
-                    {data.policyNo}
+                    {policies.policyNo}
                   </span>
                 </Container>
               </li>
@@ -81,7 +84,7 @@ const MainInfo = ({ data, reg, certificate }) => {
                     Jumlah Peserta
                   </span>
                   <span className="dash-policy-tagline-content">
-                    {data.total_member}
+                    {policies.total_member}
                   </span>
                 </Container>
               </li>
@@ -91,7 +94,7 @@ const MainInfo = ({ data, reg, certificate }) => {
                     Uang Pertanggungan
                   </span>
                   <span className="dash-policy-tagline-content">
-                    {data.sumInsuredAjb}
+                    {policies.sumInsuredAjb}
                   </span>
                 </Container>
               </li>
@@ -102,7 +105,7 @@ const MainInfo = ({ data, reg, certificate }) => {
                     Nomor Tertanggung
                   </span>
                   <span className="dash-policy-tagline-content">
-                    081272984508
+                    {personal.phone_number}
                   </span>
                 </Container>
               </li>
@@ -112,7 +115,7 @@ const MainInfo = ({ data, reg, certificate }) => {
                     Masa Asuransi
                   </span>
                   <span className="dash-policy-tagline-content">
-                    {data.insurancePeriod}
+                    {policies.insurancePeriod}
                   </span>
                 </Container>
               </li>
