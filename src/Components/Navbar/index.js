@@ -5,7 +5,6 @@ import UserProfile2 from "../../../src/assets/images/simedis/icon-user-profil-3.
 import { Nav, Navbar, NavDropdown, Image } from "react-bootstrap";
 import "./index.scss";
 const navbar = ({ data }) => {
-  console.log(data);
   return (
     <Navbar className="dashboard-navbar" expand="lg" variant="light" bg="light">
       <Navbar.Collapse id="basic-navbar-nav">

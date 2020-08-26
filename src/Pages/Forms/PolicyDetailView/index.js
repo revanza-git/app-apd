@@ -80,7 +80,9 @@ const MainInfo = ({ data, reg, certificate }) => {
                   <span className="dash-policy-tagline-label">
                     Jumlah Peserta
                   </span>
-                  <span className="dash-policy-tagline-content">1</span>
+                  <span className="dash-policy-tagline-content">
+                    {data.total_member}
+                  </span>
                 </Container>
               </li>
               <li>

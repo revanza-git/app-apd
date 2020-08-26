@@ -7,10 +7,10 @@ import "./index.scss";
 const ConBtn = ({ data, targetURL, valid, label }) => {
   //depended need fix for dynamic form
   const dataFormOne = data.states.form_1;
-  const dataFormTwo = data.states.form_2;
+  // const dataFormTwo = data.states.form_2;
   const personalChange = data.formOne;
 
-  console.log(data);
+  // console.log(data);
   const history = useHistory();
 
   const loadHandler = data.updatePageLoad;

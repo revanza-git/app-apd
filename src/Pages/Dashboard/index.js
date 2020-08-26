@@ -74,10 +74,10 @@ class Dashboard extends Component {
     const res4 = await this.getAccountPoint(updateAccountData, loadHandler);
     const res5 = await this.getCountries(updateAccountData, loadHandler);
 
-    if (res1 !== true && res2 !== true && res3 !== true && res4 !== true) {
-      this.failCase(updateAccountData, loadHandler);
-    } else {
+    if (res1 === true && res2 === true && res3 === true) {
       loadHandler(false);
+    } else {
+      this.failCase(updateAccountData, loadHandler);
     }
 
     return true;
@@ -132,10 +132,17 @@ class Dashboard extends Component {
       const customerPolicy = res.data.data.customerPolicy;
       const registrationType = res.data.data.registrationType;
       const registration = res.data.data.registration;
+      const totalMember = res.data.data.totalMemberInsured;
+
+      let policies = {
+        ...customerPolicy,
+        total_member: totalMember,
+      };
 
       updateAccountData("customer_code", customerPolicy.customerCode);
       updateAccountData("registration_code", registration.registrationCode);
-      updatePolicies(customerPolicy);
+      updateAccountData("member_total", totalMember);
+      updatePolicies(policies);
       updateRegistrationType(registrationType);
 
       return true;

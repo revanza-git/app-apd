@@ -48,7 +48,7 @@ const initialState = {
       ref_no: "",
       customer_policy_code: "",
       insurance_period: "",
-      member_total: "1",
+      member_total: "",
       is_valid: null,
       form_status: "",
       base64: "",
