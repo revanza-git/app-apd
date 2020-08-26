@@ -7,10 +7,8 @@ import "./index.scss";
 const ConBtn = ({ data, targetURL, valid, label }) => {
   //depended need fix for dynamic form
   const dataFormOne = data.states.form_1;
-  // const dataFormTwo = data.states.form_2;
   const personalChange = data.formOne;
 
-  // console.log(data);
   const history = useHistory();
 
   const loadHandler = data.updatePageLoad;
@@ -56,16 +54,6 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
             phoneNo: dataFormOne.phone_number,
             customerStatus: dataFormOne.relation_code,
           },
-          // {
-          //   customerName: dataFormTwo.full_name,
-          //   ktpNO: dataFormTwo.identification_number,
-          //   dateOfBirth: dataFormTwo.birth_date,
-          //   emailAddress: dataFormTwo.email,
-          //   genderCode: dataFormTwo.gender,
-          //   occupation: dataFormTwo.occupation,
-          //   phoneNo: dataFormTwo.phone_number,
-          //   customerStatus: dataFormTwo.relation_code,
-          // },
         ],
       };
 
@@ -75,47 +63,28 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
 
   const handleClick = () => {
     if (targetURL === "/confirmation") {
-      if (dataFormOne.form_status === "ok") {
-        console.log(dataFormOne.form_status);
-        loadHandler(true);
-        const url = process.env.REACT_APP_USER_REGISTER_URL;
+      loadHandler(true);
+      const url = process.env.REACT_APP_USER_REGISTER_URL;
+      const data = GenerateData();
 
-        const data = GenerateData();
+      axios
+        .post(url, data, "")
+        .then((response) => {
+          const res = response.data.data;
 
-        axios
-          .post(url, data, "")
-          .then((response) => {
-            const ok = response.data.ok;
-            const res = response.data.data;
+          updateData("bill_amount", res.billAmount);
+          updateData("bill_code", res.billCode);
+          updateData("registration_code", res.registrationCode);
 
-            if (ok === true) {
-              console.log(res);
-              updateData("bill_amount", res.billAmount);
-              updateData("bill_code", res.billCode);
-              updateData("registration_code", res.registrationCode);
-
-              history.push(targetURL);
-            } else {
-              const errRes = response.data.message;
-
-              personalChange("is_valid", false);
-              personalChange("form_status", errRes);
-              loadHandler(false);
-            }
-          })
-          .catch(function (error) {
-            console.log(error);
-            personalChange(
-              "form_status",
-              "Mohon maaf koneksi mengalami kendala, silahkan coba lagi"
-            );
-            personalChange("is_valid", false);
-            loadHandler(false);
-          });
-      } else {
-        personalChange("is_valid", false);
-        personalChange("form_status", "form belum valid");
-      }
+          history.push(targetURL);
+        })
+        .catch(function (error) {
+          console.log(error);
+          const errMessage = error.response.data.message;
+          personalChange("form_status", errMessage);
+          personalChange("is_valid", false);
+          loadHandler(false);
+        });
     } else if (targetURL === "/activation") {
       if (accountFormData.password !== accountFormData.password_retype) {
         updateFormAccountChange(
@@ -124,7 +93,6 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
         );
         updateFormAccountChange("is_valid", false);
       } else {
-        console.log(accountFormData);
         const url = process.env.REACT_APP_USER_ACTIVATE_URL;
         const data = {
           registrationCode: accountFormData.registration_code,
@@ -133,7 +101,6 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
         };
 
         loadHandler(true);
-
         axios
           .post(url, data, "")
           .then((res) => {
@@ -144,7 +111,6 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
             history.push("/activation");
           })
           .catch(function (error) {
-            console.log(error);
             updateFormAccountChange(
               "form_status",
               "Mohon maaf koneksi mengalami kendala, silahkan coba lagi"
