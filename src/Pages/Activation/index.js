@@ -20,7 +20,7 @@ class ActivationPage extends Component {
       ignoreQueryPrefix: true,
     });
 
-    loadHandler(true);
+    // loadHandler(true);
     const url = process.env.REACT_APP_USER_VALIDATE_KEY_URL;
     const data = {
       uniqueActivationKey: query.token,

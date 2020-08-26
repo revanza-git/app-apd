@@ -113,7 +113,6 @@ function editReducer(state = initialState.state, action) {
     case constants.SIMEDIS_ACCOUNT:
       const payload = { ...state.simedis_account };
       payload[action.fieldName] = action.fieldValue;
-      console.log(payload);
       return {
         ...state,
         simedis_account: payload,

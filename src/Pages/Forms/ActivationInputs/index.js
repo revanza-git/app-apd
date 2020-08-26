@@ -9,6 +9,7 @@ const MainInfo = ({ data, changeHandler, validation, updateValidFlag }) => {
   return (
     <div>
       <Form className="activation-inputs">
+        <span className="username">{dataForm.username}</span>
         <TextBox
           Data={dataForm}
           labelCol="2"
@@ -33,6 +34,9 @@ const MainInfo = ({ data, changeHandler, validation, updateValidFlag }) => {
           Value={dataForm.password_retype}
           HandleChange={changeHandler}
         />
+        <span className="instruction">
+          Masukan kata sandi berupa 8 karakter huruf dan angka
+        </span>
         <Alerts data={dataForm} valid={dataForm.is_valid} />
       </Form>
     </div>
