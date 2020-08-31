@@ -21,7 +21,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 100vh+0.1vh;
+  margin-top: -0.2rem;
 
   .dashboard-loading-card {
     display: flex;
