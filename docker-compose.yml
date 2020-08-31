@@ -11,5 +11,5 @@ services:
       #APP-SIMEDIS
       - 8888:8888
     volumes:
-      - ./:/var/www/html/:rw
+      - ./:/data/app-simedis/:rw
       - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
