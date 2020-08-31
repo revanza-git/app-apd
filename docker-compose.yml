@@ -9,7 +9,7 @@ services:
     network_mode: bridge
     ports:
       #APP-SIMEDIS
-      - 8888:8888
+      - 20003:20003
     volumes:
       - ./:/data/app-simedis/:rw
       - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
