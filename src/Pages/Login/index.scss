@@ -1,7 +1,8 @@
 .main-loading-login {
   background-image: url("../../assets/images/simedis/Banner-color_gradient-01.png");
   background-size: cover;
-  height: 100vh;
+  height: 100vh + 0.2vh;
+  margin-top: -0.2rem;
   display: flex;
   flex-flow: row wrap;
   align-items: center;
