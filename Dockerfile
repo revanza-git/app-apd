@@ -6,8 +6,8 @@ ENV PATH /node_modules/.bin:$PATH
 COPY ./package.json /var/www/html
 RUN yarn config set "strict-ssl" false
 COPY ./ /var/www/html
-# RUN yarn
-# RUN yarn build
+RUN yarn
+RUN yarn build
 
 #stage2 - build server,final image and copy react build.
 FROM nginx:1.9-alpine
