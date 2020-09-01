@@ -20,6 +20,8 @@ class ActivationPage extends Component {
       ignoreQueryPrefix: true,
     });
 
+    loadHandler(true);
+
     this.processData(query.token, loadHandler, changeHandler);
   }
 
