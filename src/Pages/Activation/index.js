@@ -20,39 +20,48 @@ class ActivationPage extends Component {
       ignoreQueryPrefix: true,
     });
 
-    // loadHandler(true);
-    const url = process.env.REACT_APP_USER_VALIDATE_KEY_URL;
-    const data = {
-      uniqueActivationKey: query.token,
-    };
-
-    axios
-      .post(url, data, "")
-      .then((i) => {
-        console.log(i);
-        const res = i.data.data;
-        console.log(res.registrationCode);
-        const resCustomer = res.customer;
-
-        changeHandler("customer_code", resCustomer.customerCode);
-        changeHandler("customer_name", resCustomer.customerName);
-        changeHandler("customer_status", resCustomer.customerStatus);
-        changeHandler("username", resCustomer.emailAddress);
-        changeHandler("registration_code", res.registrationCode);
-
-        loadHandler(false);
-      })
-      .catch(function (error) {
-        changeHandler(
-          "form_status",
-          "Mohon maaf koneksi mengalami kendala, silahkan coba lagi"
-        );
-        console.log(error);
-        changeHandler("is_valid", false);
-        loadHandler(false);
-      });
+    this.processData(query.token, loadHandler, changeHandler);
   }
 
+  async process(token, loadHandler, changeHandler) {
+    await this.activationProcess(token, changeHandler);
+    loadHandler(false);
+  }
+
+  async activationProcess(token, changeHandler) {
+    try {
+      const url = process.env.REACT_APP_USER_VALIDATE_KEY_URL;
+      const data = {
+        uniqueActivationKey: token,
+      };
+
+      await axios
+        .post(url, data, "")
+        .then((i) => {
+          const res = i.data.data;
+          const resCustomer = res.customer;
+
+          changeHandler("customer_code", resCustomer.customerCode);
+          changeHandler("customer_name", resCustomer.customerName);
+          changeHandler("customer_status", resCustomer.customerStatus);
+          changeHandler("username", resCustomer.emailAddress);
+          changeHandler("registration_code", res.registrationCode);
+
+          return true;
+        })
+        .catch(function (error) {
+          changeHandler(
+            "form_status",
+            "Mohon maaf koneksi mengalami kendala, silahkan coba lagi"
+          );
+          console.log(error);
+          changeHandler("is_valid", false);
+          return false;
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  }
   validation = (param) => {
     const simedisAccount = this.props.states.simedis_account;
     const updateFormStatus = this.props.simedisAccountChange;
