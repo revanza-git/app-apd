@@ -23,7 +23,7 @@ class ActivationPage extends Component {
     this.processData(query.token, loadHandler, changeHandler);
   }
 
-  async process(token, loadHandler, changeHandler) {
+  async processData(token, loadHandler, changeHandler) {
     await this.activationProcess(token, changeHandler);
     loadHandler(false);
   }
