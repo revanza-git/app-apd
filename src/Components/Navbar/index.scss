@@ -1,0 +1,29 @@
+.dashboard-content-profile {
+  img {
+    width: 2rem;
+  }
+  .dashboard-content-tagline {
+    font-weight: 900;
+    margin-left: 0.5rem;
+    // display: flex;
+    // flex-flow: row wrap;
+    align-items: center;
+    color: black;
+  }
+}
+
+.dashboard-burger-menu-image {
+  height: 2rem;
+}
+
+.dashboard-navbar-dropdown {
+  margin-right: 5rem;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.dropdown-menu {
+  min-width: 0rem;
+}

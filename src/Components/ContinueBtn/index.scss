@@ -1,0 +1,18 @@
+.btn-continue {
+  background-color: #009489 !important;
+  &:hover {
+    background-color: #007671 !important;
+  }
+
+  font-size: 1.2em !important;
+  height: 3rem;
+
+  //   @media (max-width: 800px) {
+  //     font-size: 3vw !important;
+  //     height: 5vh;
+  //   }
+  //   @media (max-width: 600px) {
+  //     font-size: 4vw !important;
+  //     height: 5vh;
+  //   }
+}

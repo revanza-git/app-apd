@@ -1,0 +1,74 @@
+@mixin button($background, $border) {
+  line-height: 1;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  vertical-align: middle;
+  display: inline-block;
+  color: #fff;
+  font-weight: 650;
+  margin: 0 auto;
+  padding: 0.75em 1.5em;
+  background: $background;
+  border: $border;
+  max-width: 200px;
+  height: auto;
+  background-size: 100% 100%,
+    calc(100% + var(--border-width) + var(--border-width))
+      calc(100% + var(--border-width) + var(--border-width));
+  border-radius: 1.5em;
+
+  &:hover {
+    background: gray;
+  }
+}
+
+div.intro {
+  .jumbotron {
+    background: url(./Images/homepage-Banner-01.jpg) no-repeat center center;
+    background-size: cover;
+    min-height: 90vh;
+
+    .intro-content {
+      min-height: 70vh;
+      border: dotted;
+    }
+
+    .intro-tagline-content {
+      border: dotted;
+      .learn-more {
+        @include button(
+          linear-gradient(60deg, #74bf44, #ccdb29),
+          1.5px transparent
+        );
+      }
+    }
+
+    .intro-tagline-wording {
+      max-width: 60vh;
+      margin-left: 0;
+    }
+
+    .login {
+      @include button(transparent, 1.5px solid white);
+    }
+  }
+
+  h1 {
+    color: white;
+    font-family: "Roboto";
+  }
+
+  h1,
+  button {
+    font-family: "Roboto-bold", sans-serif;
+  }
+
+  img {
+    height: auto !important;
+    max-width: 150px;
+  }
+
+  .upper {
+    padding-bottom: 10em;
+  }
+}

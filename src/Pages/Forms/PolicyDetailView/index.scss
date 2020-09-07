@@ -1,0 +1,121 @@
+.dashboard-policy-container {
+  transition: all 0.5s ease-out;
+
+  @media (max-width: 992px) {
+    width: 100vw;
+  }
+  .dash-policy-top-tagline {
+    font-size: 1.2em;
+    font-weight: lighter;
+    margin-left: 1rem;
+  }
+  .dashboard-policy-card {
+    transition: all 0.5s ease-out;
+    margin-top: 1rem;
+    display: flex;
+    flex-flow: row wrap;
+    align-self: center;
+    border-radius: 1.5em;
+    padding: 1rem;
+
+    .dashboard-policy-info {
+      width: 50rem;
+
+      ul {
+        display: flex;
+        flex-flow: row wrap;
+        padding-left: 0;
+
+        li.dashboard-policy-info-plan-item {
+          display: flex;
+          flex-flow: row wrap;
+          img {
+            width: 3.5rem;
+          }
+
+          .dashboard-policy-info-plan-tagline {
+            display: flex;
+            flex-flow: column wrap;
+            width: 70%;
+
+            .dash-policy-tagline-content-plan {
+              font-weight: bolder;
+              font-size: 1.3em;
+              color: black;
+            }
+          }
+          @media (max-width: 992px) {
+            img {
+              width: 2.5rem;
+            }
+            .dashboard-policy-info-plan-tagline {
+              width: 70%;
+              .dash-policy-tagline-content-plan {
+                font-size: 1em;
+              }
+            }
+          }
+        }
+
+        li {
+          list-style: none;
+
+          flex: 1 0 25%;
+          margin-top: 1rem;
+
+          @media (max-width: 992px) {
+            flex-basis: 40%;
+          }
+
+          .dashboard-policy-info-item {
+            display: flex;
+            flex-flow: column wrap;
+
+            .dash-policy-tagline-content {
+              font-weight: bolder;
+              font-size: 0.9em;
+              color: black;
+            }
+          }
+
+          .dash-policy-tagline-label {
+            font-weight: normal;
+            font-size: 0.8em;
+          }
+        }
+
+        .dashboard-policy-info-status {
+          &.active {
+            span {
+              color: #8dd929;
+            }
+          }
+
+          &.notactive {
+            span {
+              color: red;
+            }
+          }
+
+          margin-top: 0.8rem;
+          .dash-policy-tagline-status-desc {
+            margin-left: 0.5em;
+          }
+        }
+
+        .dashboard-policy-certiticate {
+          img {
+            width: 1rem;
+          }
+          a {
+            color: #009489;
+          }
+          margin-top: 0.8rem;
+          .dash-policy-tagline-certificate {
+            margin-left: 0.5em;
+          }
+        }
+      }
+    }
+  }
+}

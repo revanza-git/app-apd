@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+.dashboard-footer {
+  background-color: rgba(black, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row wrap;
+  color: white;
+  width: 100%;
+
+  .dashboard-footer-1 {
+    font-size: 0.8em;
+    margin-top: 1rem;
+    width: 30%;
+    font-weight: lighter;
+  }
+
+  .dashboard-footer-2 {
+    font-size: 0.8em;
+    margin-top: 1rem;
+    width: 20%;
+  }
+
+  .dashboard-logo-ojk {
+    height: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .dashboard-footer-3 {
+    display: flex;
+    flex-flow: row wrap;
+    margin-left: 1rem;
+    width: 30%;
+    margin-top: 1rem;
+    font-size: 0.8em;
+  }
+
+  @media (max-width: 992px) {
+    flex-flow: row wrap;
+    justify-content: unset;
+    width: 100vw !important;
+    min-height: 12rem;
+    .dashboard-footer-1,
+    .dashboard-footer-2 {
+      margin-left: 1rem;
+    }
+
+    .dashboard-footer-2 {
+      width: 50%;
+    }
+
+    .dashboard-logo-ojk {
+      width: 8rem;
+      margin-bottom: 0;
+    }
+    .dashboard-footer-3 {
+      width: 20rem;
+    }
+  }
+}
