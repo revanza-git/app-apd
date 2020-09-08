@@ -11,7 +11,7 @@ const ActivationSuccess = ({ handler }) => {
   useEffect(() => {
     setTimeout(() => {
       handler("is_valid", null);
-      window.location.assign("https://app-apd.herokuapp.com/login");
+      window.location.assign(process.env.REACT_APP_ACTIVATION_FINISH_URL);
     }, 5000);
   });
 

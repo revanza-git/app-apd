@@ -19,26 +19,63 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
+          <Route exact path={process.env.PUBLIC_URL}>
+            {/* <Redirect to="/landing" /> */}
+            <Redirect to={process.env.PUBLIC_URL + "/welcome"} />
+          </Route>
           <Route exact path="/">
             {/* <Redirect to="/landing" /> */}
-            <Redirect to="/welcome" />
+            <Redirect to={process.env.PUBLIC_URL + "/welcome"} />
           </Route>
           {/* <Route exact path="/registration">
             <Redirect to="/registration?type=individu" />
           </Route> */}
-          <Route path="/dashboard" component={DashboardPage} />
-          <Route exact path="/activation" component={ActivationPage} />
+          <Route
+            path={process.env.PUBLIC_URL + "/dashboard"}
+            component={DashboardPage}
+          />
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + "/activation"}
+            component={ActivationPage}
+          />
 
-          <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/confirmation" component={ConfirmationPage} />
-          <Route exact path="/welcome" component={LandingPage} />
-          <Route exact path="/registration" component={RegistrationPage} />
-          <Route exact path="/payment" component={PaymentPage} />
-          <Route exact path="/payment/notification" />
-          <Route exact path="/payment/finish" component={FinishedPage} />
-          <Route exact path="/payment/unfinish" />
-          <Route exact path="/payment/error" />
-          <Route exact path="/dashboard" />
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + "/login"}
+            component={LoginPage}
+          />
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + "/confirmation"}
+            component={ConfirmationPage}
+          />
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + "/welcome"}
+            component={LandingPage}
+          />
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + "/registration"}
+            component={RegistrationPage}
+          />
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + "/payment"}
+            component={PaymentPage}
+          />
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + "/payment/notification"}
+          />
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + "/payment/finish"}
+            component={FinishedPage}
+          />
+          <Route exact path={process.env.PUBLIC_URL + "/payment/unfinish"} />
+          <Route exact path={process.env.PUBLIC_URL + "/payment/error"} />
         </Router>
       </Provider>
     );

@@ -19,6 +19,7 @@ class RegistrationPage extends Component {
     const updateRegType = this.props.updateRegType;
     const updateHandler = this.props.formOne;
     const updateRelationship = this.props.updateRelationship;
+    const updateAccount = this.props.simedisAccountChange;
 
     //parsing URL
     const query = qs.parse(this.props.location.search, {
@@ -26,7 +27,6 @@ class RegistrationPage extends Component {
     });
 
     loadHandler(true);
-    console.log(query.type);
     updateFormType(query.type);
 
     if (query.type === "individu") {
@@ -37,17 +37,55 @@ class RegistrationPage extends Component {
       updateRegType("R2007003");
     }
 
-    (async () => {
-      try {
-        await this.getGender(updateGender, updateHandler);
-        await this.getRelationship(updateRelationship, updateHandler);
-        loadHandler(false);
-      } catch (err) {
-        updateHandler("form_status", "Koneksi bermasalah");
-        updateHandler("is_valid", false);
-        console.log(err);
-      }
-    })();
+    this.processData(
+      updateGender,
+      updateRelationship,
+      updateHandler,
+      loadHandler,
+      updateAccount
+    );
+  }
+
+  async processData(
+    updateGender,
+    updateRelationship,
+    updateHandler,
+    loadHandler,
+    updateAccount
+  ) {
+    const res1 = await this.getGender(updateGender, updateHandler);
+    const res2 = await this.getRelationship(updateRelationship, updateHandler);
+    const res3 = await this.getToken(updateAccount, updateHandler);
+
+    if (res1 === true && res2 === true && res3 === true) {
+      loadHandler(false);
+    } else {
+      updateHandler("form_status", "Koneksi bermasalah");
+      updateHandler("is_valid", false);
+    }
+  }
+
+  async getToken(updateAccount, updateHandler) {
+    const url = process.env.REACT_APP_LOGIN_URL;
+    //Hardcode untuk token
+    const data = {
+      username: this.props.states.simedis_account.username_token,
+      password: this.props.states.simedis_account.password_token,
+    };
+
+    await axios
+      .post(url, data, "")
+      .then((res) => {
+        const token = res.data.token;
+        const userData = res.data.data.user;
+
+        updateAccount("username", userData.username);
+        updateAccount("token", token);
+      })
+      .catch(function (error) {
+        return false;
+      });
+    return true;
   }
 
   async getGender(updateGender, updateHandler) {
@@ -59,10 +97,9 @@ class RegistrationPage extends Component {
         updateGender(res.data.data);
       })
       .catch(function (error) {
-        updateHandler("form_status", "Koneksi bermasalah");
-        updateHandler("is_valid", false);
-        console.log(error);
+        return false;
       });
+    return true;
   }
 
   async getRelationship(updateRelationship, updateHandler) {
@@ -71,14 +108,12 @@ class RegistrationPage extends Component {
     await axios
       .get(url, "")
       .then((res) => {
-        console.log(res);
         updateRelationship(res.data.data);
       })
       .catch(function (error) {
-        updateHandler("form_status", "Koneksi bermasalah");
-        updateHandler("is_valid", false);
-        console.log(error);
+        return false;
       });
+    return true;
   }
 
   render() {
@@ -151,6 +186,7 @@ class RegistrationPage extends Component {
 
     return (
       <div>
+        {console.log(this.props.states.simedis_account)}
         <Card>
           <Card.Header>Registrasi</Card.Header>
           <Card.Body>{card}</Card.Body>

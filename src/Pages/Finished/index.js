@@ -18,6 +18,7 @@ class FinishedPayment extends Component {
       ignoreQueryPrefix: true,
     });
     const loadHandler = this.props.updatePageLoad;
+
     loadHandler(true);
 
     this.processData(
@@ -34,6 +35,7 @@ class FinishedPayment extends Component {
     updateAccountHandler,
     loadHandler
   ) {
+    const res3 = await this.getToken(updateAccountHandler);
     const res1 = await this.getTransactionDetail(
       orderId,
       updatePaymentHandler,
@@ -46,13 +48,36 @@ class FinishedPayment extends Component {
       loadHandler
     );
 
-    const res3 = await this.getCertificate(updateAccountHandler, loadHandler);
+    const res4 = await this.getCertificate(updateAccountHandler, loadHandler);
 
-    if (res1 === true && res2 === true) {
+    if (res4 === true && res1 === true && res2 === true) {
       loadHandler(false);
     } else {
       this.failCase(updateAccountHandler, loadHandler);
     }
+  }
+
+  async getToken(updateAccount) {
+    const url = process.env.REACT_APP_LOGIN_URL;
+    //Hardcode untuk token
+    const data = {
+      username: this.props.states.simedis_account.username_token,
+      password: this.props.states.simedis_account.password_token,
+    };
+
+    await axios
+      .post(url, data, "")
+      .then((res) => {
+        const token = res.data.token;
+        const userData = res.data.data.user;
+
+        updateAccount("username", userData.username);
+        updateAccount("token", token);
+      })
+      .catch(function (error) {
+        return false;
+      });
+    return true;
   }
 
   async getTransactionDetail(
@@ -103,6 +128,7 @@ class FinishedPayment extends Component {
   }
 
   async registerPayment(updateAccountHandler, loadHandler) {
+    const accountData = this.props.states.simedis_account;
     const dataPayment = this.props.states.simedis_payment;
     try {
       const url = process.env.REACT_APP_PAYMENT_URL;
@@ -118,7 +144,13 @@ class FinishedPayment extends Component {
         usedReferralCode: "",
       };
 
-      const res = await axios.post(url, data, "");
+      const config = {
+        headers: {
+          Authorization: accountData.token,
+        },
+      };
+
+      const res = await axios.post(url, data, config);
 
       if (!res.data.ok) {
         this.failCase(updateAccountHandler, loadHandler);

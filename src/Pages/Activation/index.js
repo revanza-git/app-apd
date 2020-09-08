@@ -19,38 +19,76 @@ class ActivationPage extends Component {
     const query = qs.parse(this.props.location.search, {
       ignoreQueryPrefix: true,
     });
+    const token = query.token;
 
-    // loadHandler(true);
-    const url = process.env.REACT_APP_USER_VALIDATE_KEY_URL;
+    loadHandler(true);
+    this.processData(token, changeHandler, loadHandler);
+  }
+
+  async processData(token, changeHandler, loadHandler) {
+    const res2 = await this.getToken(changeHandler);
+    const res1 = await this.activateAccount(token, changeHandler);
+
+    if (res1 === true && res2 === true) {
+      loadHandler(false);
+    } else {
+      this.failCase(changeHandler, loadHandler);
+    }
+  }
+
+  async getToken(updateAccount) {
+    const url = process.env.REACT_APP_LOGIN_URL;
+    //Hardcode untuk token
     const data = {
-      uniqueActivationKey: query.token,
+      username: this.props.states.simedis_account.username_token,
+      password: this.props.states.simedis_account.password_token,
     };
 
-    axios
+    await axios
       .post(url, data, "")
-      .then((i) => {
-        console.log(i);
-        const res = i.data.data;
-        console.log(res.registrationCode);
-        const resCustomer = res.customer;
+      .then((res) => {
+        const token = res.data.token;
 
-        changeHandler("customer_code", resCustomer.customerCode);
-        changeHandler("customer_name", resCustomer.customerName);
-        changeHandler("customer_status", resCustomer.customerStatus);
-        changeHandler("username", resCustomer.emailAddress);
-        changeHandler("registration_code", res.registrationCode);
-
-        loadHandler(false);
+        updateAccount("token", token);
       })
       .catch(function (error) {
-        changeHandler(
-          "form_status",
-          "Mohon maaf koneksi mengalami kendala, silahkan coba lagi"
-        );
-        console.log(error);
-        changeHandler("is_valid", false);
-        loadHandler(false);
+        return false;
       });
+    return true;
+  }
+
+  async activateAccount(token, changeHandler) {
+    const url = process.env.REACT_APP_USER_VALIDATE_KEY_URL;
+    const data = {
+      uniqueActivationKey: token,
+    };
+    const config = {
+      headers: {
+        Authorization: this.props.states.simedis_account.token,
+      },
+    };
+    await axios
+      .post(url, data, config)
+      .then((i) => {
+        const res = i.data.data;
+
+        changeHandler("account_code", res.accountCode);
+        changeHandler("username", res.emailAddress);
+      })
+      .catch(function (error) {
+        return false;
+      });
+
+    return true;
+  }
+
+  failCase(updateAccountHandler, loadHandler) {
+    updateAccountHandler("is_valid", false);
+    updateAccountHandler(
+      "form_status",
+      "Mohon maaf koneksi mengalami kendala, silahkan coba lagi"
+    );
+    loadHandler(false);
   }
 
   validation = (param) => {

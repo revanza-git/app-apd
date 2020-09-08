@@ -66,9 +66,14 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
       loadHandler(true);
       const url = process.env.REACT_APP_USER_REGISTER_URL;
       const data = GenerateData();
+      const config = {
+        headers: {
+          Authorization: accountFormData.token,
+        },
+      };
 
       axios
-        .post(url, data, "")
+        .post(url, data, config)
         .then((response) => {
           const res = response.data.data;
 
@@ -76,7 +81,7 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
           updateData("bill_code", res.billCode);
           updateData("registration_code", res.registrationCode);
 
-          history.push(targetURL);
+          history.push(process.env.PUBLIC_URL + targetURL);
         })
         .catch(function (error) {
           console.log(error);
@@ -95,20 +100,25 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
       } else {
         const url = process.env.REACT_APP_USER_ACTIVATE_URL;
         const data = {
-          registrationCode: accountFormData.registration_code,
+          accountCode: accountFormData.account_code,
           username: accountFormData.username,
           password: accountFormData.password,
+        };
+        const config = {
+          headers: {
+            Authorization: accountFormData.token,
+          },
         };
 
         loadHandler(true);
         axios
-          .post(url, data, "")
+          .post(url, data, config)
           .then((res) => {
             updateFormAccountChange("active", true);
             updateFormAccountChange("form_status", "ok");
 
             loadHandler(false);
-            history.push("/activation");
+            history.push(process.env.PUBLIC_URL + "/activation");
           })
           .catch(function (error) {
             updateFormAccountChange(
@@ -136,7 +146,9 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
 
           updateFormAccountChange("username", userData.username);
           updateFormAccountChange("token", token);
-          history.push(targetURL + "?id=" + userData.id);
+          history.push(
+            process.env.PUBLIC_URL + targetURL + "?id=" + userData.id
+          );
         })
         .catch(function (error) {
           const resMessage = error.response.data.data.message;
@@ -154,7 +166,7 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
           loadHandler(false);
         });
     } else if (targetURL === "/payment") {
-      history.push(targetURL);
+      history.push(process.env.PUBLIC_URL + targetURL);
     } else {
       console.log("Halaman Belum Terdaftar");
     }

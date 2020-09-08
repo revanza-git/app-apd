@@ -7,6 +7,7 @@ import {
   updateFormType,
   updateRegType,
   simedisPaymentChange,
+  simedisAccountChange,
   updatePageLoad,
   updateGender,
   updateRelationship,
@@ -21,6 +22,8 @@ const mapDispatchToProps = (dispatch) => ({
   formTwo: (fieldName, fieldValue) => dispatch(formTwo(fieldName, fieldValue)),
   simedisPaymentChange: (fieldName, fieldValue) =>
     dispatch(simedisPaymentChange(fieldName, fieldValue)),
+  simedisAccountChange: (fieldName, fieldValue) =>
+    dispatch(simedisAccountChange(fieldName, fieldValue)),
   updateFormType: (fieldValue) => dispatch(updateFormType(fieldValue)),
   updateRegType: (fieldValue) => dispatch(updateRegType(fieldValue)),
   updatePageLoad: (fieldValue) => dispatch(updatePageLoad(fieldValue)),

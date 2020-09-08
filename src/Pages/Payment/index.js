@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Loader from "react-loader-spinner";
-
+import axios from "axios";
 import { Card } from "react-bootstrap";
 
 class PaymentPage extends Component {
@@ -13,22 +13,15 @@ class PaymentPage extends Component {
     this.process(this.props.states);
   }
 
-  // randomizer(length) {
-  //   var result = "";
-  //   var characters =
-  //     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  //   var charactersLength = characters.length;
-  //   for (var i = 0; i < length; i++) {
-  //     result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  //   }
-  //   return result;
-  // }
-
   process(param) {
     const formOne = param.form_1;
     const account = param.midtrans_account;
     const dataPayment = param.simedis_payment;
 
+    const res1 = this.callMidtrans(account, dataPayment, formOne);
+  }
+
+  async callMidtrans(account, dataPayment, formOne) {
     const url = account.api_url;
     const data = {
       transaction_details: {
@@ -48,8 +41,6 @@ class PaymentPage extends Component {
       },
     };
 
-    console.log(data);
-
     const config = {
       auth: {
         username: account.server_key,
@@ -62,17 +53,18 @@ class PaymentPage extends Component {
       },
     };
 
-    (async () => {
-      try {
-        const response = await this.props.postApi(url, data, config);
+    await axios
+      .post(url, data, config)
+      .then((res) => {
         this.setState({
-          redirect_url: response.data.redirect_url,
-          token: response.data.token,
+          redirect_url: res.data.redirect_url,
+          token: res.data.token,
         });
-      } catch (err) {
-        console.log(err);
-      }
-    })();
+      })
+      .catch(function (error) {
+        return false;
+      });
+    return true;
   }
 
   render() {

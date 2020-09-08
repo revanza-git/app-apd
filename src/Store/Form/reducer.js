@@ -31,6 +31,7 @@ const initialState = {
       form_status: "",
     },
     simedis_account: {
+      account_code: "",
       registration_code: "",
       username: "",
       password: "",
@@ -52,6 +53,8 @@ const initialState = {
       is_valid: null,
       form_status: "",
       base64: "",
+      username_token: "simedis",
+      password_token: "sYs-simedis-20!",
     },
     gender: [],
     relationship: [],

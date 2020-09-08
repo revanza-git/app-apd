@@ -6,7 +6,7 @@ import { useHistory, Link } from "react-router-dom";
 const PricingBox = ({ pricings }) => {
   const history = useHistory();
   const handleClick = (redirect) => {
-    history.push("/registration?type=" + redirect);
+    history.push(process.env.PUBLIC_URL + "/registration?type=" + redirect);
     window.location.reload();
   };
 

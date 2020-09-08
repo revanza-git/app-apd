@@ -74,8 +74,8 @@ export const postApi = (url, data, config) => {
         return response;
       })
       .catch(function (error) {
-        return error;
+        return false;
       });
-    return res;
+    return true;
   };
 };
