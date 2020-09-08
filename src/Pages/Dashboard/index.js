@@ -24,7 +24,6 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
     const updateAccountData = this.props.simedisAccountChange;
     const updatePolicies = this.props.updatePolicies;
     const updateRegistrationType = this.props.updateRegistrationType;
@@ -126,13 +125,14 @@ class Dashboard extends Component {
 
       const res = await axios.post(url, data, config);
       console.log(res);
+
       if (!res.data.ok) {
         this.failCase(updateAccountData, loadHandler);
       }
-      const customerPolicy = res.data.data.customerPolicy;
-      const registrationType = res.data.data.registrationType;
-      const registration = res.data.data.registration;
-      const totalMember = res.data.data.totalMemberInsured;
+      const resData = res.data.data[0];
+      const customerPolicy = resData.customerPolicy;
+      const registrationType = resData.registrationType;
+      const totalMember = resData.totalMemberInsured;
 
       let policies = {
         ...customerPolicy,
@@ -140,7 +140,7 @@ class Dashboard extends Component {
       };
 
       updateAccountData("customer_code", customerPolicy.customerCode);
-      updateAccountData("registration_code", registration.registrationCode);
+      updateAccountData("registration_code", resData.registrationCode);
       updateAccountData("member_total", totalMember);
       updatePolicies(policies);
       updateRegistrationType(registrationType);
