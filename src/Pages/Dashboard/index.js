@@ -242,7 +242,7 @@ class Dashboard extends Component {
       "Mohon maaf koneksi mengalami kendala, silahkan coba lagi"
     );
 
-    this.props.history.push(process.env.PUBLIC_URL + "/login");
+    this.props.history.push(process.env.REACT_APP_SIMEDIS_PATH + "/login");
   }
 
   handleMenuClick() {
@@ -250,7 +250,7 @@ class Dashboard extends Component {
   }
 
   handleLogout() {
-    this.props.history.push(process.env.PUBLIC_URL + "/login");
+    this.props.history.push(process.env.REACT_APP_SIMEDIS_PATH + "/login");
   }
 
   render() {
