@@ -115,7 +115,6 @@ class Dashboard extends Component {
       const url = process.env.REACT_APP_ACCOUNT_POLICY_URL;
       const data = {
         emailAddress: accountData.username,
-        // emailAddress: "revanza-27@yopmail.com",
       };
       const config = {
         headers: {

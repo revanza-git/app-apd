@@ -50,7 +50,7 @@ class FinishedPayment extends Component {
 
     const res4 = await this.getCertificate(updateAccountHandler, loadHandler);
 
-    if (res4 === true && res1 === true && res2 === true) {
+    if (res3 === true && res4 === true && res1 === true && res2 === true) {
       loadHandler(false);
     } else {
       this.failCase(updateAccountHandler, loadHandler);
