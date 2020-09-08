@@ -18,13 +18,17 @@ class Routing extends Component {
     return (
       <div>
         <Route exact path="/">
-          <Redirect to="/welcome" />
+          <Redirect to={process.env.REACT_APP_SIMEDIS_PATH + "/welcome"} />
+        </Route>
+
+        <Route exact path={process.env.REACT_APP_SIMEDIS_PATH}>
+          <Redirect to={process.env.REACT_APP_SIMEDIS_PATH + "/welcome"} />
         </Route>
 
         <Route path="/activation">
           <Redirect
             to={
-              process.env.PUBLIC_URL +
+              process.env.REACT_APP_SIMEDIS_PATH +
               "/activation" +
               this.props.location.search
             }
@@ -33,39 +37,56 @@ class Routing extends Component {
 
         <Route
           exact
-          path={process.env.PUBLIC_URL + "/dashboard"}
+          path={process.env.REACT_APP_SIMEDIS_PATH + "/dashboard"}
           component={DashboardPage}
         />
         <Route
           exact
-          path={process.env.PUBLIC_URL + "/activation"}
+          path={process.env.REACT_APP_SIMEDIS_PATH + "/activation"}
           component={ActivationPage}
         />
-        <Route exact path="/login" component={LoginPage} />
         <Route
           exact
-          path={process.env.PUBLIC_URL + "/confirmation"}
+          path={process.env.REACT_APP_SIMEDIS_PATH + "/login"}
+          component={LoginPage}
+        />
+        <Route
+          exact
+          path={process.env.REACT_APP_SIMEDIS_PATH + "/confirmation"}
           component={ConfirmationPage}
         />
-        <Route exact path="/welcome" component={LandingPage} />
         <Route
           exact
-          path={process.env.PUBLIC_URL + "/registration"}
+          path={process.env.REACT_APP_SIMEDIS_PATH + "/welcome"}
+          component={LandingPage}
+        />
+        <Route
+          exact
+          path={process.env.REACT_APP_SIMEDIS_PATH + "/registration"}
           component={RegistrationPage}
         />
         <Route
           exact
-          path={process.env.PUBLIC_URL + "/payment"}
+          path={process.env.REACT_APP_SIMEDIS_PATH + "/payment"}
           component={PaymentPage}
         />
-        <Route exact path={process.env.PUBLIC_URL + "/payment/notification"} />
         <Route
           exact
-          path={process.env.PUBLIC_URL + "/payment/finish"}
+          path={process.env.REACT_APP_SIMEDIS_PATH + "/payment/notification"}
+        />
+        <Route
+          exact
+          path={process.env.REACT_APP_SIMEDIS_PATH + "/payment/finish"}
           component={FinishedPage}
         />
-        <Route exact path={process.env.PUBLIC_URL + "/payment/unfinish"} />
-        <Route exact path={process.env.PUBLIC_URL + "/payment/error"} />
+        <Route
+          exact
+          path={process.env.REACT_APP_SIMEDIS_PATH + "/payment/unfinish"}
+        />
+        <Route
+          exact
+          path={process.env.REACT_APP_SIMEDIS_PATH + "/payment/error"}
+        />
       </div>
     );
   }
