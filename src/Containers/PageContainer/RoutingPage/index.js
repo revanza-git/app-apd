@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Route from "../../../Pages/Route";
+import Route from "../../../Pages/Routing";
 import { getStates } from "../../../Store/Form/selectors";
 import {
   formOne,

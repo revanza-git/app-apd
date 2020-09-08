@@ -18,16 +18,7 @@ class Routing extends Component {
     return (
       <div>
         <Route exact path="/">
-          <Redirect to={process.env.PUBLIC_URL + "/welcome"} />
-          <Route path="activation">
-            <Redirect
-              to={
-                process.env.PUBLIC_URL +
-                "/activation" +
-                this.props.location.search
-              }
-            />
-          </Route>
+          <Redirect to="/welcome" />
         </Route>
 
         <Route path="/activation">
@@ -50,21 +41,13 @@ class Routing extends Component {
           path={process.env.PUBLIC_URL + "/activation"}
           component={ActivationPage}
         />
-        <Route
-          exact
-          path={process.env.PUBLIC_URL + "/login"}
-          component={LoginPage}
-        />
+        <Route exact path="/login" component={LoginPage} />
         <Route
           exact
           path={process.env.PUBLIC_URL + "/confirmation"}
           component={ConfirmationPage}
         />
-        <Route
-          exact
-          path={process.env.PUBLIC_URL + "/welcome"}
-          component={LandingPage}
-        />
+        <Route exact path="/welcome" component={LandingPage} />
         <Route
           exact
           path={process.env.PUBLIC_URL + "/registration"}
