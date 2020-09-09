@@ -47,6 +47,7 @@ const PricingBox = ({ pricings }) => {
                 <Link
                   className="btn btn-primary"
                   onClick={() => handleClick(pricing.redirect)}
+                  to=""
                 >
                   Beli Plan
                 </Link>

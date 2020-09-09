@@ -10,11 +10,10 @@ const store = configureStore();
 
 class App extends Component {
   render() {
-    console.log(process.env.REACT_APP_SIMEDIS_PATH);
     return (
       <Provider store={store}>
         <Router>
-          <Route path="/" component={RoutingPage} />
+          <Route component={RoutingPage} />
         </Router>
       </Provider>
     );
