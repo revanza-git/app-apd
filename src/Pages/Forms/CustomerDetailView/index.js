@@ -4,9 +4,10 @@ import UserProfile1 from "../../../assets/images/simedis/icon-user-profil-1.svg"
 import "./index.scss";
 
 const MainInfo = ({ data }) => {
+  const dataProfile = data.form_1;
   let gender;
 
-  if (data.gender === "P") {
+  if (dataProfile.gender === "P") {
     gender = "Pria";
   } else {
     gender = "Wanita";
@@ -25,7 +26,7 @@ const MainInfo = ({ data }) => {
                   Pemegang Polis
                 </span>
                 <span className="dash-customer-tagline-content">
-                  {data.first_name}
+                  {dataProfile.first_name}
                 </span>
               </Container>
             </li>
@@ -36,7 +37,7 @@ const MainInfo = ({ data }) => {
                   Tanggal Lahir
                 </span>
                 <span className="dash-customer-tagline-content">
-                  {data.birth_date}
+                  {dataProfile.birth_date}
                 </span>
               </Container>
             </li>
@@ -50,7 +51,7 @@ const MainInfo = ({ data }) => {
               <Container className="dashboard-customer-info-item">
                 <span className="dash-customer-tagline-label">Email</span>
                 <span className="dash-customer-tagline-content">
-                  {data.email}
+                  {dataProfile.email}
                 </span>
               </Container>
             </li>
@@ -58,7 +59,15 @@ const MainInfo = ({ data }) => {
               <Container className="dashboard-customer-info-item">
                 <span className="dash-customer-tagline-label">Nomor HP</span>
                 <span className="dash-customer-tagline-content">
-                  {data.phone_number}
+                  {dataProfile.phone_number}
+                </span>
+              </Container>
+            </li>
+            <li>
+              <Container className="dashboard-customer-info-item">
+                <span className="dash-customer-tagline-label">Point</span>
+                <span className="dash-customer-tagline-content">
+                  {data.simedis_account.point}
                 </span>
               </Container>
             </li>

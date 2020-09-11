@@ -70,10 +70,10 @@ class Dashboard extends Component {
       updateAccountData
     );
 
-    // const res4 = await this.getAccountPoint(updateAccountData, loadHandler);
+    const res4 = await this.getAccountPoint(updateAccountData, loadHandler);
     // const res5 = await this.getCountries(updateAccountData, loadHandler);
 
-    if (res1 === true && res2 === true && res3 === true) {
+    if (res1 === true && res2 === true && res3 === true && res4 === true) {
       loadHandler(false);
     } else {
       this.failCase(updateAccountData, loadHandler);
@@ -222,11 +222,14 @@ class Dashboard extends Component {
       };
 
       const res = await axios.post(url, data, config);
-
       console.log(res);
+
+      updateAccountData("point", res.data.data.point);
+
       if (!res.data.ok) {
         this.failCase(updateAccountData, loadHandler);
       }
+      return true;
     } catch (err) {
       console.log(err);
       return false;
@@ -303,7 +306,7 @@ class Dashboard extends Component {
               {mobileMenu}
               <Tab.Content className="dashboard-tab-content">
                 <Tab.Pane className="dashboard-tab-pane" eventKey="profile">
-                  <CustomerView data={states.form_1} />
+                  <CustomerView data={states} />
                 </Tab.Pane>
                 <Tab.Pane className="dashboard-tab-pane" eventKey="policy">
                   <PolicyView

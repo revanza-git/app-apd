@@ -55,6 +55,7 @@ const initialState = {
       base64: "",
       username_token: "simedis",
       password_token: "sYs-simedis-20!",
+      point: "",
     },
     gender: [],
     relationship: [],
