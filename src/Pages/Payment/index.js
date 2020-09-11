@@ -18,43 +18,40 @@ class PaymentPage extends Component {
     const account = param.midtrans_account;
     const dataPayment = param.simedis_payment;
 
-    const res1 = this.callMidtrans(account, dataPayment, formOne);
+    this.callMidtrans(account, dataPayment, formOne);
   }
 
   async callMidtrans(account, dataPayment, formOne) {
-    const url = account.api_url;
+    const url = process.env.REACT_APP_MIDDLEWARE_URL + "/forward";
     const data = {
-      transaction_details: {
-        order_id: dataPayment.bill_code,
-        gross_amount: dataPayment.bill_amount,
-      },
-      customer_details: {
-        first_name: formOne.first_name,
-        last_name: formOne.last_name,
-        email: formOne.email,
-        phone: formOne.phone_number,
-      },
-      enabled_payments: account.enabled_payments,
-      gopay: {
-        enable_callback: true,
-        callback_url: process.env.REACT_APP_CALLBACK_FINISH_URL,
-      },
-    };
-
-    const config = {
-      auth: {
-        username: account.server_key,
-        password: "",
+      method: "POST",
+      url: account.api_url,
+      params: {
+        transaction_details: {
+          order_id: dataPayment.bill_code,
+          gross_amount: dataPayment.bill_amount,
+        },
+        customer_details: {
+          first_name: formOne.first_name,
+          last_name: formOne.last_name,
+          email: formOne.email,
+          phone: formOne.phone_number,
+        },
+        enabled_payments: account.enabled_payments,
+        gopay: {
+          enable_callback: true,
+          callback_url: process.env.REACT_APP_CALLBACK_FINISH_URL,
+        },
       },
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: account.server_key + ":",
+        Authorization: "Basic " + account.server_key_base64,
       },
     };
 
     await axios
-      .post(url, data, config)
+      .post(url, data, "")
       .then((res) => {
         this.setState({
           redirect_url: res.data.redirect_url,

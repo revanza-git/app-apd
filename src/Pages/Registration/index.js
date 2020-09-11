@@ -65,17 +65,22 @@ class RegistrationPage extends Component {
     }
   }
 
-  async getToken(updateAccount, updateHandler) {
-    const url = process.env.REACT_APP_LOGIN_URL;
-    //Hardcode untuk token
+  async getToken(updateAccount) {
+    const url = process.env.REACT_APP_MIDDLEWARE_URL + "/forward";
     const data = {
-      username: this.props.states.simedis_account.username_token,
-      password: this.props.states.simedis_account.password_token,
+      method: "POST",
+      url: process.env.REACT_APP_LOGIN_URL,
+      params: {
+        username: this.props.states.simedis_account.username_token,
+        password: this.props.states.simedis_account.password_token,
+      },
+      headers: "",
     };
 
     await axios
       .post(url, data, "")
       .then((res) => {
+        console.log(res);
         const token = res.data.token;
         const userData = res.data.data.user;
 
@@ -88,12 +93,19 @@ class RegistrationPage extends Component {
     return true;
   }
 
-  async getGender(updateGender, updateHandler) {
-    const url = process.env.REACT_APP_GENDER_URL;
+  async getGender(updateGender) {
+    const url = process.env.REACT_APP_MIDDLEWARE_URL + "/forward";
+    const data = {
+      method: "GET",
+      url: process.env.REACT_APP_GENDER_URL,
+      params: "",
+      headers: "",
+    };
 
     await axios
-      .get(url, "")
+      .post(url, data, "")
       .then((res) => {
+        console.log(res);
         updateGender(res.data.data);
       })
       .catch(function (error) {
@@ -102,11 +114,17 @@ class RegistrationPage extends Component {
     return true;
   }
 
-  async getRelationship(updateRelationship, updateHandler) {
-    const url = process.env.REACT_APP_RELATIONSHIP_URL;
+  async getRelationship(updateRelationship) {
+    const url = process.env.REACT_APP_MIDDLEWARE_URL + "/forward";
+    const data = {
+      method: "GET",
+      url: process.env.REACT_APP_RELATIONSHIP_URL,
+      params: "",
+      headers: "",
+    };
 
     await axios
-      .get(url, "")
+      .post(url, data, "")
       .then((res) => {
         updateRelationship(res.data.data);
       })

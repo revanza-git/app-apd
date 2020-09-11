@@ -68,7 +68,7 @@ export const updateRegistrationType = (payload) => ({
 // export function
 export const postApi = (url, data, config) => {
   return () => {
-    const res = axios
+    axios
       .post(url, data, config)
       .then((response) => {
         return response;

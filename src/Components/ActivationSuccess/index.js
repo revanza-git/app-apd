@@ -3,8 +3,6 @@ import { Card, Container, Image } from "react-bootstrap";
 import ShieldIcon from "../../../src/assets/images/simedis/shieldicon.svg";
 import "./index.scss";
 
-import { useHistory } from "react-router-dom";
-
 const ActivationSuccess = ({ handler }) => {
   // const history = useHistory();
 

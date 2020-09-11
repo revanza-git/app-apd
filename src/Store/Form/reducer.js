@@ -9,11 +9,11 @@ const initialState = {
     app_code: "APP202007001",
     is_loading: false,
     midtrans_account: {
-      api_url:
-        "https://cors-anywhere.herokuapp.com/https://app.sandbox.midtrans.com/snap/v1/transactions",
+      api_url: "https://app.sandbox.midtrans.com/snap/v1/transactions",
       merchant_id: "G656498576",
       client_key: "SB-Mid-client-JvE0yhSIDGqF8h1M",
       server_key: "SB-Mid-server-rU0SDyct3zSoQo2s-0Yta4Qu",
+      server_key_base64: "U0ItTWlkLXNlcnZlci1yVTBTRHljdDN6U29RbzJzLTBZdGE0UXU6",
       username: "",
       password: "",
       enabled_payments: ["gopay"],

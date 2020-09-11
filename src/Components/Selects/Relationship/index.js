@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Form, Col, Row, Card } from "react-bootstrap";
-import Loader from "react-loader-spinner";
+import { Form, Col, Row } from "react-bootstrap";
+// import Loader from "react-loader-spinner";
 import "./index.scss";
 
 class Selects extends Component {
@@ -11,7 +11,7 @@ class Selects extends Component {
   }
 
   componentDidMount() {
-    const StoreData = this.props.Data;
+    // const StoreData = this.props.Data;
     // console.log(this.props.BlockChoices);
     // const filtered = StoreData.filter((i) => {
     //   return i.relationshipCode !== "0";
@@ -47,7 +47,7 @@ class Selects extends Component {
       HandleChange,
       Data,
       Display,
-      BlockChoices,
+      // BlockChoices,
     } = this.props;
 
     // const LocalStates = this.state[0];

@@ -64,16 +64,19 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
   const handleClick = () => {
     if (targetURL === "/confirmation") {
       loadHandler(true);
-      const url = process.env.REACT_APP_USER_REGISTER_URL;
-      const data = GenerateData();
-      const config = {
+
+      const url = process.env.REACT_APP_MIDDLEWARE_URL + "/forward";
+      const data = {
+        method: "POST",
+        url: process.env.REACT_APP_USER_REGISTER_URL,
+        params: GenerateData(),
         headers: {
           Authorization: accountFormData.token,
         },
       };
 
       axios
-        .post(url, data, config)
+        .post(url, data, "")
         .then((response) => {
           const res = response.data.data;
 
@@ -98,13 +101,15 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
         );
         updateFormAccountChange("is_valid", false);
       } else {
-        const url = process.env.REACT_APP_USER_ACTIVATE_URL;
+        const url = process.env.REACT_APP_MIDDLEWARE_URL + "/forward";
         const data = {
-          accountCode: accountFormData.account_code,
-          username: accountFormData.username,
-          password: accountFormData.password,
-        };
-        const config = {
+          method: "POST",
+          url: process.env.REACT_APP_USER_ACTIVATE_URL,
+          params: {
+            accountCode: accountFormData.account_code,
+            username: accountFormData.username,
+            password: accountFormData.password,
+          },
           headers: {
             Authorization: accountFormData.token,
           },
@@ -112,7 +117,7 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
 
         loadHandler(true);
         axios
-          .post(url, data, config)
+          .post(url, data, "")
           .then((res) => {
             updateFormAccountChange("active", true);
             updateFormAccountChange("form_status", "ok");
@@ -132,10 +137,16 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
       }
     } else if (targetURL === "/dashboard") {
       loadHandler(true);
-      const url = process.env.REACT_APP_LOGIN_URL;
+
+      const url = process.env.REACT_APP_MIDDLEWARE_URL + "/forward";
       const data = {
-        username: accountFormData.username,
-        password: accountFormData.password,
+        method: "POST",
+        url: process.env.REACT_APP_LOGIN_URL,
+        params: {
+          username: accountFormData.username,
+          password: accountFormData.password,
+        },
+        headers: "",
       };
 
       axios

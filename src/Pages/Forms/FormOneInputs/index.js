@@ -2,13 +2,13 @@ import React from "react";
 import { Form } from "react-bootstrap";
 import TextBox from "../../../Components/Textbox";
 import Gender from "../../../Components/Selects/Gender";
-import Relationship from "../../../Components/Selects/Relationship";
+// import Relationship from "../../../Components/Selects/Relationship";
 import Datepicker from "../../../Components/Datepicker";
 
 const MainInfo = ({ data, changeHandler }) => {
   const dataForm = data.form_1;
   const genderData = data.gender;
-  const relationshipData = data.relationship;
+  // const relationshipData = data.relationship;
 
   const validation = (param) => {
     const params = param;

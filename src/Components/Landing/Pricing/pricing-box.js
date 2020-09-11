@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Col, CardBody, Row, Button } from "reactstrap";
+import { Col, CardBody, Row } from "reactstrap";
 import { useHistory, Link } from "react-router-dom";
 
 const PricingBox = ({ pricings }) => {
@@ -21,6 +21,7 @@ const PricingBox = ({ pricings }) => {
               <Row>
                 <img
                   src={require(`../../../assets/images/simedis/${pricing.img}`)}
+                  alt="tes"
                 ></img>
                 <h5 className="mt-3">{pricing.title}</h5>
               </Row>
