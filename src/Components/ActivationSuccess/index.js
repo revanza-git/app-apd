@@ -6,12 +6,13 @@ import "./index.scss";
 import { useHistory } from "react-router-dom";
 
 const ActivationSuccess = ({ handler }) => {
-  // const history = useHistory();
+  const history = useHistory();
 
   useEffect(() => {
     setTimeout(() => {
       handler("is_valid", null);
-      window.location.assign(process.env.REACT_APP_ACTIVATION_FINISH_URL);
+      // window.location.assign(process.env.REACT_APP_ACTIVATION_FINISH_URL);
+      history.push("/login");
     }, 5000);
   });
 

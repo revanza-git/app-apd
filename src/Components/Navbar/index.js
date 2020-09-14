@@ -19,7 +19,11 @@ const navbar = ({ data }) => {
             title={<Image className="dashboard-burger-menu-image" src={Menu} />}
             className="dashboard-navbar-dropdown"
           >
+<<<<<<< HEAD
             <NavDropdown.Item className="navbar-item" href={"/login"}>
+=======
+            <NavDropdown.Item className="navbar-item" href="/login">
+>>>>>>> c64715b5bbdf956d7a0c32d104c81371547d7450
               Keluar
             </NavDropdown.Item>
           </NavDropdown>
