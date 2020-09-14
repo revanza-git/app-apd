@@ -8,11 +8,11 @@ import ActivationPage from "../../Containers/PageContainer/ActivationPage";
 import LoginPage from "../../Containers/PageContainer/LoginPage";
 import DashboardPage from "../../Containers/PageContainer/DashboardPage";
 import React, { Component } from "react";
-import { createBrowserHistory } from "history";
+// import { createBrowserHistory } from "history";
 
-export const history = createBrowserHistory({
-  basename: process.env.PUBLIC_URL,
-});
+// export const history = createBrowserHistory({
+//   basename: process.env.PUBLIC_URL,
+// });
 
 class Routing extends Component {
   constructor(props) {
