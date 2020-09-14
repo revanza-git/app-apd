@@ -93,7 +93,7 @@ class Dashboard extends Component {
       };
 
       const res = await axios.get(url, config);
-      console.log(res);
+
       if (!res.data.ok) {
         this.failCase(updateAccountData, loadHandler);
       }
@@ -123,7 +123,6 @@ class Dashboard extends Component {
       };
 
       const res = await axios.post(url, data, config);
-      console.log(res);
 
       if (!res.data.ok) {
         this.failCase(updateAccountData, loadHandler);
@@ -164,7 +163,7 @@ class Dashboard extends Component {
         },
       };
       const res = await axios.post(url, data, config);
-      console.log(res);
+
       if (!res.data.ok) {
         this.failCase(updateAccountData, loadHandler);
       }
@@ -191,7 +190,7 @@ class Dashboard extends Component {
       if (!res.data.ok) {
         this.failCase(updateAccountData, loadHandler);
       }
-      console.log(res);
+
       const dataCustomer = await res.data.data;
       updateformOne("first_name", dataCustomer.customerName);
       updateformOne("birth_date", dataCustomer.dateOfBirth);
@@ -222,7 +221,6 @@ class Dashboard extends Component {
       };
 
       const res = await axios.post(url, data, config);
-      console.log(res);
 
       updateAccountData("point", res.data.data.point);
 

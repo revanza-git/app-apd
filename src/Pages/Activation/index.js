@@ -110,8 +110,6 @@ class ActivationPage extends Component {
 
   render() {
     const { states, simedisAccountChange } = this.props;
-    console.log(this.props);
-
     let card;
 
     if (!states || states.is_loading === true) {

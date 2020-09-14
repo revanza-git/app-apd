@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import "./index.scss";
 
-const ConBtn = ({ data, targetURL, valid, label }) => {
+const ConBtn = ({ data, targetURL, label }) => {
   //depended need fix for dynamic form
   const dataFormOne = data.states.form_1;
   const personalChange = data.formOne;
@@ -84,7 +84,6 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
           history.push(targetURL);
         })
         .catch(function (error) {
-          console.log(error);
           const errMessage = error.response.data.message;
           personalChange("form_status", errMessage);
           personalChange("is_valid", false);

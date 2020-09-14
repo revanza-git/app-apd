@@ -21,20 +21,20 @@ class Routing extends Component {
     return (
       <div>
         <Route exact path="/">
-          <Redirect to="./welcome" />
+          <Redirect to="./login" />
         </Route>
 
         <Route exact path="/dashboard" component={DashboardPage} />
         <Route exact path="/activation" component={ActivationPage} />
         <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/confirmation" component={ConfirmationPage} />
-        <Route path="/welcome" component={LandingPage} />
-        <Route exact path="/registration" component={RegistrationPage} />
+        {/* <Route exact path="/confirmation" component={ConfirmationPage} />
+        <Route path="/welcome" component={LandingPage} /> */}
+        {/* <Route exact path="/registration" component={RegistrationPage} />
         <Route exact path="/payment" component={PaymentPage} />
         <Route exact path="/payment/notification" />
         <Route exact path="/payment/finish" component={FinishedPage} />
         <Route exact path="/payment/unfinish" />
-        <Route exact path="/payment/error" />
+        <Route exact path="/payment/error" /> */}
       </div>
     );
   }
