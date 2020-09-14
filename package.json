@@ -2,6 +2,7 @@
   "name": "app-apd",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/simedis/",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -9,6 +10,7 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "feather-icons-react": "^0.4.1",
+    "history": "^5.0.0",
     "jquery": "^3.5.1",
     "moment": "^2.26.0",
     "node-sass": "^4.14.1",

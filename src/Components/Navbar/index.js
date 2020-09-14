@@ -19,10 +19,7 @@ const navbar = ({ data }) => {
             title={<Image className="dashboard-burger-menu-image" src={Menu} />}
             className="dashboard-navbar-dropdown"
           >
-            <NavDropdown.Item
-              className="navbar-item"
-              href={process.env.REACT_APP_SIMEDIS_PATH + "/login"}
-            >
+            <NavDropdown.Item className="navbar-item" href="/login">
               Keluar
             </NavDropdown.Item>
           </NavDropdown>
