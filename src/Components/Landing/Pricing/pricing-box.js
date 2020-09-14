@@ -41,7 +41,7 @@ const PricingBox = ({ pricings }) => {
                 </p>
               </div>
 
-              <div>
+              {/* <div>
                 <Link
                   className="btn btn-primary"
                   onClick={() => handleClick(pricing.redirect)}
@@ -49,7 +49,7 @@ const PricingBox = ({ pricings }) => {
                 >
                   Beli Plan
                 </Link>
-              </div>
+              </div> */}
             </CardBody>
           </div>
         </Col>

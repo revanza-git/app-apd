@@ -21,14 +21,14 @@ class Routing extends Component {
     return (
       <div>
         <Route exact path="/">
-          <Redirect to="./login" />
+          <Redirect to="./welcome" />
         </Route>
 
         <Route exact path="/dashboard" component={DashboardPage} />
         <Route exact path="/activation" component={ActivationPage} />
         <Route exact path="/login" component={LoginPage} />
-        {/* <Route exact path="/confirmation" component={ConfirmationPage} />
-        <Route path="/welcome" component={LandingPage} /> */}
+        {/* <Route exact path="/confirmation" component={ConfirmationPage} /> */}
+        <Route path="/welcome" component={LandingPage} />
         {/* <Route exact path="/registration" component={RegistrationPage} />
         <Route exact path="/payment" component={PaymentPage} />
         <Route exact path="/payment/notification" />
