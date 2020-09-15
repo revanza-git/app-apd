@@ -240,16 +240,15 @@ p {
 }
 
 @mixin button($background, $border) {
-  line-height: 1;
+  line-height: 1.2;
   -moz-appearance: none;
   -webkit-appearance: none;
 
   color: #fff;
-  margin: 0 auto;
 
   background: $background;
   border: $border;
-  max-width: 10em;
+  width: 14rem;
   height: auto;
   background-size: 100% 100%,
     calc(100% + var(--border-width) + var(--border-width))
@@ -267,7 +266,6 @@ p {
     color: #fff;
   }
 }
-
 /******************
     4.Hero section
 *******************/
@@ -277,45 +275,189 @@ p {
   background-size: cover;
   height: 100vh;
   overflow: hidden;
-}
-
-.logo-simedis {
-  height: 7em;
-}
-
-.intro-title {
-  font-weight: 500;
-  font-size: 2.7em;
-  color: white;
-}
-
-.intro-bottom-part {
-  height: 100vh;
-}
-
-.intro-wrapper {
-  margin-top: 5em;
-  padding-left: 10em;
-  width: 60vh;
-  z-index: 1;
+  display: flex;
+  flex-flow: row wrap;
 }
 
 .intro-content {
-  margin-left: 7em;
-}
+  display: flex;
+  flex: 50%;
 
-.logo-home {
-  position: absolute;
-  width: 70vw;
-  margin-left: 16em;
-  bottom: 0em;
-  z-index: 0;
-}
+  .taglines-intro {
+    display: flex;
+    flex-flow: column wrap;
+    position: absolute;
+    left: 0;
+    width: 30vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 10rem;
 
-.btn-learn {
-  @include button(linear-gradient(60deg, #74bf44, #ccdb29), 1.5px transparent);
-  font-size: 1.5em;
-  font-weight: bold;
+    .logo-equity {
+      margin-bottom: 8rem;
+    }
+
+    .logo-simedis {
+      height: 7rem;
+    }
+    .intro-title {
+      font-weight: 500;
+      font-size: 2.7em;
+      color: white;
+      margin-bottom: 2rem;
+    }
+
+    .intro-wrapper {
+      width: 60vh;
+      border: dotted;
+    }
+
+    .btn-learn {
+      @include button(
+        linear-gradient(60deg, #74bf44, #ccdb29),
+        1.5px transparent
+      );
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+  }
+
+  .illus-home {
+    width: 55rem;
+    position: absolute;
+    margin-right: 3rem;
+    bottom: 0;
+    right: 0;
+  }
+
+  @media (max-width: 1300px) {
+    .taglines-intro {
+      width: 25rem;
+      margin-left: 4rem;
+
+      .logo-equity {
+        height: 4rem;
+      }
+
+      .logo-simedis {
+        height: 5rem;
+      }
+      .intro-title {
+        font-size: 2em;
+      }
+
+      .intro-wrapper {
+      }
+
+      .btn-learn {
+      }
+    }
+
+    .illus-home {
+      width: 40rem;
+      margin-right: 2rem;
+    }
+  }
+
+  @media (max-width: 970px) {
+    .taglines-intro {
+      width: 25rem;
+      margin-left: 3rem;
+
+      .logo-equity {
+        height: 4rem;
+      }
+
+      .logo-simedis {
+        height: 4rem;
+      }
+      .intro-title {
+        font-size: 1.8em;
+      }
+
+      .intro-wrapper {
+      }
+
+      .btn-learn {
+        width: 10rem;
+        font-size: 1em;
+      }
+    }
+
+    .illus-home {
+      width: 30rem;
+      margin-right: 1rem;
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    .taglines-intro {
+      width: 25rem;
+      margin-left: 3rem;
+
+      .logo-equity {
+        height: 4rem;
+      }
+
+      .logo-simedis {
+        height: 4rem;
+      }
+      .intro-title {
+        font-size: 1.8em;
+      }
+
+      .intro-wrapper {
+      }
+
+      .btn-learn {
+        width: 8rem;
+        font-size: 0.8em;
+      }
+    }
+
+    .illus-home {
+      width: 25rem;
+      margin-right: 1rem;
+    }
+  }
+
+  @media (max-width: 575.98px) {
+    .intro-content {
+      flex: unset;
+    }
+    .taglines-intro {
+      margin-left: unset;
+      height: 70vh;
+
+      .logo-equity {
+        height: 4rem;
+      }
+
+      .logo-simedis {
+        height: 4rem;
+      }
+      .intro-title {
+        font-size: 1.8em;
+      }
+
+      .intro-wrapper {
+      }
+
+      .btn-learn {
+        width: 10rem;
+        font-size: 1em;
+      }
+    }
+
+    .illus-home {
+      width: 23rem;
+      margin-right: unset;
+    }
+  }
+
+  @media (max-height: 680px) {
+  }
 }
 
 /******************
@@ -504,52 +646,52 @@ p {
 *******************/
 
 @media (max-width: 991px) {
-  .logo-home {
-    position: relative;
-  }
+  // .logo-home {
+  //   position: relative;
+  // }
 }
 
 @media (max-width: 767.98px) {
-  .logo-home {
-    position: relative;
-  }
-  .hero-title {
-    font-size: 32px;
-  }
+  // .logo-home {
+  //   position: relative;
+  // }
+  // .hero-title {
+  //   font-size: 32px;
+  // }
 }
 
 @media (max-width: 575.98px) {
-  //Hero Section
-  .hero-section {
-    height: 80vh;
-    overflow: hidden;
-  }
+  // //Hero Section
+  // .hero-section {
+  //   height: 80vh;
+  //   overflow: hidden;
+  // }
 
-  .logo-simedis {
-    height: 5em;
-  }
+  // .logo-simedis {
+  //   height: 5em;
+  // }
 
-  .intro-wrapper {
-    margin-top: 10em;
-    width: 60vh;
-    margin-right: 50em;
-  }
+  // .intro-wrapper {
+  //   margin-top: 10em;
+  //   width: 60vh;
+  //   margin-right: 50em;
+  // }
 
-  .intro-title {
-    font-weight: 500;
-    font-size: 2em;
-    color: white;
-  }
+  // .intro-title {
+  //   font-weight: 500;
+  //   font-size: 2em;
+  //   color: white;
+  // }
 
-  .intro-bottom-part {
-    height: 100vh;
-  }
-  .logo-home {
-    position: relative;
-    width: 100vw;
-    margin-left: 0em;
-    top: 0.5em;
-  }
+  // .intro-bottom-part {
+  //   height: 100vh;
+  // }
+  // .logo-home {
+  //   position: relative;
+  //   width: 100vw;
+  //   margin-left: 0em;
+  //   top: 0.5em;
+  // }
 
   .testi-carousel {
     .owl-nav {
@@ -608,41 +750,41 @@ p {
 }
 
 @media (max-height: 680px) {
-  //Hero Section
-  .hero-section {
-    height: 80vh;
-    overflow: hidden;
-  }
+  // //Hero Section
+  // .hero-section {
+  //   height: 80vh;
+  //   overflow: hidden;
+  // }
 
-  .logo-simedis {
-    height: 4em;
-  }
+  // .logo-simedis {
+  //   height: 4em;
+  // }
 
-  .hero-wrapper {
-    margin-top: 1em !important;
-    width: 50vh;
-    margin-right: 50em;
-  }
+  // .hero-wrapper {
+  //   margin-top: 1em !important;
+  //   width: 50vh;
+  //   margin-right: 50em;
+  // }
 
-  .intro-title {
-    font-weight: 500;
-    font-size: 2em;
-    color: white;
-  }
+  // .intro-title {
+  //   font-weight: 500;
+  //   font-size: 2em;
+  //   color: white;
+  // }
 
-  .btn-learn {
-    font-size: 1.1em;
-  }
+  // .btn-learn {
+  //   font-size: 1.1em;
+  // }
 
-  .intro-bottom-part {
-    height: 100vh;
-  }
-  .logo-home {
-    position: relative;
-    width: 100vw;
-    margin-left: 0em;
-    top: -1em;
-  }
+  // .intro-bottom-part {
+  //   height: 100vh;
+  // }
+  // .logo-home {
+  //   position: relative;
+  //   width: 100vw;
+  //   margin-left: 0em;
+  //   top: -1em;
+  // }
 
   .testi-carousel {
     .owl-nav {
