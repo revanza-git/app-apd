@@ -24,9 +24,9 @@ class Routing extends Component {
           <Redirect to="./welcome" />
         </Route>
 
-        <Route exact path="/dashboard" component={DashboardPage} />
-        <Route exact path="/activation" component={ActivationPage} />
-        <Route exact path="/login" component={LoginPage} />
+        <Route path="/dashboard" component={DashboardPage} />
+        <Route path="/activation" component={ActivationPage} />
+        <Route path="/login" component={LoginPage} />
         {/* <Route exact path="/confirmation" component={ConfirmationPage} /> */}
         <Route path="/welcome" component={LandingPage} />
         {/* <Route exact path="/registration" component={RegistrationPage} />
