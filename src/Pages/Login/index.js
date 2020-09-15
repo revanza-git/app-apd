@@ -3,7 +3,7 @@ import LoginInputs from "../Forms/LoginInputs";
 import ContinueBtn from "../../Components/ContinueBtn";
 import Loader from "../../Components/Loader";
 import Logo from "../../../src/assets/images/simedis/logo-simedis.svg";
-import Illustrasi from "../../../src/assets/images/simedis/Simedis-Illutrasi-01-Homepage.svg";
+import Illustrasi from "../../../src/assets/images/simedis/mainilustrationv2-01.svg";
 
 import "./index.scss";
 
