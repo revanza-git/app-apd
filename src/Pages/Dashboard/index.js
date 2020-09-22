@@ -70,10 +70,10 @@ class Dashboard extends Component {
       updateAccountData
     );
 
-    // const res4 = await this.getAccountPoint(updateAccountData, loadHandler);
+    const res4 = await this.getAccountPoint(updateAccountData, loadHandler);
     // const res5 = await this.getCountries(updateAccountData, loadHandler);
 
-    if (res1 === true && res2 === true && res3 === true) {
+    if (res1 === true && res2 === true && res3 === true && res4 === true) {
       loadHandler(false);
     } else {
       this.failCase(updateAccountData, loadHandler);
@@ -82,27 +82,27 @@ class Dashboard extends Component {
     return true;
   }
 
-  async getCountries(updateAccountData, loadHandler) {
-    const accountData = this.props.states.simedis_account;
-    try {
-      const url = "https://sit-eli.myequity.id/services/v1/countries";
-      const config = {
-        headers: {
-          Authorization: accountData.token,
-        },
-      };
+  // async getCountries(updateAccountData, loadHandler) {
+  //   const accountData = this.props.states.simedis_account;
+  //   try {
+  //     const url = "https://sit-eli.myequity.id/services/v1/countries";
+  //     const config = {
+  //       headers: {
+  //         Authorization: accountData.token,
+  //       },
+  //     };
 
-      const res = await axios.get(url, config);
-      console.log(res);
-      if (!res.data.ok) {
-        this.failCase(updateAccountData, loadHandler);
-      }
+  //     const res = await axios.get(url, config);
 
-      return true;
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  //     if (!res.data.ok) {
+  //       this.failCase(updateAccountData, loadHandler);
+  //     }
+
+  //     return true;
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
   async getCustomerPolicy(
     updateAccountData,
@@ -112,18 +112,19 @@ class Dashboard extends Component {
   ) {
     const accountData = this.props.states.simedis_account;
     try {
-      const url = process.env.REACT_APP_ACCOUNT_POLICY_URL;
+      const url = process.env.REACT_APP_MIDDLEWARE_URL + "/forward";
       const data = {
-        emailAddress: accountData.username,
-      };
-      const config = {
+        method: "POST",
+        url: process.env.REACT_APP_ACCOUNT_POLICY_URL,
+        params: {
+          emailAddress: accountData.username,
+        },
         headers: {
           Authorization: accountData.token,
         },
       };
 
-      const res = await axios.post(url, data, config);
-      console.log(res);
+      const res = await axios.post(url, data, "");
 
       if (!res.data.ok) {
         this.failCase(updateAccountData, loadHandler);
@@ -153,18 +154,22 @@ class Dashboard extends Component {
   async getCertificate(updateAccountData, loadHandler) {
     try {
       const accountData = this.props.states.simedis_account;
-      const url = process.env.REACT_APP_CUSTOMER_POLICIES_CERTIFICATE_URL;
+
+      const url = process.env.REACT_APP_MIDDLEWARE_URL + "/forward";
       const data = {
-        customerCode: accountData.customer_code,
-        registrationCode: accountData.registration_code,
-      };
-      const config = {
+        method: "POST",
+        url: process.env.REACT_APP_CUSTOMER_POLICIES_CERTIFICATE_URL,
+        params: {
+          customerCode: accountData.customer_code,
+          registrationCode: accountData.registration_code,
+        },
         headers: {
           Authorization: accountData.token,
         },
       };
-      const res = await axios.post(url, data, config);
-      console.log(res);
+
+      const res = await axios.post(url, data, "");
+
       if (!res.data.ok) {
         this.failCase(updateAccountData, loadHandler);
       }
@@ -178,20 +183,22 @@ class Dashboard extends Component {
   async getCustomerDetail(loadHandler, updateformOne, updateAccountData) {
     try {
       const accountData = this.props.states.simedis_account;
-      const url =
-        process.env.REACT_APP_USER_PROFILE_URL + accountData.customer_code;
 
-      const config = {
+      const url = process.env.REACT_APP_MIDDLEWARE_URL + "/forward";
+      const data = {
+        method: "GET",
+        url: process.env.REACT_APP_USER_PROFILE_URL + accountData.customer_code,
+        params: "",
         headers: {
           Authorization: accountData.token,
         },
       };
 
-      const res = await axios.get(url, config);
+      const res = await axios.post(url, data, "");
       if (!res.data.ok) {
         this.failCase(updateAccountData, loadHandler);
       }
-      console.log(res);
+
       const dataCustomer = await res.data.data;
       updateformOne("first_name", dataCustomer.customerName);
       updateformOne("birth_date", dataCustomer.dateOfBirth);
@@ -209,24 +216,28 @@ class Dashboard extends Component {
   async getAccountPoint(updateAccountData, loadHandler) {
     try {
       const accountData = this.props.states.simedis_account;
-      const data = {
-        emailAddress: accountData.username,
-        // emailAddress: "revanza-27@yopmail.com",
-      };
-      const url = process.env.REACT_APP_ACCOUNT_POINT_URL;
 
-      const config = {
+      const url = process.env.REACT_APP_MIDDLEWARE_URL + "/forward";
+      const data = {
+        method: "POST",
+        url: process.env.REACT_APP_ACCOUNT_POINT_URL,
+        params: {
+          emailAddress: accountData.username,
+          // emailAddress: "revanza-27@yopmail.com",
+        },
         headers: {
           Authorization: accountData.token,
         },
       };
 
-      const res = await axios.post(url, data, config);
+      const res = await axios.post(url, data, "");
 
-      console.log(res);
+      updateAccountData("point", res.data.data.point);
+
       if (!res.data.ok) {
         this.failCase(updateAccountData, loadHandler);
       }
+      return true;
     } catch (err) {
       console.log(err);
       return false;
@@ -241,7 +252,7 @@ class Dashboard extends Component {
       "Mohon maaf koneksi mengalami kendala, silahkan coba lagi"
     );
 
-    this.props.history.push(process.env.REACT_APP_SIMEDIS_PATH + "/login");
+    this.props.history.push("/login");
   }
 
   handleMenuClick() {
@@ -249,7 +260,7 @@ class Dashboard extends Component {
   }
 
   handleLogout() {
-    this.props.history.push(process.env.REACT_APP_SIMEDIS_PATH + "/login");
+    this.props.history.push("/login");
   }
 
   render() {
@@ -303,7 +314,7 @@ class Dashboard extends Component {
               {mobileMenu}
               <Tab.Content className="dashboard-tab-content">
                 <Tab.Pane className="dashboard-tab-pane" eventKey="profile">
-                  <CustomerView data={states.form_1} />
+                  <CustomerView data={states} />
                 </Tab.Pane>
                 <Tab.Pane className="dashboard-tab-pane" eventKey="policy">
                   <PolicyView

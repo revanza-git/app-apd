@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import "./index.scss";
 
-const ConBtn = ({ data, targetURL, valid, label }) => {
+const ConBtn = ({ data, targetURL, label }) => {
   //depended need fix for dynamic form
   const dataFormOne = data.states.form_1;
   const personalChange = data.formOne;
@@ -84,10 +84,9 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
           updateData("bill_code", res.billCode);
           updateData("registration_code", res.registrationCode);
 
-          history.push(process.env.REACT_APP_SIMEDIS_PATH + targetURL);
+          history.push(targetURL);
         })
         .catch(function (error) {
-          console.log(error);
           const errMessage = error.response.data.message;
           personalChange("form_status", errMessage);
           personalChange("is_valid", false);
@@ -123,7 +122,7 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
             updateFormAccountChange("form_status", "ok");
 
             loadHandler(false);
-            history.push(process.env.REACT_APP_SIMEDIS_PATH + "/activation");
+            history.push("/activation");
           })
           .catch(function (error) {
             updateFormAccountChange(
@@ -157,12 +156,7 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
 
           updateFormAccountChange("username", userData.username);
           updateFormAccountChange("token", token);
-          history.push(
-            process.env.REACT_APP_SIMEDIS_PATH +
-              targetURL +
-              "?id=" +
-              userData.id
-          );
+          history.push(targetURL + "?id=" + userData.id);
         })
         .catch(function (error) {
           const resMessage = error.response.data.data.message;
@@ -180,7 +174,7 @@ const ConBtn = ({ data, targetURL, valid, label }) => {
           loadHandler(false);
         });
     } else if (targetURL === "/payment") {
-      history.push(process.env.REACT_APP_SIMEDIS_PATH + targetURL);
+      history.push(targetURL);
     } else {
       console.log("Halaman Belum Terdaftar");
     }

@@ -37,11 +37,15 @@ class ActivationPage extends Component {
   }
 
   async getToken(updateAccount) {
-    const url = process.env.REACT_APP_LOGIN_URL;
-    //Hardcode untuk token
+    const url = process.env.REACT_APP_MIDDLEWARE_URL + "/forward";
     const data = {
-      username: this.props.states.simedis_account.username_token,
-      password: this.props.states.simedis_account.password_token,
+      method: "POST",
+      url: process.env.REACT_APP_LOGIN_URL,
+      params: {
+        username: this.props.states.simedis_account.username_token,
+        password: this.props.states.simedis_account.password_token,
+      },
+      headers: "",
     };
 
     await axios
@@ -58,17 +62,20 @@ class ActivationPage extends Component {
   }
 
   async activateAccount(token, changeHandler) {
-    const url = process.env.REACT_APP_USER_VALIDATE_KEY_URL;
+    const url = process.env.REACT_APP_MIDDLEWARE_URL + "/forward";
     const data = {
-      uniqueActivationKey: token,
-    };
-    const config = {
+      method: "POST",
+      url: process.env.REACT_APP_USER_VALIDATE_KEY_URL,
+      params: {
+        uniqueActivationKey: token,
+      },
       headers: {
         Authorization: this.props.states.simedis_account.token,
       },
     };
+
     await axios
-      .post(url, data, config)
+      .post(url, data, "")
       .then((i) => {
         const res = i.data.data;
 
@@ -110,8 +117,6 @@ class ActivationPage extends Component {
 
   render() {
     const { states, simedisAccountChange } = this.props;
-    console.log(this.props);
-
     let card;
 
     if (!states || states.is_loading === true) {

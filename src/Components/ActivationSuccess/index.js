@@ -1,15 +1,17 @@
 import React, { useEffect } from "react";
 import { Card, Container, Image } from "react-bootstrap";
 import ShieldIcon from "../../../src/assets/images/simedis/shieldicon.svg";
+import { useHistory } from "react-router-dom";
 import "./index.scss";
 
 const ActivationSuccess = ({ handler }) => {
-  // const history = useHistory();
+  const history = useHistory();
 
   useEffect(() => {
     setTimeout(() => {
       handler("is_valid", null);
-      window.location.assign(process.env.REACT_APP_ACTIVATION_FINISH_URL);
+      // window.location.assign(process.env.REACT_APP_ACTIVATION_FINISH_URL);
+      history.push("/login");
     }, 5000);
   });
 
